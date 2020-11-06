@@ -78,8 +78,17 @@ WSGI_APPLICATION = 'Crm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME':'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'Django_Crm_db',
+
+        'USER': 'postgres',
+
+        'PASSWORD': 'sanjummp143@',
+
+        'HOST': 'localhost',
+
+        'PORT': '5432',
     }
 }
 
