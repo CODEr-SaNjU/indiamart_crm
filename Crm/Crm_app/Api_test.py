@@ -7,5 +7,6 @@ data = Url.json()
 for i in range(len(data)):
     x = data[i]
     for i in x.items():
-        x = i
-        print(list(x))
+        data_1 = i[1]
+        print(data_1)
+    

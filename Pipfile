@@ -32,6 +32,7 @@ urllib3 = "==1.25.8"
 webencodings = "==0.5.1"
 psycopg2 = "*"
 python-dotenv = "*"
+pillow = "*"
 
 [dev-packages]
 
