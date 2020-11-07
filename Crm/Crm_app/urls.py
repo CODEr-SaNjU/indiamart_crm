@@ -4,6 +4,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('',views.login,name="login"),
+    path("Api_data/",views.api_data,name="Api_data")
 
 
 ]
