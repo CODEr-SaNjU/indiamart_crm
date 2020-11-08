@@ -9,7 +9,8 @@ def login(request):
     return render(request,"html_files/login.htm")
 
 
-
+def Admin_panel(request):
+    pass
 
 
 def api_data(request):
