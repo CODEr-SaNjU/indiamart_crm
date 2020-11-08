@@ -15,15 +15,13 @@ def login(request):
 def api_data(request):
     if request.method == "POST":
         print("sanju")
-        Url = requests.get("https://mapi.indiamart.com/wservce/enquiry/listing/GLUSR_MOBILE/9909775046/GLUSR_MOBILE_KEY/MTYwMjgzMDcyMC4zMTIjNDg5NjA5NjY=/",data = request.POST)
+        Url = requests.get("https://mapi.indiamart.com/wservce/enquiry/listing/GLUSR_MOBILE/8469789298/GLUSR_MOBILE_KEY/MTYwMjgzMTEyNS40NDg0IzExMjc0OTQ0/",data = request.POST)
     else:
-        Url = requests.get("https://mapi.indiamart.com/wservce/enquiry/listing/GLUSR_MOBILE/9909775046/GLUSR_MOBILE_KEY/MTYwMjgzMDcyMC4zMTIjNDg5NjA5NjY=/",data = request.POST)
-    
+        Url = requests.get("https://mapi.indiamart.com/wservce/enquiry/listing/GLUSR_MOBILE/8469789298/GLUSR_MOBILE_KEY/MTYwMjgzMTEyNS40NDg0IzExMjc0OTQ0/",data = request.POST)    
     if Url.status_code == 200:
         data = Url.json()
         for i in range(len(data)):
             x = data[i]
-            print("x")
             RN= x["RN"] 
             QUERY_ID= x["QUERY_ID"] 
             QTYPE= x["QTYPE"]
