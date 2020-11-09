@@ -61,9 +61,15 @@ def api_data(request):
     return render(request,'html_files/Api_Data.htm')
 
 
+def All_Enquiry(request):
+    all_enq = CK_Account.objects.all()
+    return render(request,'html_files/Dashboard.htm',{"all_enq":all_enq})
 
-    #   for i in range(len(data)):
-    #     x = data[i]
-    #     for i in x.items():
-    #         all_data = i[1]
-    # if request.method == "POST":
+
+
+def Enquiry_search(request):
+    qur = request.GET.get('search')
+    print(qur)
+    print(type(qur))
+    all_enq = [item for item in CK_Account.objects.all() if qur in item.QUERY_ID or qur in item.SENDERNAME or qur in item.ENQ_STATE]
+    return render(request,'html_files/Dashboard.htm',{"all_enq":all_enq})

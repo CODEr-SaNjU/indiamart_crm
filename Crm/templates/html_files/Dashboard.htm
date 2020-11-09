@@ -3,4 +3,59 @@
 
 {% block content %}
 
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="GET" action="/Enquiry_search/" class="form-inline my-2 my-lg-10">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search" name="search">
+				<button class="btn btn-primary" type="submit">Search</button>
+			</form>
+		</div>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-0">
+	</div>
+
+	<div class="col-md-12">
+		<hr>
+		<div class="card card-body">
+			<h5>Last 5 Submit Employee Data</h5>
+			<a class="btn btn-primary  btn-sm btn-block" href="#">Created Last 5 Employee Data</a>
+			<table class="table table-sm">
+				<tr>
+					<th> RN</th>
+					<th>QUERY_ID</th>
+					<th>QTYPE</th>
+					<th>SENDERNAME</th>
+					<th> SENDEREMAIL</th>
+					<th>SUBJECT </th>
+					<th>DATE_RE</th>
+					<th> DATE_R</th>
+					<th> DATE_TIME_RE</th>
+					<th> GLUSR_USR_COMPANYNAME</th>
+					<th>MOB</th>
+				</tr>
+
+				{% for i in all_enq %}
+				<tr>
+					<td>{{i.RN}}</td>
+					<td>{{i.QUERY_ID}}</td>
+					<td>{{i.QTYPE}}</td>
+					<td>{{i.SENDERNAME}}</td>
+					<td>{{i.SENDEREMAIL}}</td>
+					<td>{{i.SUBJECT}}</td>
+					<td>{{i.DATE_RE}}</td>
+					<td>{{i.DATE_R}}</td>
+					<td>{{i.DATE_TIME_RE}}</td>
+					<td>{{i.GLUSR_USR_COMPANYNAME}}</td>
+					<td>{{i.MOB}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
 {% endblock %}

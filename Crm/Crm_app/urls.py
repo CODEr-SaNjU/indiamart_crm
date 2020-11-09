@@ -6,6 +6,7 @@ urlpatterns = [
     path('',views.login,name="login"),
     path("Api_data/",views.api_data,name="Api_data"),
     path("Admin_Panel/",views.Admin_panel,name="Admin_panel"),
-
+    path("All_enq/",views.All_Enquiry,name="All_Enquiry"),
+    path("Enquiry_search/",views.Enquiry_search,name="Enquiry_search"),
 
 ]
