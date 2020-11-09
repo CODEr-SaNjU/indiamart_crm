@@ -1,2 +1,93 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/Header.css' %}">
+<link rel="stylesheet" type="text/css" href="/static/css/Header.css">
+
+<style>
+    .navbar{
+	display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 1.8rem 5rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #545658;
+    border-radius: .25rem;
+   
+}
+
+.bg-light {
+    background-color: #808890!important;
+}
+.card{
+    background-color: #545658;
+}
+.nav-item{
+    color: aliceblue;
+}
+a{
+
+    color: #e9eef3;
+    text-decoration: none;
+    background-color: #eab8b800;
+}
+a:hover{
+    color: #cedfd9;
+}
+navbar-brand {
+    color: #a08f8f;
+    font-size: 25px;
+    font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+</style>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <nav class="navbar navbar-light bg-light">
+                <span class="navbar-brand mb-0 h1">Django crm</span>
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Name(role)</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Signout</a>
+                    </li>
+                </ul>
+            </nav>
+            
+
+            <div class="row">
+                <div class="col-lg-3 col-md-4 d-md-block">
+                    <div class="card bg-common card-left">
+                        <div class="card-body">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                  <a class="nav-link active" href="#">Enquiry</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#">Product</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#">Reports</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#" tabindex="-1" >Accounts</a>
+                                </li>
+                              </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+ 
+  
+  

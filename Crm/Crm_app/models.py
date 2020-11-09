@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -38,4 +38,9 @@ class CK_Account(models.Model):
     IM_MEMBER_SINCE = models.CharField(max_length=300)
     TOTAL_COUNT = models.CharField(max_length=300)
 
-         
+
+
+
+class Roles(models.Model):
+    username = models.ForeignKey(User, verbose_name='Username', on_delete=models.CASCADE )
+    name = models.ForeignKey(User,verbose_name="Name",on_delete=models.CASCADE )
