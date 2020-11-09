@@ -10,7 +10,7 @@ def login(request):
 
 
 def Admin_panel(request):
-    pass
+    return render(request,"html_files/Dashboard.htm")
 
 
 def api_data(request):
