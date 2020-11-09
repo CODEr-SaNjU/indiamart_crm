@@ -33,6 +33,7 @@ webencodings = "==0.5.1"
 psycopg2 = "*"
 python-dotenv = "*"
 pillow = "*"
+django-phone-field = "*"
 
 [dev-packages]
 
