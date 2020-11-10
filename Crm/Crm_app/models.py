@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 from phone_field import PhoneField
 
+
+
 class CK_Account(models.Model):
     RN = models.CharField(max_length=100,blank=True,null=True)
     QUERY_ID = models.CharField(max_length=300,blank=True,null=True)
