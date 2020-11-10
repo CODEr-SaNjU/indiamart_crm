@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import os
 import requests
+from django.db.models import Q
 # Create your views here.
 import json
 from .models import CK_Account
@@ -71,6 +72,6 @@ def Enquiry_search(request):
     qur = request.GET.get('search')
     print(qur)
     print(type(qur))
-    all_enq = CK_Account.objects.filter(SENDERNAME__contains= qur)
+    all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
     # all_enq = [item for item in CK_Account.objects.all() if qur in item.QUERY_ID or qur in item.SENDERNAME or qur in item.ENQ_STATE]
     return render(request,'html_files/Dashboard.htm',{"all_enq":all_enq})
