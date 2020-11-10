@@ -57,6 +57,10 @@
 					<td>{{i.DATE_TIME_RE}}</td>
 					<td>{{i.GLUSR_USR_COMPANYNAME}}</td>
 					<td>{{i.MOB}}</td>
+					<td>
+						<a href="{% url 'Enquiry_Update' i.id %}"><button type="button" class="btn btn-info btn-sm fa fa-edit">&nbsp;&nbsp;Edit</button></a>
+						<a href="{%url 'Enquiry_Delete' i.id %}"><button type="button" class="btn btn-danger btn-sm">&nbsp;&nbsp;Delete</button></a>
+					</td>
 				</tr>
 				{% endfor %}
 			</table>

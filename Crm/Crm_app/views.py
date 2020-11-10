@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect , get_object_or_404
 import os
+from .forms import CK_AccountForm
 import requests
 from django.db.models import Q
 # Create your views here.
@@ -75,3 +76,22 @@ def Enquiry_search(request):
     all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
     # all_enq = [item for item in CK_Account.objects.all() if qur in item.QUERY_ID or qur in item.SENDERNAME or qur in item.ENQ_STATE]
     return render(request,'html_files/Dashboard.htm',{"all_enq":all_enq})
+
+
+def Enquiry_Update(request,pk_id):
+    obj_update = get_object_or_404(CK_Account,id=pk_id)
+    form = CK_AccountForm(request.POST or None , instance=obj_update)
+    if form.is_valid():
+        account = form.save()
+        return redirect('All_Enquiry')
+    return render(request,'html_files/enquiry_update.htm',{'form':form})
+
+
+
+def Enquiry_Delete(request,pk_id):
+    obj_delete = get_object_or_404(CK_Account,id=pk_id)
+    if request.method == "POST":
+        obj_delete.delete()
+        return redirect('All_Enquiry')
+    return render(request,'html_files/enquiry_delete.htm' , {"obj_delete":obj_delete})
+

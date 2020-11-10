@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %}
+<div class="col-6">
+    <form action=" " method="POST" id="form-data1" class="form-signin">
+      {% csrf_token %}
+      <div class="card card-body">
+        <h5 style="text-align: center;">Update Department</h5>
+        <div class="form-label-group"></div>
+        {% for field in form %}
+          <div class="form-label-group">
+            {{ field|as_crispy_field }}
+          </div>
+        {% endfor %}
+        {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+          <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            <div class="alert alert-danger" role="alert">&nbsp;{{ message }}</div></div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="form-label-group"></div>
+        <br>
+        <button class="btn btn-lg btn-block text-uppercase" style="background-color: #3e3c3c;"value="Update" type="submit">submit</button>
+        <button class="btn btn-lg  btn-block text-uppercase" style="background-color: #851313;" type="reset">Cancel</button>
+      </div>
+    </form>

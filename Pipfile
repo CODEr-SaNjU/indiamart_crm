@@ -34,6 +34,7 @@ psycopg2 = "*"
 python-dotenv = "*"
 pillow = "*"
 django-phone-field = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 

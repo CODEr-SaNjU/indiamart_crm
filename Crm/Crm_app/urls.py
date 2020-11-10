@@ -8,5 +8,7 @@ urlpatterns = [
     path("Admin_Panel/",views.Admin_panel,name="Admin_panel"),
     path("All_enq/",views.All_Enquiry,name="All_Enquiry"),
     path("Enquiry_search/",views.Enquiry_search,name="Enquiry_search"),
+    path("Enquiry_Update/<str:pk_id>/",views.Enquiry_Update,name="Enquiry_Update"),
+    path("Enquiry_Delete/<str:pk_id>/",views.Enquiry_Delete,name="Enquiry_Delete"),
 
 ]
