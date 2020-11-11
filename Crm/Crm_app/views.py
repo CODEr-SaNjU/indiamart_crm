@@ -75,7 +75,7 @@ def Enquiry_search(request):
     print(type(qur))
     all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
     # all_enq = [item for item in CK_Account.objects.all() if qur in item.QUERY_ID or qur in item.SENDERNAME or qur in item.ENQ_STATE]
-    return render(request,'html_files/Dashboard.htm',{"all_enq":all_enq})
+    return render(request,'html_files/Header.htm',{"all_enq":all_enq})
 
 
 def Enquiry_Update(request,pk_id):
