@@ -3,9 +3,25 @@ from django.contrib.auth.models import User
 # Create your models here.
 from phone_field import PhoneField
 
+class UserReg(models.Model):
+    Username = models.CharField(max_length=30)
+    name = models.CharField(max_length=40)
+    MobNum = models.CharField(max_length=10)
+    Password = models.CharField(max_length=20)
+    Role = [
+        ('SP', 'sales Person'),
+        ('PH', 'Production Head'),
+        ('Ac', 'Accountant'),
+        ('SM', 'Service Manager'),  
+        ('STM', 'Store Manager'),
+    ]
+    def __str__(self):
+        return self.name
+
 
 
 class CK_Account(models.Model):
+    username = models.ForeignKey(UserReg, verbose_name='username', on_delete=models.CASCADE ,blank=True,null=True )
     RN = models.CharField(max_length=100,blank=True,null=True)
     QUERY_ID = models.CharField(max_length=300,blank=True,null=True)
     QTYPE = models.CharField(max_length=300,blank=True,null=True)
@@ -43,17 +59,3 @@ class CK_Account(models.Model):
 
 
 
-class UserReg(models.Model):
-    Username = models.CharField(max_length=30)
-    name = models.CharField(max_length=40)
-    MobNum = models.CharField(max_length=10)
-    Password = models.CharField(max_length=20)
-    Role = [
-        ('SP', 'sales Person'),
-        ('PH', 'Production Head'),
-        ('Ac', 'Accountant'),
-        ('SM', 'Service Manager'),
-        ('STM', 'Store Manager'),
-    ]
-    def __str__(self):
-        return self.name
