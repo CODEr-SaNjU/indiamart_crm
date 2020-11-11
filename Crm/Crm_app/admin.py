@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CK_Account ,UserReg
+from .models import CK_Account ,UserReg ,UserRole
 
 # Register your models here.
 
@@ -10,3 +10,4 @@ from .models import CK_Account ,UserReg
 
 admin.site.register(CK_Account)
 admin.site.register(UserReg)
+admin.site.register(UserRole)

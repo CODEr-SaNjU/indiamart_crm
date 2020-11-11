@@ -35,6 +35,7 @@ python-dotenv = "*"
 pillow = "*"
 django-phone-field = "*"
 django-crispy-forms = "*"
+django-bootstrap-modal-forms = "*"
 
 [dev-packages]
 

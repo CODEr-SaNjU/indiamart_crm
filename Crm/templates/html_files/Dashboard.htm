@@ -1,75 +1,122 @@
-{% extends 'html_files/Main.htm' %}
 
+{% extends 'html_files/Main.htm' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-<div class="row">
-	<div class="col">
-		<div class="card card-body">
-			<form method="GET" action="/Enquiry_search/" class="form-inline my-2 my-lg-10">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search" name="search">
-				<button class="btn btn-primary" type="submit">Search</button>
-			</form>
+<style>
+    .card{
+	display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 1.8rem 5rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #545658;
+    border-radius: .25rem;
+   
+}
+
+
+.bg-light {
+    background-color: #808890!important;
+}
+.card{
+    background-color: #545658;
+    border-radius: 1rem;
+    
+}
+.nav-item{
+    color: aliceblue;
+}
+a{
+
+    color: #e9eef3;
+    text-decoration: none;
+    background-color: #eab8b800;
+}
+a:hover{
+    color: #cedfd9;
+}
+
+</style>
+<div class="container-fluid mt-5">        
+	<div class="row">
+		<div class="col-lg-3 col-md-4 d-md-block">
+			<div class="card bg-common card-left">
+				<div class="card-body">
+					<ul class="nav flex-column">
+						<li class="nav-item">
+							<a class="nav-link active" href="#">Enquiry</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Product</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Reports</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" tabindex="-1" >Accounts</a>
+						</li>
+						</ul>
+				</div>
+			</div>
 		</div>
+		
 	</div>
 </div>
-<br>
-<div class="row">
-	<div class="col-md-0">
-	</div>
 
 	<div class="col-md-12">
 		<hr>
-		<div class="card card-body">
-			{% if all_enq %}
-			<h1>your book are </h1>
-			{% else %}
-			<h1>your books not found </h1>
-
-			{% endif %}
-			<h5>Last 5 Submit Employee Data</h5>
-			<a class="btn btn-primary  btn-sm btn-block" href="#">Created Last 5 Employee Data</a>
-			<table class="table table-sm">
-				<tr>
-					<th> RN</th>
-					<th>QUERY_ID</th>
-					<th>QTYPE</th>
-					<th>SENDERNAME</th>
-					<th> SENDEREMAIL</th>
-					<th>SUBJECT </th>
-					<th>DATE_RE</th>
-					<th> DATE_R</th>
-					<th> DATE_TIME_RE</th>
-					<th> GLUSR_USR_COMPANYNAME</th>
-					<th>MOB</th>
-					<th>Assign to </th>
-				</tr>
-
-				{% for i in all_enq %}
-				<tr>
-					
-					<td>{{i.RN}}</td>
-					<td>{{i.QUERY_ID}}</td>
-					<td>{{i.QTYPE}}</td>
-					<td>{{i.SENDERNAME}}</td>
-					<td>{{i.SENDEREMAIL}}</td>
-					<td>{{i.SUBJECT}}</td>
-					<td>{{i.DATE_RE}}</td>
-					<td>{{i.DATE_R}}</td>
-					<td>{{i.DATE_TIME_RE}}</td>
-					<td>{{i.GLUSR_USR_COMPANYNAME}}</td>
-					<td>{{i.MOB}}</td>
-					<td>{{i.username}}</td>
-					<td>
-						<a href="{% url 'Enquiry_Update' i.id %}"><button type="button" class="btn btn-info btn-sm fa fa-edit">&nbsp;&nbsp;Edit</button></a>
-						<a href="{%url 'Enquiry_Delete' i.id %}"><button type="button" class="btn btn-danger btn-sm">&nbsp;&nbsp;Delete</button></a>
-						<a href="{%url 'Enquiry_Update' i.id %}"><button type="button" class="btn btn-info btn-sm">&nbsp;&nbsp;Assign to sp</button></a>
-					</td>
-				</tr>
-				{% endfor %}
-			</table>
-		</div>
-	</div>
+		
 </div>
-
+<br>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EnqUpdateModal">
+	Edit
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="EnqUpdateModal" tabindex="-1" aria-labelledby="EnqUpdateModal" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="EnqUpdateModal">Modal title</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<form action=" " method="POST" id="form-data1" class="form-signin">
+				{% csrf_token %}
+				<div class="card card-body">
+				  <h5 style="text-align: center;">Update Department</h5>
+				  <div class="form-label-group"></div>
+				  {% for field in form %}
+					<div class="form-label-group">
+					  {{ field|as_crispy_field }}
+					</div>
+				  {% endfor %}
+				  {% if messages %}
+				  <div class="messages">
+					{% for message in messages %}
+					<div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+					  <div class="alert alert-danger" role="alert">&nbsp;{{ message }}</div></div>
+					{% endfor %}
+				  </div>
+				  {% endif %}
+				  <div class="form-label-group"></div>
+				  <br>
+				  <button class="btn btn-lg btn-block text-uppercase" style="background-color: #3e3c3c;"value="Update" type="submit">submit</button>
+				  <button class="btn btn-lg  btn-block text-uppercase" style="background-color: #851313;" type="reset">Cancel</button>
+				</div>
+			  </form>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 {% endblock %}

@@ -2,19 +2,27 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 from phone_field import PhoneField
-
-class UserReg(models.Model):
-    Username = models.CharField(max_length=30)
-    name = models.CharField(max_length=40)
-    MobNum = models.CharField(max_length=10)
-    Password = models.CharField(max_length=20)
-    Role = [
+Role = [
         ('SP', 'sales Person'),
         ('PH', 'Production Head'),
         ('Ac', 'Accountant'),
         ('SM', 'Service Manager'),  
         ('STM', 'Store Manager'),
     ]
+
+class UserRole(models.Model):
+  role = models.CharField(max_length=6, choices=Role, default='green')
+
+def __str__(self):
+    return self.role
+
+class UserReg(models.Model):
+    Username = models.CharField(max_length=30)
+    name = models.CharField(max_length=40)
+    MobNum = models.CharField(max_length=10)
+    Password = models.CharField(max_length=20)
+    role = models.ForeignKey(UserRole, verbose_name='Role', on_delete=models.CASCADE ,blank=True,null=True )
+
     def __str__(self):
         return self.name
 
