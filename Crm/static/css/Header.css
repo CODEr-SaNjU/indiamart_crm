@@ -48,11 +48,14 @@ a:hover{
 	display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    padding:-13.72rem 3rem;
-    text-align: left;
+    padding:-8.72rem 3rem;
     list-style: none;
-    background-color: #545658;
-    border-radius: .25rem;
+    background-color: #999a9b;
+    border-radius: .35rem;
    
+}
+.nav a{
+    margin: 0px;
+    padding: 20px;
 }
 
