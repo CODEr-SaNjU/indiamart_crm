@@ -1,4 +1,8 @@
 {% load crispy_forms_tags %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/Header.css' %}">
+<link rel="stylesheet" type="text/css" href="/static/css/Header.css">
+
 <div class="col-6">
     <form action=" " method="POST" id="form-data1" class="form-signin">
       {% csrf_token %}

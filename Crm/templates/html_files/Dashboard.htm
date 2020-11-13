@@ -3,75 +3,196 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/Header.css' %}">
+<link rel="stylesheet" type="text/css" href="/static/css/Header.css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Dashboard</p> -->
+<div class="row">
+  <div class="col-lg-3 col-md-3 d-md-block">
+    <div class="card bg-common card-left">
+      <div class="card-body">
+        <nav class="nav d-block card-header-tabs nav-fill">
+          <a data-toggle="tab" class="nav-link  text-dark text-center" aria-current="page" href="#enquiry">Enquiry</a>
+          <a data-toggle="tab"  class="nav-link text-dark text-center" href="#product">Product</a>
+          <a data-toggle="tab"  class="nav-link text-dark text-center" href="#reports">Reports</a>
+          <a data-toggle="tab"  class="nav-link text-dark text-center" href="#accounts">Accounts</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-9">
+    <div class="card">
+      <div class="card-body tab-content border-0">
+        <div class="tab-pane active" id="enquiry">
+          <div class="row">
 
-<style>
-    .card{
-	display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    padding: 1.8rem 5rem;
-    margin-bottom: 1rem;
-    list-style: none;
-    background-color: #545658;
-    border-radius: 145rem;
-   
-}
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Earnings (Monthly)</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Earnings (Annual)</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-.bg-light {
-    background-color: #808890!important;
-}
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="progress progress-sm mr-2">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ddatata -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    Pending Requests</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="tab-pane" id="product">
+          this is product
+        </div>
+        <div class="tab-pane" id="product">
+          this is product
+        </div>
 
-}
-.nav-item{
-    color: aliceblue;
-}
-a{
-
-    color: #e9eef3;
-    text-decoration: none;
-    background-color: #eab8b800;
-}
-a:hover{
-    color: #cedfd9;
-}
-
-</style>
-<!-- <div class="container-fluid mt-5">        
-	<div class="row">
-		<div class="col-lg-3 col-md-4 d-md-block">
-			<div class="card bg-common card-left">
-				<div class="card-body">
-					<ul class="nav flex-column">
-						<li class="nav-item">
-							<a class="nav-link active" href="#">Enquiry</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Product</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Reports</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" tabindex="-1" >Accounts</a>
-						</li>
-						</ul>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-</div> -->
-
-	<div class="col-md-12">
-		<hr>
-		
+      </div>
+    </div>
+  </div>
 </div>
+<!-- </div>
+<ul class="nav flex-column bg-white mb-0">
+  <li class="nav-item">
+    <a class="nav-link text-dark bg-light" href="#">Enquiry</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-dark bg-light" href="#">Product</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-dark bg-light" href="#">Reports</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-dark bg-light" href="#">Accounts</a>
+  </li>
+</ul> -->
+
+
 <br>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EnqUpdateModal">
 	Edit
-  </button>
+</button>
   
   <!-- Modal -->
   <div class="modal fade" id="EnqUpdateModal" tabindex="-1" aria-labelledby="EnqUpdateModal" aria-hidden="true">

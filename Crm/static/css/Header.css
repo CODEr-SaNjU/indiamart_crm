@@ -1,10 +1,58 @@
-.breadcrumb{
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@700&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing:border-box ;
+    font-family: 'Baloo Da 2', cursive;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+.table{
+    font-family: 'Montserrat', sans-serif;
+}
+.navbar{
 	display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    padding: 2rem 5rem;
+    padding: .28rem 4rem;
     margin-bottom: 1rem;
     list-style: none;
-    background-color: #2d2f31;
+    background-color: #545658;
     border-radius: .25rem;
+   
 }
+
+
+.bg-light {
+    background-color: #8d9297!important;
+}
+
+.nav-item{
+    color: aliceblue;
+}
+a{
+
+    color: #e9eef3;
+    text-decoration: none;
+    background-color: #eab8b800;
+}
+a:hover{
+    color: #cedfd9;
+    text-decoration: none;
+}
+.nav{
+	display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding:-13.72rem 3rem;
+    text-align: left;
+    list-style: none;
+    background-color: #545658;
+    border-radius: .25rem;
+   
+}
+
