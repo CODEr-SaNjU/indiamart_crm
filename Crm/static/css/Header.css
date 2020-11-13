@@ -54,6 +54,11 @@ a:hover{
     border-radius: .35rem;
    
 }
+.col{
+    padding-right: -8px;
+    padding-left: -11px;
+
+}
 .nav a{
     margin: 0px;
     padding: 20px;
