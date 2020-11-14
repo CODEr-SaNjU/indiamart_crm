@@ -12,6 +12,15 @@ def login(request):
 
 
 def Admin_panel(request):
+    enquiry_data = CK_Account.objects.all()
+    total_enquiry_data = enquiry_data.count()
+    # user = User.objects.all()
+    # total_user = user.count()
+    # superusers_count = User.objects.filter(is_superuser=True).count
+    last_five = CK_Account.objects.filter().order_by('-id')[:10]
+    last_five_in_ascending_order = reversed(last_five)
+    return render(request,'html_files/Main.htm',{'last_five':last_five,'total_enquiry_data':total_enquiry_data})
+
     return render(request,"html_files/Dashboard.htm")
 
 
@@ -94,4 +103,5 @@ def Enquiry_Delete(request,pk_id):
         obj_delete.delete()
         return redirect('All_Enquiry')
     return render(request,'html_files/enquiry_delete.htm' , {"obj_delete":obj_delete})
+
 
