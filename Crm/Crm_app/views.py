@@ -12,16 +12,15 @@ def login(request):
 
 
 def Admin_panel(request):
-    enquiry_data = CK_Account.objects.all()
-    total_enquiry_data = enquiry_data.count()
+    all_enq = CK_Account.objects.all()
+    total_enquiry_data = all_enq.count()
     # user = User.objects.all()
     # total_user = user.count()
     # superusers_count = User.objects.filter(is_superuser=True).count
-    last_five = CK_Account.objects.filter().order_by('-id')[:10]
-    last_five_in_ascending_order = reversed(last_five)
-    return render(request,'html_files/Main.htm',{'last_five':last_five,'total_enquiry_data':total_enquiry_data})
+    last_all_enq = CK_Account.objects.filter().order_by('-id')[:10]
+    all_enq_in_ascending_order = reversed(last_all_enq)
+    return render(request,'html_files/Main.htm',{'last_all_enq':last_all_enq,'total_enquiry_data':total_enquiry_data,'all_enq':all_enq})
 
-    return render(request,"html_files/Dashboard.htm")
 
 
 def api_data(request):
@@ -72,9 +71,6 @@ def api_data(request):
     return render(request,'html_files/Api_Data.htm')
 
 
-def All_Enquiry(request):
-    all_enq = CK_Account.objects.all()
-    return render(request,'html_files/Dashboard.htm',{"all_enq":all_enq})
 
 
 
@@ -84,7 +80,7 @@ def Enquiry_search(request):
     print(type(qur))
     all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
     # all_enq = [item for item in CK_Account.objects.all() if qur in item.QUERY_ID or qur in item.SENDERNAME or qur in item.ENQ_STATE]
-    return render(request,'html_files/Header.htm',{"all_enq":all_enq})
+    return render(request,'html_files/Main.htm',{"all_enq":all_enq})
 
 
 def Enquiry_Update(request,pk_id):

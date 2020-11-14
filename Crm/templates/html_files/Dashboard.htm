@@ -27,11 +27,11 @@
       <div class="card-body tab-content border-0">
         <div class="tab-pane active" id="enquiry">
           <nav class="nav nav-tabs bg-dark card-header-tabs nav-fill" style="list-style-type: none;">
-            <a class="text-primary text-uppercase mb-1" href="#">New Enquiry</a>
-            <a class="text-success text-uppercase mb-1" href="#"><span class="text-info">{{total_enquiry_data}}</span> ALl Enquiry</a>
-            <a class="text-info text-uppercase mb-1" href="#">assigned Enquiry</a>
-            <a class="text-gray-100 text-uppercase mb-1" href="#">Not Assigned Enquiry</a>
-            <a class="text-warning text-uppercase mb-1" href="#">Enquiries Closed</a>
+            <a data-toggle="tab" class="text-primary text-uppercase mb-1" href="#newenquiry">New Enquiry</a>
+            <a data-toggle="tab" class="text-success text-uppercase mb-1" href="#allenquiry" ><span class="text-info">{{total_enquiry_data}}</span> ALl Enquiry</a>
+            <a data-toggle="tab" class="text-info text-uppercase mb-1" href="#assenquiry">assigned Enquiry</a>
+            <a data-toggle="tab" class="text-gray-100 text-uppercase mb-1" href="#notassenquiry">Not Assigned Enquiry</a>
+            <a data-toggle="tab" class="text-warning text-uppercase mb-1" href="#enquiryclosed">Enquiries Closed</a>
           </nav>
           <hr-2>
           <div class="col-lg-10" style="padding-top: -40px;">
@@ -53,7 +53,7 @@
                           <th>ENQ_STATE</th>
                         </tr>
                 
-                        {% for i in last_five %}
+                        {% for i in last_all_enq %}
                         <tr>
                           <td>{{i.QUERY_ID}}</td>
                           <td>{{i.SENDERNAME}}</td>
@@ -68,6 +68,46 @@
                         {% endfor %}
                       </table>
                   </div>
+                </div>
+                <div class="tab-pane" id="allenquiry">
+                  <div class="col-12" >
+                    <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px;" href="#">All Enquiry Data</a>
+                    <table class="table table-sm">
+                      <tr>
+                        <th>Query_id</th>
+                        <th>SenderName</th>
+                        <th>SenderEmail</th>
+                        <th>Subject</th>
+                        <th>Date_Time_Re</th>
+                        <th>MOB</th>
+                        <th>ENQ_MESSAGE</th>
+                        <th>ENQ_CITY</th>
+                        <th>ENQ_STATE</th>
+                      </tr>
+                      {% for i in all_enq %}
+                      <tr>
+                        <td>{{i.QUERY_ID}}</td>
+                        <td>{{i.SENDERNAME}}</td>
+                        <td>{{i.SENDEREMAIL}}</td>
+                        <td>{{i.SUBJECT}}</td>
+                        <td>{{i.DATE_TIME_RE}}</td>
+                        <td>{{i.MOB}}</td>
+                        <td>{{i.ENQ_MESSAGE}}</td>
+                        <td>{{i.ENQ_CITY}}</td>
+                        <td>{{i.ENQ_STATE}}</td>
+                      </tr>
+                      {% endfor %}
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-pane" id="allenquiry">
+                  <h1>allenquiry here</h1>
+                </div>
+                <div class="tab-pane" id="assenquiry">
+                  <h1>assenquiry here</h1>
+                </div>
+                <div class="tab-pane" id="notassenquiry">
+                  <h1>notassenquiry here</h1>
                 </div>
               </div>
             </div>
