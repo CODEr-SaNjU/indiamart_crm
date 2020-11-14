@@ -63,4 +63,6 @@ a:hover{
     margin: 0px;
     padding: 20px;
 }
-
+.card-body {
+    padding: .50rem;
+}

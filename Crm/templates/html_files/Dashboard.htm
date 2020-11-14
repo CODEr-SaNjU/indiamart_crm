@@ -14,7 +14,7 @@
     <div class="card bg-common card-left">
       <div class="card-body">
         <nav class="nav d-block card-header-tabs nav-fill">
-          <a data-toggle="tab" class="nav-link  text-dark text-center" aria-current="page" href="#enquiry">Enquiry</a>
+          <a data-toggle="tab" class="nav-link text-dark text-center" aria-current="page" href="#enquiry">Enquiry</a>
           <a data-toggle="tab" class="nav-link text-dark text-center" href="#product">Product</a>
           <a data-toggle="tab" class="nav-link text-dark text-center" href="#reports">Reports</a>
           <a data-toggle="tab" class="nav-link text-dark text-center" href="#accounts">Accounts</a>
@@ -27,12 +27,51 @@
       <div class="card-body tab-content border-0">
         <div class="tab-pane active" id="enquiry">
           <nav class="nav nav-tabs bg-dark card-header-tabs nav-fill" style="list-style-type: none;">
-            <a data-toggle="tab" class="nav-link text-xs font-weight-bold text-primary text-uppercase mb-1 active" href="#newenquiry">New Enquiry</a>
-            <a data-toggle="tab" class="nav-link text-xs font-weight-bold text-success text-uppercase mb-1" href="#allenquiry"><span class="text-info">{{total_enquiry_data}}</span> ALl Enquiry</a>
-            <a data-toggle="tab" class="nav-link text-xs font-weight-bold text-info text-uppercase mb-1" href="#assignedenquiry">assigned Enquiry</a>
-            <a data-toggle="tab" class="nav-link text-xs font-weight-bold text-gray-100 text-uppercase mb-1" href="#notassignedenquiry">Not Assigned Enquiry</a>
-            <a data-toggle="tab" class="nav-link text-xs font-weight-bold text-warning text-uppercase mb-1" href="#enquiriesclosed">Enquiries Closed</a>
+            <a class="text-primary text-uppercase mb-1" href="#">New Enquiry</a>
+            <a class="text-success text-uppercase mb-1" href="#"><span class="text-info">{{total_enquiry_data}}</span> ALl Enquiry</a>
+            <a class="text-info text-uppercase mb-1" href="#">assigned Enquiry</a>
+            <a class="text-gray-100 text-uppercase mb-1" href="#">Not Assigned Enquiry</a>
+            <a class="text-warning text-uppercase mb-1" href="#">Enquiries Closed</a>
           </nav>
+          <hr-2>
+          <div class="col-lg-10" style="padding-top: -40px;">
+            <div class="card" style="width:120%;">
+              <div class="card-body tab-content w-120 p-10" style="padding:.5rem;">
+                <div class="tab-pane active" id="newenquiry">
+                  <div class="col-12">
+                      <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px; " href="#">Last 5 Days New Enquiry Data</a>
+                      <table class="table table-sm" style="padding: 100px;">
+                        <tr>
+                          <th>Query_id</th>
+                          <th>SenderName</th>
+                          <th>SenderEmail</th>
+                          <th>Subject</th>
+                          <th>Date_Time_Re</th>
+                          <th>MOB</th>
+                          <th>ENQ_MESSAGE</th>
+                          <th>ENQ_CITY</th>
+                          <th>ENQ_STATE</th>
+                        </tr>
+                
+                        {% for i in last_five %}
+                        <tr>
+                          <td>{{i.QUERY_ID}}</td>
+                          <td>{{i.SENDERNAME}}</td>
+                          <td>{{i.SENDEREMAIL}}</td>
+                          <td>{{i.SUBJECT}}</td>
+                          <td>{{i.DATE_TIME_RE}}</td>
+                          <td>{{i.MOB}}</td>
+                          <td>{{i.ENQ_MESSAGE}}</td>
+                          <td>{{i.ENQ_CITY}}</td>
+                          <td>{{i.ENQ_STATE}}</td>
+                        </tr>
+                        {% endfor %}
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="tab-pane" id="product">
           this is product
@@ -42,47 +81,6 @@
         </div>
         <div class="tab-pane" id="accounts">
           this is accounts
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-10" style="padding-right: 1px;padding-left: 0px;">
-      <div class="card" style="width: 130%;">
-        <div class="card-body tab-content w-120 p-10"  >
-          <div class="tab-pane active" id="newenquiry">
-            <div class="col-12">
-                <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px; " href="#">Last 5 Days New Enquiry Data</a>
-                <table class="table table-sm" style="padding: 100px;">
-                  <tr>
-                    <th>Query_id</th>
-                    <th>SenderName</th>
-                    <th>SenderEmail</th>
-                    <th>Subject</th>
-                    <th>Date_Time_Re</th>
-                    <th>MOB</th>
-                    <th>ENQ_MESSAGE</th>
-                    <th>ENQ_CITY</th>
-                    <th>ENQ_STATE</th>
-                  </tr>
-          
-                  {% for i in last_five %}
-                  <tr>
-                    <td>{{i.QUERY_ID}}</td>
-                    <td>{{i.SENDERNAME}}</td>
-                    <td>{{i.SENDEREMAIL}}</td>
-                    <td>{{i.SUBJECT}}</td>
-                    <td>{{i.DATE_TIME_RE}}</td>
-                    <td>{{i.MOB}}</td>
-                    <td>{{i.ENQ_MESSAGE}}</td>
-                    <td>{{i.ENQ_CITY}}</td>
-                    <td>{{i.ENQ_STATE}}</td>
-                  </tr>
-                  {% endfor %}
-                </table>
-            </div>
-          </div>
-          <div class="tab-pane" id="allenquiry">
-            this is allenquiry
-          </div>
         </div>
       </div>
     </div>
