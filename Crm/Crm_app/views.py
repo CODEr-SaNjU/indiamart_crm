@@ -78,9 +78,8 @@ def Enquiry_search(request):
     qur = request.GET.get('search')
     print(qur)
     print(type(qur))
-    all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
-    # all_enq = [item for item in CK_Account.objects.all() if qur in item.QUERY_ID or qur in item.SENDERNAME or qur in item.ENQ_STATE]
-    return render(request,'html_files/Main.htm',{"all_enq":all_enq})
+    last_all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
+    return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
 
 
 def Enquiry_Update(request,pk_id):
@@ -89,7 +88,7 @@ def Enquiry_Update(request,pk_id):
     if form.is_valid():
         account = form.save()
         return redirect('All_Enquiry')
-    return render(request,'html_files/enquiry_update.htm',{'form':form})
+    return render(request,'html_files/Main.htm',{'form':form})
 
 
 

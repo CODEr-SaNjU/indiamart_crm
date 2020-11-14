@@ -65,7 +65,7 @@
                           <td>{{i.ENQ_MESSAGE}}</td>
                           <td>{{i.ENQ_CITY}}</td>
                           <td>{{i.ENQ_STATE}}</td>
-                          <td><a href="{%url 'Enquiry_Update' i.id %}"><button type="button" class="btn btn-info btn-sm">Edit</button></a><a href="{%url 'Enquiry_Delete' i.id %}"><button type="button" class="btn btn-danger btn-sm">Delete</button></a></td>
+                          <td><a data-toggle="modal" href="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal">Edit</a><a href="{%url 'Enquiry_Delete' i.id %}">Delete</a></td>
                         </tr>
                         {% endfor %}
                       </table>
@@ -123,6 +123,29 @@
         </div>
         <div class="tab-pane" id="accounts">
           this is accounts
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {% for field in form %}
+                <div class="form-label-group">
+                  {{ field|as_crispy_field }}
+                </div>
+              {% endfor %}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
