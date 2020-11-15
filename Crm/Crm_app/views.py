@@ -8,7 +8,20 @@ import json
 from .models import CK_Account
 
 def login(request):
-    return render(request,"html_files/login.htm")
+    if request.method == "POST":
+        email = request.POST['email']
+        password = request.POST['password']
+        user = auth.authenticate(username=email,password=password)
+        if user is not None:
+            auth.login(request,user)
+            return redirect('dashboard')
+        else:
+            messages.error(request, 'Error! please enter the correct Employee Username and Password for a staff account.')
+            return render(request,'html_files/login.htm')
+
+    else:
+        return render(request,"html_files/login.htm")
+
 
 
 def Admin_panel(request):

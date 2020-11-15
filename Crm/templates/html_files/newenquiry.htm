@@ -25,7 +25,7 @@
         <td>{{i.ENQ_MESSAGE}}</td>
         <td>{{i.ENQ_CITY}}</td>
         <td>{{i.ENQ_STATE}}</td>
-        <td><a data-toggle="modal"  href="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal">Edit</a><a data-toggle="modal"  href="{%url 'Enquiry_Delete' i.id %}" data-target="#deleteModal">Delete</a></td>
+        <td><a data-toggle="modal" style="color: black;" href="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal">Edit</a> &nbsp; <a data-toggle="modal" style="color:red" href="{%url 'Enquiry_Delete' i.id %}" data-target="#deleteModal">Delete</a></td>
       </tr>
       {% endfor %}
     </table>
