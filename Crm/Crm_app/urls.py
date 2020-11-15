@@ -10,5 +10,7 @@ urlpatterns = [
     path("search_enq_month/",views.search_enq_month,name="search_enq_month"),
     path("Enquiry_Update/<str:pk_id>/",views.Enquiry_Update,name="Enquiry_Update"),
     path("Enquiry_Delete/<str:pk_id>/",views.Enquiry_Delete,name="Enquiry_Delete"),
+    path("logout/",views.logout,name="logout"),
+
 
 ]

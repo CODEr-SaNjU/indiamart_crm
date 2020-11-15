@@ -1,13 +1,26 @@
 from django.shortcuts import render,redirect , get_object_or_404
+from django.contrib.auth.models import User,auth ,Group
+from django.http import Http404, HttpResponse
+from django.contrib.auth.models import AbstractBaseUser, UserManager
+from django.contrib import messages
+from django.contrib.auth import authenticate,get_user_model
+from django.contrib import auth 
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required,permission_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from .decorators import unauthenticated_user ,allowed_user
+import datetime
+from django.contrib.auth.forms import UserCreationForm
+from django.core.paginator import PageNotAnInteger,EmptyPage,Paginator
 import os
 from .forms import CK_AccountForm
 import requests
 from django.db.models import Q
-# Create your views here.
 import json
 from .models import CK_Account
 import datetime
-
+from django.contrib import auth 
 
 def login(request):
     if request.method == "POST":
@@ -16,15 +29,18 @@ def login(request):
         user = auth.authenticate(username=email,password=password)
         if user is not None:
             auth.login(request,user)
-            return redirect('dashboard')
+            return redirect('Admin_panel')
         else:
-            messages.error(request, 'Error! please enter the correct Employee Username and Password for a staff account.')
+            messages.error(request, 'Error! please enter the correct  Username and Password for a staff account.')
             return render(request,'html_files/login.htm')
 
     else:
         return render(request,"html_files/login.htm")
 
-
+@login_required(login_url='login')
+def logout(request):
+    auth.logout(request)
+    return render(request,'html_files/logout.htm')
 
 def Admin_panel(request):
     all_enq = CK_Account.objects.all()
