@@ -38,69 +38,10 @@
             <div class="card" style="width:120%;">
               <div class="card-body tab-content w-120 p-10" style="padding:.5rem;">
                 <div class="tab-pane active" id="newenquiry">
-                  <div class="col-12">
-                      <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px; " href="#">&nbsp;</a>
-                      <table class="table table-sm" style="padding: 100px; font-size: small;">
-                        <tr>
-                          <th>Query_id</th>
-                          <th>SenderName</th>
-                          <th>SenderEmail</th>
-                          <th>Subject</th>
-                          <th>Date_Time_Re</th>
-                          <th>MOB</th>
-                          <th>ENQ_MESSAGE</th>
-                          <th>ENQ_CITY</th>
-                          <th>ENQ_STATE</th>
-                          <th>Action</th>
-                        </tr>
-                
-                        {% for i in last_all_enq %}
-                        <tr>
-                          <td>{{i.QUERY_ID}}</td>
-                          <td>{{i.SENDERNAME}}</td>
-                          <td>{{i.SENDEREMAIL}}</td>
-                          <td>{{i.SUBJECT}}</td>
-                          <td>{{i.DATE_TIME_RE}}</td>
-                          <td>{{i.MOB}}</td>
-                          <td>{{i.ENQ_MESSAGE}}</td>
-                          <td>{{i.ENQ_CITY}}</td>
-                          <td>{{i.ENQ_STATE}}</td>
-                          <td><a data-toggle="modal"  href="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal">Edit</a><a data-toggle="modal"  href="{%url 'Enquiry_Delete' i.id %}" data-target="#deleteModal">Delete</a></td>
-                        </tr>
-                        {% endfor %}
-                      </table>
-                  </div>
+                  {%  include 'html_files/newenquiry.htm' %}
                 </div>
                 <div class="tab-pane" id="allenquiry">
-                  <div class="col-12" >
-                    <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px;" href="#">All Enquiry Data</a>
-                    <table class="table table-sm" style="padding: 100px; font-size: small;">
-                      <tr>
-                        <th>Query_id</th>
-                        <th>SenderName</th>
-                        <th>SenderEmail</th>
-                        <th>Subject</th>
-                        <th>Date_Time_Re</th>
-                        <th>MOB</th>
-                        <th>ENQ_MESSAGE</th>
-                        <th>ENQ_CITY</th>
-                        <th>ENQ_STATE</th>
-                      </tr>
-                      {% for i in all_enq %}
-                      <tr>
-                        <td>{{i.QUERY_ID}}</td>
-                        <td>{{i.SENDERNAME}}</td>
-                        <td>{{i.SENDEREMAIL}}</td>
-                        <td>{{i.SUBJECT}}</td>
-                        <td>{{i.DATE_TIME_RE}}</td>
-                        <td>{{i.MOB}}</td>
-                        <td>{{i.ENQ_MESSAGE}}</td>
-                        <td>{{i.ENQ_CITY}}</td>
-                        <td>{{i.ENQ_STATE}}</td>
-                      </tr>
-                      {% endfor %}
-                    </table>
-                  </div>
+                  {%  include 'html_files/allenquiry.htm' %}
                 </div>
                 <div class="tab-pane" id="allenquiry">
                   <h1>allenquiry here</h1>
@@ -134,30 +75,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form action="" method="POST" id="form-data" class="form-signin">
-                  {% csrf_token %}
-                  <div class="card card-body">
-                    <h5 style="text-align: center;">Enquiry Department</h5>
-                    <div class="form-label-group"></div>
-                    {% for field in form %}
-                      <div class="form-label-group">
-                        {{ field|as_crispy_field }}
-                      </div>
-                    {% endfor %}
-                    {% if messages %}
-                    <div class="messages">
-                      {% for message in messages %}
-                      <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                        <div class="alert alert-danger" role="alert">&nbsp;{{ message }}</div></div>
-                      {% endfor %}
-                    </div>
-                    {% endif %}
-                    <div class="form-label-group"></div>
-                    <br>
-                    <button class="btn btn-lg btn-block text-uppercase" style="background-color: #3e3c3c;"value="Update" type="submit">submit</button>
-                    <button class="btn btn-lg  btn-block text-uppercase" style="background-color: #851313;" type="reset">Cancel</button>
-                  </div>
-                </form>
+                {%  include 'html_files/enquiry_update.htm' %}
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -176,15 +94,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form method="POST">
-                  {% csrf_token %}
-                  <h1 style="text-align: center;color: black; font-size: small; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Are you sure you want to Delete Enquiry </h1>
-                  <h3 style="color: red; text-align: center;">"{{ obj_delete }}" ?</h5>
-               
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-danger" value="Submit" style="text-align: center;">submit</button>
-              </form>
+                {%  include 'html_files/enquiry_delete.htm' %}
               </div>
             </div>
           </div>
@@ -194,12 +104,4 @@
   </div>
 </div>
 {% endblock %}
-<script>
-  jQuery('.modal-dialog .calendar').datepicker({ dateFormat: "yy-mm-dd" });
-
-      var form_options = {
-          target: '#deleteModal',
-          success: function() {  }
-      }
-      $('#form-data').ajaxForm(form_options);
-</script>
+<!--  -->

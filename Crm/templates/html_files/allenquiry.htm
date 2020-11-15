@@ -1,0 +1,29 @@
+<div class="col-12" >
+    <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px;" href="#">All Enquiry Data</a>
+    <table class="table table-sm" style="padding: 100px; font-size: small;">
+      <tr>
+        <th>Query_id</th>
+        <th>SenderName</th>
+        <th>SenderEmail</th>
+        <th>Subject</th>
+        <th>Date_Time_Re</th>
+        <th>MOB</th>
+        <th>ENQ_MESSAGE</th>
+        <th>ENQ_CITY</th>
+        <th>ENQ_STATE</th>
+      </tr>
+      {% for i in all_enq %}
+      <tr>
+        <td>{{i.QUERY_ID}}</td>
+        <td>{{i.SENDERNAME}}</td>
+        <td>{{i.SENDEREMAIL}}</td>
+        <td>{{i.SUBJECT}}</td>
+        <td>{{i.DATE_TIME_RE}}</td>
+        <td>{{i.MOB}}</td>
+        <td>{{i.ENQ_MESSAGE}}</td>
+        <td>{{i.ENQ_CITY}}</td>
+        <td>{{i.ENQ_STATE}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>

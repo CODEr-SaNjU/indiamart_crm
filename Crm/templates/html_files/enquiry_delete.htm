@@ -4,10 +4,6 @@
 
 {% block content %}
 <br>
-<br>
-<br>
-<br>
-<h1 style="text-align: center;">enq Delete</h1>
 <form method="POST">{% csrf_token %}
     <h1 style="text-align: center; color: black;">Are you sure you want to enq </h1> <h3 style="color: red; text-align: center;">"{{ obj_delete }}" ?</h5>
     <button type="submit" class="btn btn-danger" value="Submit" style="text-align: center;  position: absolute; right: 50%;">submit</button>
