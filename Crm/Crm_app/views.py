@@ -6,6 +6,8 @@ from django.db.models import Q
 # Create your views here.
 import json
 from .models import CK_Account
+import datetime
+
 
 def login(request):
     if request.method == "POST":
@@ -84,6 +86,17 @@ def api_data(request):
     return render(request,'html_files/Api_Data.htm')
 
 
+def search_enq_month(request):
+    qur = request.GET.get('search')
+    qur1 = request.GET.get("search1")
+    datetime_object = datetime.datetime.strptime(qur1, "%Y-%m-%d")
+    datetime_object2 = datetime.datetime.strptime(qur, "%Y-%m-%d")
+    strt = datetime_object.strftime("%d-%m-%Y")
+    endt = datetime_object2.strftime("%d-%m-%Y")
+    print(strt)
+    last_all_enq = CK_Account.objects.filter(DATE_R__lte= "01-Nov-20",DATE_R__gte = "02-Nov-20")
+    print(last_all_enq)
+    return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
 
 
 
