@@ -97,6 +97,6 @@ def Enquiry_Delete(request,pk_id):
     if request.method == "POST":
         obj_delete.delete()
         return redirect('All_Enquiry')
-    return render(request,'html_files/enquiry_delete.htm' , {"obj_delete":obj_delete})
+    return render(request,'html_files/Dashboard.htm' , {"obj_delete":obj_delete})
 
 

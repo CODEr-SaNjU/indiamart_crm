@@ -65,7 +65,7 @@
                           <td>{{i.ENQ_MESSAGE}}</td>
                           <td>{{i.ENQ_CITY}}</td>
                           <td>{{i.ENQ_STATE}}</td>
-                          <td><a data-toggle="modal" data-id="{{i.id}}" data-form-url="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal">Edit</a><a href="{%url 'Enquiry_Delete' i.id %}">Delete</a></td>
+                          <td><a data-toggle="modal"  href="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal">Edit</a><a data-toggle="modal"  href="{%url 'Enquiry_Delete' i.id %}" data-target="#deleteModal">Delete</a></td>
                         </tr>
                         {% endfor %}
                       </table>
@@ -128,16 +128,16 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Enquiry Update</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <form action=" " method="POST" id="form-data1" class="form-signin">
+                <form action="" method="POST" id="form-data" class="form-signin">
                   {% csrf_token %}
                   <div class="card card-body">
-                    <h5 style="text-align: center;">Update Department</h5>
+                    <h5 style="text-align: center;">Enquiry Department</h5>
                     <div class="form-label-group"></div>
                     {% for field in form %}
                       <div class="form-label-group">
@@ -166,8 +166,40 @@
             </div>
           </div>
         </div>
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"  style="text-align: center;" id="deleteModalLabel">Enquiry Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="POST">
+                  {% csrf_token %}
+                  <h1 style="text-align: center;color: black; font-size: small; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Are you sure you want to Delete Enquiry </h1>
+                  <h3 style="color: red; text-align: center;">"{{ obj_delete }}" ?</h5>
+               
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-danger" value="Submit" style="text-align: center;">submit</button>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 {% endblock %}
+<script>
+  jQuery('.modal-dialog .calendar').datepicker({ dateFormat: "yy-mm-dd" });
+
+      var form_options = {
+          target: '#deleteModal',
+          success: function() {  }
+      }
+      $('#form-data').ajaxForm(form_options);
+</script>
