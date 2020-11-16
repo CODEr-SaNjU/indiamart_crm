@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;1,100&display=swap');
+
 *{
     margin: 0px;
     padding: 0px;
-    font-family: 'Baloo Da 2', cursive;
-    font-family: 'Fjalla One', sans-serif;
+    font-family: 'Lato', sans-serif;
+
     
     /* font-weight: 100; */
 }
