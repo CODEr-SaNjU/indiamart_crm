@@ -5,7 +5,7 @@
 {% block content %}
 <br>
 <form method="POST">{% csrf_token %}
-    <h1 style="text-align: center; color: black;">Are you sure you want to delete enquiry </h1> <h3 style="color: red; text-align: center;">"{{ obj_delete }}" ?</h5>
+    <h1 style="text-align: center; color: black;">Are you sure you want to delete User </h1> <h3 style="color: red; text-align: center;">"{{ obj_delete }}" ?</h5>
     <button type="submit" class="btn btn-danger" value="Submit" style="text-align: center;  position: absolute; right: 50%;">submit</button>
 </form>
 {% endblock %}
