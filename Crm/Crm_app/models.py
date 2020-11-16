@@ -17,19 +17,16 @@ def __str__(self):
     return self.role
 
 class UserReg(models.Model):
-    Username = models.CharField(max_length=30)
-    name = models.CharField(max_length=40)
-    MobNum = models.CharField(max_length=10)
-    Password = models.CharField(max_length=20)
-    role = models.ForeignKey(UserRole, verbose_name='Role', on_delete=models.CASCADE ,blank=True,null=True )
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phonenumber = models.CharField(verbose_name="phone number", max_length=10)
+   
     def __str__(self):
-        return self.name
+        return self.user
 
 
 
 class CK_Account(models.Model):
-    username = models.ForeignKey(UserReg, verbose_name='username', on_delete=models.CASCADE ,blank=True,null=True )
+    username = models.ForeignKey(User, verbose_name='username', on_delete=models.CASCADE ,blank=True,null=True )
     RN = models.CharField(max_length=100,blank=True,null=True)
     QUERY_ID = models.CharField(max_length=300,blank=True,null=True)
     QTYPE = models.CharField(max_length=300,blank=True,null=True)
@@ -65,5 +62,6 @@ class CK_Account(models.Model):
     TOTAL_COUNT = models.CharField(max_length=300,blank=True,null=True)
 
 
-
+    def __str__(self):
+        return self.SENDERNAME
 

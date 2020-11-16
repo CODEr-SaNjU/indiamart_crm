@@ -14,7 +14,7 @@ import datetime
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import PageNotAnInteger,EmptyPage,Paginator
 import os
-from .forms import CK_AccountForm
+from .forms import CK_AccountForm ,UserForm ,UserRegForm
 import requests
 from django.db.models import Q
 import json
@@ -53,6 +53,20 @@ def Admin_panel(request):
     all_enq_in_ascending_order = reversed(last_all_enq)
     return render(request,'html_files/Main.htm',{'last_all_enq':last_all_enq,'total_enquiry_data':total_enquiry_data,'all_enq':all_enq,'all_user':all_user})
 
+def register(request):
+    if request.method == "POST":
+        userform = UserForm(request.POST)
+        Useregform = UserRegForm(request.POST)
+        if userform.is_valid() and useregform.is_valid():
+            user = userform.save()
+            useregform = useregform.save(commit=False)
+            useregform.user = user
+            useregform.save()
+            messages.success(request, f'Registration complete! You may log in!')
+    else:
+        userform = UserForm(request.POST)
+        Useregform = UserRegForm(request.POST)
+    return render(request, 'users/register.html', {'u_form': u_form, 'p_form': p_form})
 
 
 
