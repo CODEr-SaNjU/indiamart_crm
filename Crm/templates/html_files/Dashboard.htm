@@ -18,6 +18,7 @@
           <a data-toggle="tab" class="nav-link text-dark text-center" href="#product">Product</a>
           <a data-toggle="tab" class="nav-link text-dark text-center" href="#reports">Reports</a>
           <a data-toggle="tab" class="nav-link text-dark text-center" href="#accounts">Accounts</a>
+          <a data-toggle="tab" class="nav-link text-dark text-center" href="#Users">Users</a>
         </nav>
       </div>
     </div>
@@ -26,35 +27,7 @@
     <div class="card">
       <div class="card-body tab-content border-0">
         <div class="tab-pane active" id="enquiry">
-          <nav class="nav nav-tabs bg-dark card-header-tabs nav-fill" style="list-style-type: none;">
-            <a data-toggle="tab" class="text-primary text-uppercase mb-1" href="#newenquiry">New Enquiry</a>
-            <a data-toggle="tab" class="text-success text-uppercase mb-1" href="#allenquiry" ><span class="text-info">{{total_enquiry_data}}</span> ALl Enquiry</a>
-            <a data-toggle="tab" class="text-info text-uppercase mb-1" href="#assenquiry">assigned Enquiry</a>
-            <a data-toggle="tab" class="text-gray-100 text-uppercase mb-1" href="#notassenquiry">Not Assigned Enquiry</a>
-            <a data-toggle="tab" class="text-warning text-uppercase mb-1" href="#enquiryclosed">Enquiries Closed</a>
-          </nav>
-          <hr-2>
-          <div class="col-lg-10" style="padding-top: -40px;">
-            <div class="card" style="width:120%;">
-              <div class="card-body tab-content w-120 p-10" style="padding:.5rem;">
-                <div class="tab-pane active" id="newenquiry">
-                  {%  include 'html_files/newenquiry.htm' %}
-                </div>
-                <div class="tab-pane" id="allenquiry">
-                  {%  include 'html_files/allenquiry.htm' %}
-                </div>
-                <div class="tab-pane" id="allenquiry">
-                  <h1>allenquiry here</h1>
-                </div>
-                <div class="tab-pane" id="assenquiry">
-                  <h1>assenquiry here</h1>
-                </div>
-                <div class="tab-pane" id="notassenquiry">
-                  <h1>notassenquiry here</h1>
-                </div>
-              </div>
-            </div>
-          </div>
+          {% include 'html_files/enquiry_tab.htm' %}
         </div>
         <div class="tab-pane" id="product">
           this is product
@@ -64,6 +37,9 @@
         </div>
         <div class="tab-pane" id="accounts">
           this is accounts
+        </div>
+        <div class="tab-pane" id="Users">
+          {%  include 'html_files/User_details.htm' %}
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">

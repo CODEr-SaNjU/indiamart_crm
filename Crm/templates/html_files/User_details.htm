@@ -1,0 +1,20 @@
+<nav class="nav nav-tabs bg-dark card-header-tabs nav-fill" style="list-style-type: none;">
+    <a data-toggle="tab" class="text-primary text-uppercase mb-1" href="#alluser">New Enquiry</a>
+    <a data-toggle="tab" class="text-success text-uppercase mb-1" href="#user_registration" ><span class="text-info">{{total_enquiry_data}}</span> ALl Enquiry</a>
+    <a data-toggle="tab" class="text-info text-uppercase mb-1" href="#assenquiry">assigned Enquiry</a>
+    <a data-toggle="tab" class="text-gray-100 text-uppercase mb-1" href="#notassenquiry">Not Assigned Enquiry</a>
+    <a data-toggle="tab" class="text-warning text-uppercase mb-1" href="#enquiryclosed">Enquiries Closed</a>
+  </nav>
+  <hr-2>
+  <div class="col-lg-10" style="padding-top: -40px;">
+    <div class="card" style="width:120%;">
+      <div class="card-body tab-content w-120 p-10" style="padding:.5rem;">
+        <div class="tab-pane active" id="alluser">
+          {%  include 'html_files/alluser.htm' %}
+        </div>
+        <div class="tab-pane" id="user_registration">
+          {%  include 'html_files/user_registration.htm' %}
+        </div>
+      </div>
+    </div>
+  </div>
