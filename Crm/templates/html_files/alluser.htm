@@ -1,0 +1,26 @@
+<div class="col-12">
+    <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px; " href="#">&nbsp;</a>
+    <table class="table table-sm" style="padding: 100px; font-size: small;">
+      <tr>
+        <th>Name</th>
+        <th>UserName</th>
+        <th>Gmail_id</th>
+        <th>Mobile Number</th>
+        <th>Role</th>
+        <th>MOB</th>
+        <th>Action</th>
+      </tr>
+
+      {% for i in all_user %}
+      <tr>
+        <td>{{i.First_name}}</td>
+        <td>{{i.Username}}</td>
+        <td>{{i.Email_address}}</td>
+        <td>{{i.SUBJECT}}</td>
+        <td>{{i.DATE_TIME_RE}}</td>
+        <td>{{i.MOB}}</td>
+        <td><a data-toggle="modal" style="color: black;" href="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal">Edit</a> &nbsp; <a data-toggle="modal" style="color:red" href="{%url 'Enquiry_Delete' i.id %}" data-target="#deleteModal">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+</div>

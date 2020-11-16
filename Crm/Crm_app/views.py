@@ -54,6 +54,11 @@ def Admin_panel(request):
 
 
 
+def all_user(request):
+    all_user = User.objects.all()
+    return render(request,'html_files/alluser.htm',{'all_user':all_user})
+
+
 def api_data(request):
     if request.method == "POST":
         print("sanju")
