@@ -1,32 +1,31 @@
 <div class="col-12" >
-    <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px;" href="#">All Enquiry Data</a>
-    <table class="table table-sm" style="padding: 100px; font-size: small;">
-      <tr>
-        <th>Query_id</th>
-        <th>SenderName</th>
-        <th>SenderEmail</th>
-        <th>Subject</th>
-        <th>Date_Time_Re</th>
-        <th>MOB</th>
-        <th>ENQ_MESSAGE</th>
-        <th>ENQ_CITY</th>
-        <th>ENQ_STATE</th>
-        <th>Action</th>
-      </tr>
-      {% for i in all_enq %}
-      <tr>
-        <td>{{i.QUERY_ID}}</td>
-        <td>{{i.SENDERNAME}}</td>
-        <td>{{i.SENDEREMAIL}}</td>
-        <td>{{i.SUBJECT}}</td>
-        <td>{{i.DATE_TIME_RE}}</td>
-        <td>{{i.MOB}}</td>
-        <td>{{i.ENQ_MESSAGE}}</td>
-        <td>{{i.ENQ_CITY}}</td>
-        <td>{{i.ENQ_STATE}}</td>
-        <td><a data-toggle="modal" style="color: black;" href="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal" data-name="{{i.SenderName}}" class="enqupdate-link" >Edit</a> &nbsp; <a data-toggle="modal" style="color:red" href="{%url 'Enquiry_Delete' i.id %}" data-target="#deleteModal">Delete</a></td>
-
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
+  <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px;" href="#">All Enquiry Data</a>
+  <table class="table table-sm" style="padding: 10px; font-size: small;">
+    <tr>
+      <th>Query_id</th>
+      <th>SenderName</th>
+      <th>SenderEmail</th>
+      <th>Subject</th>
+      <th>Date_Time_Re</th>
+      <th>MOB</th>
+      <th>ENQ_MESSAGE</th>
+      <th>ENQ_CITY</th>
+      <th>ENQ_STATE</th>
+      <th>Action</th>
+    </tr>
+    {% for i in all_enq %}
+    <tr>
+      <td>{{i.QUERY_ID}}</td>
+      <td>{{i.SENDERNAME}}</td>
+      <td>{{i.SENDEREMAIL}}</td>
+      <td>{{i.SUBJECT}}</td>
+      <td>{{i.DATE_TIME_RE}}</td>
+      <td>{{i.MOB}}</td>
+      <td>{{i.ENQ_MESSAGE|safe|truncatewords:"8"|linebreaks}}</td>
+      <td>{{i.ENQ_CITY}}</td>
+      <td>{{i.ENQ_STATE}}</td>
+      <td><a data-toggle="modal" style="color: black;" href="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal" data-name="{{i.SenderName}}" class="enqupdate-link" >Edit</a> &nbsp; <a data-toggle="modal" style="color:red" href="{%url 'Enquiry_Delete' i.id %}" data-target="#deleteModal">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
