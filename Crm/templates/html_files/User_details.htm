@@ -14,6 +14,38 @@
         </div>
         <div class="tab-pane" id="user_registration">
           {%  include 'html_files/user_registration.htm' %}
+
+          {% load crispy_forms_tags %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/Header.css' %}">
+            <link rel="stylesheet" type="text/css" href="/static/css/Header.css">
+            <div class="col-10">
+              <form action=" " method="POST" id="form-data1" class="form-signin">
+                {% csrf_token %}
+                <div class="card card-body">
+                  <h5 style="text-align: center;">Update Department</h5>
+                  <div class="form-label-group"></div>
+                  <div class="form-label-group">
+                    {{useregform}}
+                    {{userform}}
+                  </div>
+                  {% if messages %}
+                  <div class="messages">
+                    {% for message in messages %}
+                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                      <div class="alert alert-danger" role="alert">&nbsp;{{ message }}</div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  <div class="form-label-group"></div>
+                  <br>
+                  <button class="btn btn-lg btn-block text-uppercase" style="background-color: #3e3c3c;"value="Update" type="submit">submit</button>
+                  <button class="btn btn-lg  btn-block text-uppercase" style="background-color: #851313;" type="reset">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>

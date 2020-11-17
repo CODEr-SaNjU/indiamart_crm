@@ -18,11 +18,10 @@ def __str__(self):
 
 class UserReg(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phonenumber = models.CharField(verbose_name="phone number", max_length=10)
+    phonenumber = models.CharField(max_length=10,verbose_name="phone number",blank=True,null=True)
    
     def __str__(self):
-        return self.user
-
+        return self.phonenumber
 
 
 class CK_Account(models.Model):

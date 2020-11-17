@@ -18,7 +18,7 @@ from .forms import CK_AccountForm ,UserForm ,UserRegForm
 import requests
 from django.db.models import Q
 import json
-from .models import CK_Account
+from .models import CK_Account ,UserReg
 import datetime
 from django.contrib import auth 
 
@@ -45,18 +45,19 @@ def logout(request):
 def Admin_panel(request):
     all_enq = CK_Account.objects.all()
     all_user = User.objects.all()
+    all_user_mob = UserReg.objects.all()
     total_enquiry_data = all_enq.count()
     # user = User.objects.all()
     # total_user = user.count()
     # superusers_count = User.objects.filter(is_superuser=True).count
     last_all_enq = CK_Account.objects.filter().order_by('-id')[:10]
     all_enq_in_ascending_order = reversed(last_all_enq)
-    return render(request,'html_files/Main.htm',{'last_all_enq':last_all_enq,'total_enquiry_data':total_enquiry_data,'all_enq':all_enq,'all_user':all_user})
+    return render(request,'html_files/Main.htm',{'last_all_enq':last_all_enq,'total_enquiry_data':total_enquiry_data,'all_enq':all_enq,'all_user':all_user,'all_user_mob':all_user_mob})
 
 def register(request):
     if request.method == "POST":
         userform = UserForm(request.POST)
-        Useregform = UserRegForm(request.POST)
+        useregform = UserRegForm(request.POST)
         if userform.is_valid() and useregform.is_valid():
             user = userform.save()
             useregform = useregform.save(commit=False)
@@ -65,8 +66,8 @@ def register(request):
             messages.success(request, f'Registration complete! You may log in!')
     else:
         userform = UserForm(request.POST)
-        Useregform = UserRegForm(request.POST)
-    return render(request, 'users/register.html', {'u_form': u_form, 'p_form': p_form})
+        useregform = UserRegForm(request.POST)
+    return render(request, 'html_files/User_details.htm', {'userform': userform, 'useregform': useregform})
 
 
 
