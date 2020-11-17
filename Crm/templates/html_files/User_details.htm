@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <nav class="nav nav-tabs bg-dark card-header-tabs nav-fill" style="list-style-type: none;">
     <a data-toggle="tab" class="text-info text-uppercase mb-1" href="#alluser">All Users</a>
     <a data-toggle="tab" class="text-success text-uppercase mb-1" href="#user_registration" >New User Registration</a>
@@ -14,32 +15,14 @@
         </div>
         <div class="tab-pane" id="user_registration">
           {%  include 'html_files/user_registration.htm' %}
-
-          {% load crispy_forms_tags %}
-            {% load static %}
-            <link rel="stylesheet" type="text/css" href="{% static 'css/Header.css' %}">
-            <link rel="stylesheet" type="text/css" href="/static/css/Header.css">
-            <div class="col-10">
               <form action=" " method="POST" id="form-data1" class="form-signin">
                 {% csrf_token %}
                 <div class="card card-body">
-                  <h5 style="text-align: center;">Update Department</h5>
-                  <div class="form-label-group"></div>
-                  <div class="form-label-group">
-                    {{useregform}}
-                    {{userform}}
-                  </div>
-                  {% if messages %}
-                  <div class="messages">
-                    {% for message in messages %}
-                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                      <div class="alert alert-danger" role="alert">&nbsp;{{ message }}</div>
-                    </div>
-                    {% endfor %}
-                  </div>
-                  {% endif %}
-                  <div class="form-label-group"></div>
-                  <br>
+                  <h5 style="text-align: center;">User Registration</h5>
+                  <table border="1">
+                    {{userform|crispy}}
+                    {{useregform|crispy}}
+                  </table>
                   <button class="btn btn-lg btn-block text-uppercase" style="background-color: #3e3c3c;"value="Update" type="submit">submit</button>
                   <button class="btn btn-lg  btn-block text-uppercase" style="background-color: #851313;" type="reset">Cancel</button>
                 </div>
