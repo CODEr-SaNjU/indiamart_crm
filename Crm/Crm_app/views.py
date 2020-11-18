@@ -164,6 +164,6 @@ def Enquiry_Delete(request,pk_id):
 
 @login_required(login_url='login')
 def saleperson_page(request):
-    context = {}
-    return render(request,'html_files/salesperson.htm',context)
+    last_all_enq = CK_Account.objects.filter(username=request.user)
+    return render(request,'html_files/salesperson.htm',{'last_all_enq':last_all_enq})
 

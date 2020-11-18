@@ -16,10 +16,12 @@
       <div class="card-body">
         <nav class="nav d-block card-header-tabs nav-fill">
           <a data-toggle="tab" class="nav-link text-dark text-center" aria-current="page" href="#enquiry">Enquiry</a>
+          {% if request.user.is_staff %}
           <a data-toggle="tab" class="nav-link text-dark text-center" href="#product">Product</a>
           <a data-toggle="tab" class="nav-link text-dark text-center" href="#reports">Reports</a>
           <a data-toggle="tab" class="nav-link text-dark text-center" href="#accounts">Accounts</a>
           <a data-toggle="tab" class="nav-link text-dark text-center" href="#Users">Users</a>
+          {% endif %}
         </nav>
       </div>
     </div>
