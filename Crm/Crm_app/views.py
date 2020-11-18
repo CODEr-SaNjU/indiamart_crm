@@ -147,7 +147,7 @@ def Enquiry_Update(request,pk_id):
     if form.is_valid():
         account = form.save()
         return redirect('All_Enquiry')
-    return render(request,'html_files/Dashboard.htm',{'form':form})
+    return render(request,'html_files/enquiry_update.htm',{'form':form})
 
 
 

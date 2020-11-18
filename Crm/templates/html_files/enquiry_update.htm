@@ -3,6 +3,40 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/Header.css' %}">
 <link rel="stylesheet" type="text/css" href="/static/css/Header.css">
 
+<form method="POST" action="{% url 'Enquiry_Update' form.instance.pk_id %}" class="js-product-update-form">
+  {% csrf_token %}
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    <h4 class="modal-title">Update product</h4>
+  </div>
+  <div class="modal-body">
+    {% load widget_tweaks %}
+    {% for field in form %}
+    <div class="form-group{% if field.errors %} has-error{% endif %}">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {% render_field field class="form-control" %}
+      {% for error in field.errors %}
+      <p class="help-block">{{ error }}</p>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Update product</button>
+  </div>
+</form>
+
+
+
+
+
+
+
+
+
 <div class="col-10">
   <form action=" " method="POST" id="form-data1" class="form-signin">
     {% csrf_token %}
