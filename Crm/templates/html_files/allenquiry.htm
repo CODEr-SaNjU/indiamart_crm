@@ -14,7 +14,7 @@
       <th>Action</th>
     </tr>
     {% for i in all_enq %}
-    <tr>
+    <tr id="i-{{i.id}}">
       <td>{{i.QUERY_ID}}</td>
       <td>{{i.SENDERNAME}}</td>
       <td>{{i.SENDEREMAIL}}</td>
@@ -25,8 +25,8 @@
       <td>{{i.ENQ_CITY}}</td>
       <td>{{i.ENQ_STATE}}</td>
       <td>
-        <a data-toggle="modal" id="enq_update" style="color: black;" href="{% url 'Enquiry_Update' i.id %}" data-target="#exampleModal" data-name="{{i.SenderName}}" class="fa fa-pencil" >Edit</a>
-        <a data-toggle="modal" data-id="{{i.id}}" style="color:red" data-delete-url="{% url 'Enquiry_Delete' i.id %}" href="#deleteModal" data-target="#deleteModal">Delete</a>
+        <a data-toggle="modal" id="enq_update" style="color: black;" ,onClick="editUser({{i.id}})" href="{% url 'Enquiry_Update' i.id %}" data-target="#exampleModal" data-name="{{i.SenderName}}" class="fa fa-pencil" >Edit</a>
+        <a data-toggle="modal" ,onClick="deleteUser({{i.id}})" style="color:red" data-delete-url="{% url 'Enquiry_Delete' i.id %}" href="#deleteModal" data-target="#deleteModal">Delete</a>
       </td>
     </tr>
     {% endfor %}
