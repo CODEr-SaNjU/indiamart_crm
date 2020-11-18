@@ -42,6 +42,8 @@ def logout(request):
     auth.logout(request)
     return render(request,'html_files/logout.htm')
 
+
+@login_required(login_url='login')
 @admin_only
 def Admin_panel(request):
     all_enq = CK_Account.objects.all()
@@ -160,7 +162,7 @@ def Enquiry_Delete(request,pk_id):
     return render(request,'html_files/Dashboard.htm' , {"obj_delete":obj_delete})
 
 
-
+@login_required(login_url='login')
 def saleperson_page(request):
     context = {}
     return render(request,'html_files/salesperson.htm',context)

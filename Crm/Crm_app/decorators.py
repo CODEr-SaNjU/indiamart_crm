@@ -34,7 +34,7 @@ def admin_only(view_func):
         if request.user.groups.exists():
             group = request.user.groups.all()[0].name
         if group == 'SalesPerson':
-            return redirect('salesperson')
+            return redirect('saleperson')
         if group == 'Admin':
             return view_func(request,*args, **kwargs)
     return wrapper_func
