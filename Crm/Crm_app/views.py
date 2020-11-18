@@ -9,7 +9,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required,permission_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from .decorators import unauthenticated_user ,allowed_user
+from .decorators import unauthenticated_user ,allowed_user ,admin_only
 import datetime
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import PageNotAnInteger,EmptyPage,Paginator
@@ -42,6 +42,7 @@ def logout(request):
     auth.logout(request)
     return render(request,'html_files/logout.htm')
 
+@admin_only
 def Admin_panel(request):
     all_enq = CK_Account.objects.all()
     all_user = User.objects.all()
@@ -158,4 +159,9 @@ def Enquiry_Delete(request,pk_id):
         return redirect('All_Enquiry')
     return render(request,'html_files/Dashboard.htm' , {"obj_delete":obj_delete})
 
+
+
+def saleperson_page(request):
+    context = {}
+    return render(request,'html_files/salesperson.htm',context)
 
