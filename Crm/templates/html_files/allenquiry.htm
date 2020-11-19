@@ -1,6 +1,6 @@
 <div class="col-12" >
   <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px;" href="#">All Enquiry Data</a>
-  <table class="table table-sm" style="padding: 10px; font-size: small;" id="userTable">
+  <table class="table table-sm" style="padding: 10px; font-size: small;" id="enq-table">
     <tr>
       <th>Query_id</th>
       <th>SenderName</th>
@@ -13,30 +13,22 @@
       <th>ENQ_STATE</th>
       <th>Action</th>
     </tr>
-    {% for i in all_enq %}
+    {% for all_enq in all_enqs %}
     <tr id="i-{{i.id}}">
-      <td>{{i.QUERY_ID}}</td>
-      <td>{{i.SENDERNAME}}</td>
-      <td>{{i.SENDEREMAIL}}</td>
-      <td>{{i.SUBJECT}}</td>
-      <td>{{i.DATE_TIME_RE}}</td>
-      <td>{{i.MOB}}</td>
-      <td>{{i.ENQ_MESSAGE|safe|truncatewords:"8"|linebreaks}}</td>
-      <td>{{i.ENQ_CITY}}</td>
-      <td>{{i.ENQ_STATE}}</td>
+      <td>{{all_enq.Query_id}}</td>
+      <td>{{all_enq.SENDERNAME}}</td>
+      <td>{{all_enq.SenderEmail}}</td>
+      <td>{{all_enq.SUBJECT}}</td>
+      <td>{{all_enq.Date_Time_Re}}</td>
+      <td>{{all_enq.MOB}}</td>
+      <td>{{all_enq.ENQ_MESSAGE|safe|truncatewords:"8"|linebreaks}}</td>
+      <td>{{all_enq.ENQ_CITY}}</td>
+      <td>{{all_enq.ENQ_STATE}}</td>
       <td>
-        <a data-toggle="modal" id="enq_update" style="color: black;" ,onClick="editUser({{i.id}})" href="{% url 'Enquiry_Update' i.id %}" data-target="#exampleModal" data-name="{{i.SenderName}}" class="fa fa-pencil" >Edit</a>
+        <a data-toggle="modal" class="update-enq" id="enq_update" style="color: black;" ,onClick="editUser({{i.id}})" data-form-url="{% url 'Enquiry_Update' i.id %}" data-target="#exampleModal" data-name="{{i.SenderName}}">Edit</a>
         <a data-toggle="modal" ,onClick="deleteUser({{i.id}})" style="color:red" data-delete-url="{% url 'Enquiry_Delete' i.id %}" href="#deleteModal" data-target="#deleteModal">Delete</a>
       </td>
     </tr>
     {% endfor %}
   </table>
 </div>
-<script type="text/javascript">
-  $(document).on("click", ".open-AddBookDialog", function () {
-  var delete_url = $(this).data('delete-url'); 
-  $(".modal-footer #delete_file_href").prop( delete_url );
-
-  $('#fileConfirmDeleteModal').modal('show');
- });
-</script>
