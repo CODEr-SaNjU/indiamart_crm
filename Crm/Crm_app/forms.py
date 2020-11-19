@@ -7,6 +7,11 @@ from django.contrib.auth.forms import UserCreationForm
 from bootstrap_modal_forms.forms import BSModalModelForm
 
 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from bootstrap_modal_forms.forms import BSModalModelForm
+
+
 class CK_AccountForm(BSModalModelForm):
     class Meta:
         model =CK_Account

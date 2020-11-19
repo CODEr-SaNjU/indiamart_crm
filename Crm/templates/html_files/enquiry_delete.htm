@@ -1,14 +1,23 @@
-<form method="post" action=" " class="js-product-delete-form">
-    {% csrf_token %}
+{% load widget_tweaks %}
 
-    <div class="modal-body">
-      <p class="lead">Are you sure you want to delete the enquiry <strong>{{ product.name }}</strong>?</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <button type="submit" class="btn btn-danger">Delete enquiry</button>
-    </div>
+<form method="post" action="">
+  {% csrf_token %}
+
+  <div class="modal-header">
+    <h3 class="modal-title">Delete Enquiry</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <p>Are you sure you want to delete Enquiry 
+      <strong>{{ all_enq.Query_id }}</strong>?</p>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </div>
+
 </form>
-
-
-

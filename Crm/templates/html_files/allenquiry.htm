@@ -25,10 +25,21 @@
       <td>{{all_enq.ENQ_CITY}}</td>
       <td>{{all_enq.ENQ_STATE}}</td>
       <td>
-        <a data-toggle="modal" class="update-enq" id="enq_update" style="color: black;" ,onClick="editUser({{i.id}})" data-form-url="{% url 'Enquiry_Update' i.id %}" data-target="#exampleModal" data-name="{{i.SenderName}}">Edit</a>
-        <a data-toggle="modal" ,onClick="deleteUser({{i.id}})" style="color:red" data-delete-url="{% url 'Enquiry_Delete' i.id %}" href="#deleteModal" data-target="#deleteModal">Delete</a>
+        <a data-toggle="modal" class="bs-modal" id="enq_update" style="color: black;" data-form-url="{% url 'Enquiry_Update' all_enq.id %}" data-target="#exampleModal" data-name="{{i.SenderName}}">Edit</a>
+        <a data-toggle="modal" class="bs-modal" style="color:red" data-delete-url="{% url 'Enquiry_Delete' all_enq.id %}" href="#deleteModal" data-target="#deleteModal">Delete</a>
       </td>
     </tr>
     {% endfor %}
   </table>
 </div>
+<script type="text/javascript">
+  $(function () {
+    // Update, Read and Delete book buttons open modal with id="modal" (default)
+    // The formURL is retrieved from the data of the element
+    $(".bs-modal").each(function () {
+      $(this).modalForm({
+          formURL: $(this).data('form-url')
+      });
+    });
+  });
+</script>
