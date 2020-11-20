@@ -1,11 +1,23 @@
+{% load widget_tweaks %}
 
-{% load static %}
-<link rel="stylesheet" type="text/css" href="#">
+<form method="post" action="">
+  {% csrf_token %}
 
-{% block content %}
-<br>
-<form method="POST">{% csrf_token %}
-    <h1 style="text-align: center; color: black;">Are you sure you want to delete User </h1> <h3 style="color: red; text-align: center;">"{{ obj_delete }}" ?</h5>
-    <button type="submit" class="btn btn-danger" value="Submit" style="text-align: center;  position: absolute; right: 50%;">submit</button>
+  <div class="modal-header">
+    <h3 class="modal-title">Delete Users</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <p>Are you sure you want to delete Users 
+      <strong>{{ all_enq.Query_id }}</strong>?</p>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </div>
+
 </form>
-{% endblock %}

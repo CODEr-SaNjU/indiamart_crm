@@ -10,16 +10,16 @@
         <th>Action</th>
       </tr>
 
-      {% for i in all_user %}
+      {% for context in context %}
       <tr>
-        <td>{{i.first_name}}</td>
-        <td>{{i.username}}</td>
-        <td>{{i.email}}</td>
-        {% endfor %}
-        {% for i in all_user_mob %}
-        <td>{{i.phonenumber}}</td>
-        <td>{{i.MOB}}</td>
-        <td><a data-toggle="modal" style="color: black;" href="{%url 'Enquiry_Update' i.id %}" data-target="#userModal">Edit</a> &nbsp; <a data-toggle="modal" style="color:red" href="{%url 'Enquiry_Delete' i.id %}" data-target="#userdeleteModal">Delete</a></td>
+        <td>{{context.first_name}}</td>
+        <td>{{context.username}}</td>
+        <td>{{context.email}}</td>
+        <td>{{context.phonenumber}}</td>
+        <td>{{context.MOB}}</td>
+        <td>
+          <a data-toggle="modal" style="color: rgb(137, 170, 240);" href="" data-target="#userModal">Edit</a>
+          <a data-toggle="modal" style="color:red" href="" data-target="#userdeleteModal">Delete</a></td>
       </tr>
       {% endfor %}
     </table>
