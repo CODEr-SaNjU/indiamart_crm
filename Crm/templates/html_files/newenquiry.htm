@@ -1,5 +1,5 @@
 <div class="col-12">
-    <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px; " href="#">&nbsp;</a>
+    <a id="create-book"  class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px; " href="#">&nbsp;</a>
     <table class="table table-sm" style="padding: 100px; font-size: small;">
       <tr>
         <th>Query_id</th>
@@ -30,3 +30,12 @@
       {% endfor %}
     </table>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+  
+      $("#create-book").modalForm({
+          formURL: "{% url 'create_enquiry' %}"
+      });
+  
+  });
+  </script>

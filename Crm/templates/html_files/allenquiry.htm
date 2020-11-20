@@ -1,5 +1,5 @@
 <div class="col-12" >
-  <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px;" href="#">All Enquiry Data</a>
+  <a class="btn btn-primary  btn-sm btn-block" id="create-book"  style="margin-top: -13px;" href="#">All Enquiry Data</a>
   <table class="table table-sm" style="padding: 10px; font-size: small;" id="enq-table">
     <tr>
       <th>Query_id</th>
@@ -25,21 +25,19 @@
       <td>{{all_enq.ENQ_CITY}}</td>
       <td>{{all_enq.ENQ_STATE}}</td>
       <td>
-        <a data-toggle="modal" class="bs-modal" id="enq_update" style="color: black;" data-form-url="{% url 'Enquiry_Update' all_enq.id %}" data-target="#exampleModal" data-name="{{i.SenderName}}">Edit</a>
-        <a data-toggle="modal" class="bs-modal" style="color:red" data-delete-url="{% url 'Enquiry_Delete' all_enq.id %}" href="#deleteModal" data-target="#deleteModal">Delete</a>
+        <a data-toggle="modal" data-sid="{{all_enq.id}}" class="bs-modal" id="enq_update" style="color: black;" data-form-url="{% url 'Enquiry_Update' all_enq.id %}" data-target="#exampleModal" data-name="{{i.SenderName}}">Edit</a>
+        <a data-toggle="modal" data-sid="{{all_enq.id}}" class="bs-modal" style="color:red" data-delete-url="{% url 'Enquiry_Delete' all_enq.id %}" href="#deleteModal" data-target="#deleteModal">Delete</a>
       </td>
     </tr>
     {% endfor %}
   </table>
 </div>
 <script type="text/javascript">
-  $(function () {
-    // Update, Read and Delete book buttons open modal with id="modal" (default)
-    // The formURL is retrieved from the data of the element
-    $(".bs-modal").each(function () {
-      $(this).modalForm({
-          formURL: $(this).data('form-url')
+  $(document).ready(function() {
+  
+      $("#create-book").modalForm({
+          formURL: "{% url 'create_enquiry' %}"
       });
-    });
+  
   });
-</script>
+  </script>

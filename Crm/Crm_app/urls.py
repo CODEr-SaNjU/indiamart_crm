@@ -13,6 +13,7 @@ urlpatterns = [
     path("logout/",views.logout,name="logout"),
     path("register/",views.register,name="register"),
     path("salesperson/",views.saleperson_page,name="saleperson"),
+    path('create_enquiry/', views.enqCreateView.as_view(), name='create_enquiry'),
 
 
 ]

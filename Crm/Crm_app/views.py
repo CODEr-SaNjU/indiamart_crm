@@ -18,9 +18,11 @@ from .forms import CK_AccountForm ,UserForm ,UserRegForm
 import requests
 from django.db.models import Q
 import json
+from django.urls import reverse_lazy
 from .models import CK_Account ,UserReg
 import datetime
 from django.contrib import auth 
+from bootstrap_modal_forms.generic import BSModalCreateView
 
 def login(request):
     if request.method == "POST":
@@ -167,3 +169,9 @@ def saleperson_page(request):
     last_all_enq = CK_Account.objects.filter(username=request.user)
     return render(request,'html_files/salesperson.htm',{'last_all_enq':last_all_enq})
 
+
+class enqCreateView(BSModalCreateView):
+    template_name = 'examples/create_enquiry.htm'
+    form_class = CK_AccountForm
+    success_message = 'Success: enquiey was created.'
+    success_url = reverse_lazy('login')
