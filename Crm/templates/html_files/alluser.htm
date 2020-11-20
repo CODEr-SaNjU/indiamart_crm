@@ -9,17 +9,15 @@
         <th>Role</th>
         <th>Action</th>
       </tr>
-      {% for context in context %}
       <tr>
-        <td>{{context.first_name}}</td>
-        <td>{{context.username}}</td>
-        <td>{{context.email}}</td>
-        <td>{{context.phonenumber}}</td>
-        <td>{{context.MOB}}</td>
+        <td>{{all_user.first_name}}</td>
+        <td>{{all_user.username}}</td>
+        <td>{{all_user.email}}</td>
+        <td>{{all_user.phonenumber}}</td>
+        <td>{{all_user_mob.MOB}}</td>
         <td>
           <a data-toggle="modal" style="color: rgb(137, 170, 240);" href="" data-target="#userModal">Edit</a>
           <a data-toggle="modal" style="color:red" href="" data-target="#userdeleteModal">Delete</a></td>
       </tr>
-      {% endfor %}
     </table>
 </div>

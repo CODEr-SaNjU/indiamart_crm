@@ -42,15 +42,13 @@ class UserForm(UserCreationForm):
         widgets = {
           'username' : forms.TextInput(attrs={'class':'form-control','id':'usernameid'}),
           'first_name' : forms.TextInput(attrs={'class':'form-control','id':'first_nameid'}),
-          'QTYPE' : forms.TextInput(attrs={'class':'form-control','id':'qtypeid'}),
           'email' : forms.EmailInput(attrs={'class':'form-control','id':'emailid'}),
-          'password1' : forms.TextInput(attrs={'class':'form-control','id':'password1id'}),
-          'password2' : forms.TextInput(attrs={'class':'form-control','id':'password2id'}),
+          'password1' : forms.PasswordInput(attrs={'class':'form-control','id':'password1id'}),
+          'password2' : forms.PasswordInput(attrs={'class':'form-control','id':'password2id'}),
         }
         labels = {
             'first_name': ('full Name')
         }
-
 
 class UserRegForm(forms.ModelForm):
 
@@ -58,6 +56,5 @@ class UserRegForm(forms.ModelForm):
         model = UserReg
         fields = ['phonenumber']
         widgets = {
-          'phonenumber' : forms.NumberInput(attrs={'class':'form-control','id':'phonenumber'}),
-
+          'phonenumber' : forms.TextInput(attrs={'class':'form-control','id':'phonenumber'}),
         }
