@@ -48,6 +48,18 @@ def logout(request):
 @login_required(login_url='login')
 @admin_only
 def Admin_panel(request):
+    if request.method == "POST":
+        userform = UserForm(request.POST)
+        useregform = UserRegForm(request.POST)
+        if userform.is_valid() and useregform.is_valid():
+            user = userform.save()
+            useregform = useregform.save(commit=False)
+            useregform.user = user
+            useregform.save()
+            messages.success(request, f'Registration complete! You may log in!')
+    else:
+        userform = UserForm(request.POST)
+        useregform = UserRegForm(request.POST)
     all_enq = CK_Account.objects.all()
     all_user = User.objects.all()
     all_user_mob = UserReg.objects.all()
@@ -61,22 +73,8 @@ def Admin_panel(request):
         'all_user':all_user,
         'all_user_mob':all_user_mob
     }
-    return render(request,'html_files/Main.htm',{'last_all_enq':last_all_enq,'total_enquiry_data':total_enquiry_data,'all_enq':all_enq,'context':context})
+    return render(request,'html_files/Main.htm',{'last_all_enq':last_all_enq,'total_enquiry_data':total_enquiry_data,'all_enq':all_enq,'userform': userform, 'useregform': useregform})
 
-def register(request):
-    if request.method == "POST":
-        userform = UserForm(request.POST)
-        useregform = UserRegForm(request.POST)
-        if userform.is_valid() and useregform.is_valid():
-            user = userform.save()
-            useregform = useregform.save(commit=False)
-            useregform.user = user
-            useregform.save()
-            messages.success(request, f'Registration complete! You may log in!')
-    else:
-        userform = UserForm(request.POST)
-        useregform = UserRegForm(request.POST)
-    return render(request, 'html_files/User_details.htm', {'userform': userform, 'useregform': useregform})
 
 
 
@@ -174,8 +172,5 @@ def saleperson_page(request):
     return render(request,'html_files/salesperson.htm',{'last_all_enq':last_all_enq})
 
 
-class enqCreateView(BSModalCreateView):
-    template_name = 'examples/create_enquiry.htm'
-    form_class = CK_AccountForm
-    success_message = 'Success: enquiey was created.'
-    success_url = reverse_lazy('login')
+
+

@@ -15,20 +15,6 @@
         </div>
         <div class="tab-pane" id="user_registration">
           {%  include 'html_files/user_registration.htm' %}
-              <form action=" " method="POST" id="form-data1" class="form-signin">
-                {% csrf_token %}
-                <div class="card card-body">
-                  <h5 style="text-align: center;">User Registration</h5>
-                  <table border="1">
-                    {{userform|crispy}}
-                    {{useregform|crispy}}
-                  </table>
-                  <button class="btn btn-lg btn-block text-uppercase" style="background-color: #3e3c3c;"value="Update" type="submit">submit</button>
-                  <button class="btn btn-lg  btn-block text-uppercase" style="background-color: #851313;" type="reset">Cancel</button>
-                </div>
-              </form>
-            </div>
-          </div>
         </div>
       </div>
     </div>

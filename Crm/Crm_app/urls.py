@@ -11,9 +11,7 @@ urlpatterns = [
     path("Enquiry_Update/<str:pk_id>/",views.Enquiry_Update,name="Enquiry_Update"),
     path("Enquiry_Delete/<str:pk_id>/",views.Enquiry_Delete,name="Enquiry_Delete"),
     path("logout/",views.logout,name="logout"),
-    path("register/",views.register,name="register"),
     path("salesperson/",views.saleperson_page,name="saleperson"),
-    path('create_enquiry/', views.enqCreateView.as_view(), name='create_enquiry'),
 
 
 ]
