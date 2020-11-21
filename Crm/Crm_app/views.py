@@ -150,7 +150,7 @@ def Enquiry_search(request):
 
 
 def Enquiry_Update(request,pk_id):
-    obj_update = get_object_or_404(CK_Account,id=pk_id)
+    obj_update = get_object_or_404(CK_Account,pk_id=pk_id)
     form = CK_AccountForm(request.POST or None , instance=obj_update)
     if form.is_valid():
         account = form.save()
@@ -160,7 +160,7 @@ def Enquiry_Update(request,pk_id):
 
 
 def Enquiry_Delete(request,pk_id):
-    obj_delete = get_object_or_404(CK_Account,id=pk_id)
+    obj_delete = get_object_or_404(CK_Account,pk_id=pk_id)
     if request.method == "POST":
         obj_delete.delete()
         return redirect('All_Enquiry')
