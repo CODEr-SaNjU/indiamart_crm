@@ -1,5 +1,5 @@
 <div class="col-12" >
-  <a class="btn btn-primary  btn-sm btn-block" id="create-book"  style="margin-top: -13px;" href="#">All Enquiry Data</a>
+  <a class="btn btn-primary  btn-sm btn-block" id="create-book"  style="margin-top: -13px;" href="#">&nbsp;</a>
   <table class="table table-sm" style="padding: 10px; font-size: small;" id="enq-table">
     <tr>
       <th>Query_id</th>
@@ -13,17 +13,17 @@
       <th>Date_Time_Re</th>
       <th>Action</th>
     </tr>
-    {% for all_enq in all_enqs %}
+    {% for all_enq in all_enq %}
     <tr id="i-{{i.id}}">
       <td>{{all_enq.QUERY_ID}}</td>
       <td>{{all_enq.SENDERNAME}}</td>
       <td>{{all_enq.MOB}}</td>
-      <td>{{all_enq.SenderEmail}}</td>
+      <td>{{all_enq.SENDEREMAIL}}</td>
       <td>{{all_enq.SUBJECT}}</td>
       <td>{{all_enq.ENQ_MESSAGE|safe|truncatewords:"8"|linebreaks}}</td>
       <td>{{all_enq.ENQ_CITY}}</td>
-      <td>{{all_enq.Date_Time_Re}}</td>
       <td>{{all_enq.ENQ_STATE}}</td>
+      <td>{{all_enq.DATE_TIME_RE}}</td>
       <td>
         <a data-toggle="modal" data-sid="{{all_enq.id}}" class="bs-modal" id="enq_update" style="color: black;" data-form-url="{% url 'Enquiry_Update' all_enq.id %}" data-target="#exampleModal" data-name="{{i.SenderName}}">Edit</a>
         <a data-toggle="modal" data-sid="{{all_enq.id}}" class="bs-modal" style="color:red" data-delete-url="{% url 'Enquiry_Delete' all_enq.id %}" href="#deleteModal" data-target="#deleteModal">Delete</a>
