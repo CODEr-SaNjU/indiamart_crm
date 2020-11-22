@@ -1,3 +1,4 @@
+{% block content %}
 <div class="col-12">
     <a id="create-enq" data-toggle="modal"  class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px;" href="#" data-target="#Newaddenq">Add New Enquiry </a>
     <table class="table table-hover table-sm" style="padding: 100px; font-size: small;">
@@ -25,8 +26,11 @@
         <td>{{i.ENQ_CITY}}</td>
         <td>{{i.ENQ_STATE}}</td>
         <td>{{i.DATE_TIME_RE}}</td>
-
         <td><a data-toggle="modal" style="color: black;" href="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal">Edit</a> &nbsp; <a data-toggle="modal" style="color:red" href="{%url 'Enquiry_Delete' i.id %}" data-target="#deleteModal">Delete</a></td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td  class="text-center bg-warning">No Enquiry</td>
       </tr>
       {% endfor %}
     </table>
@@ -38,3 +42,4 @@
     </div>
   </div>
 </div>
+{% endblock %}

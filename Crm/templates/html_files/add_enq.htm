@@ -1,4 +1,6 @@
+{% block content %}
 {% load widget_tweaks %}
+{% load crispy_forms_tags %}
 
 <form method="POST" action="" class="js-product-update-form">
   {% csrf_token %}
@@ -17,22 +19,18 @@
       {% endfor %}
     </div>
 
-    {% for field in form %}
-      <div class="form-group">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {% render_field field class="form-control" placeholder=field.label %}
-        <div class="{% if field.errors %} invalid{% endif %}">
-          {% for error in field.errors %}
-            <p class="help-block">{{ error }}</p>
-          {% endfor %}
-        </div>
+    <div class="form-group">
+      <div class="row">
+          <div class="col-sm-5" style="margin-left: 30%;">
+              {{form|crispy}}
+              <button type="submit" class="btn btn-info">Submit</button>
+              &nbsp;
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          </div>
       </div>
-    {% endfor %}
+    </div>
   </div>
 
-  <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-    <button type="button" class="submit-btn btn btn-primary">Create</button>
-  </div>
 
 </form>
+{% endblock %}
