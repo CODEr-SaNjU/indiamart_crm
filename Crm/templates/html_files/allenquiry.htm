@@ -25,8 +25,7 @@
       <td>{{i.ENQ_STATE}}</td>
       <td>{{i.DATE_TIME_RE}}</td>
       <td>
-        <button type="button" data-toggle="modal" class="bs-modal"  data-target="#exampleModal" class="btn btn-warning btn-sm js-update-product" data-url="{% url 'Enquiry_Update' i.id %}"><span class="glyphicon glyphicon-pencil"></span></button>
-        <button type="button" data-toggle="modal" class="bs-modal"  data-target="#deleteModal" class="btn btn-danger btn-sm js-delete-product" data-url="{% url 'Enquiry_Delete' i.id %}"><span class="glyphicon glyphicon-trash"></span></button>
+        <a data-toggle="modal" style="color: black;" href="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal">Edit</a> &nbsp; <a data-toggle="modal" style="color:red" href="{%url 'Enquiry_Delete' i.id %}" data-target="#deleteModal">Delete</a>
       </td>
     </tr>
     {% endfor %}
