@@ -1,5 +1,5 @@
 <div class="col-12" >
-  <a class="btn btn-primary  btn-sm btn-block" id="create-book"  style="margin-top: -13px;" href="#">&nbsp;</a>
+  <a id="create-enq" data-toggle="modal"  class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px;" href="#" data-target="#addneweqn">Add New Enquiry </a>
   <table class="table table-hover table-sm" style="padding: 10px; font-size: small;" id="enq-table">
     <tr>
       <th>Query_id</th>
@@ -30,4 +30,11 @@
     </tr>
     {% endfor %}
   </table>
+</div>
+<div class="modal fade" id="addneweqn" tabindex="-1" aria-labelledby="addneweqnLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        {%  include 'html_files/add_enq.htm' %}
+    </div>
+  </div>
 </div>
