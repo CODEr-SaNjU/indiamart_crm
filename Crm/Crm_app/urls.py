@@ -12,7 +12,7 @@ urlpatterns = [
     path("Enquiry_Delete/<int:pk_id>/",views.Enquiry_Delete,name="Enquiry_Delete"),
     path("logout/",views.logout,name="logout"),
     path("salesperson/",views.saleperson_page,name="saleperson"),
-    path("Registration/",views.Registration,name="Registration"),
+    path("enq_create/",views.enq_create,name="enq_create"),
 
 
 ]

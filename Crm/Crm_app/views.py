@@ -22,6 +22,7 @@ import json
 from django.urls import reverse_lazy
 from .models import CK_Account ,UserReg
 import datetime
+from django.template.loader import render_to_string
 from django.contrib import auth 
 from bootstrap_modal_forms.generic import BSModalCreateView
 
@@ -190,6 +191,8 @@ def saleperson_page(request):
 
 
 
-def Registration(request):
+def enq_create(request):
     form = CK_AccountForm()
-    return render(request,'html_files/Admin.htm',{'form':form})
+    context = {'form':form}
+    html_form = render_to_string('html_files/add_enq.htm',context,request=request)
+    return JsonResponse({'html_form':html_form})
