@@ -192,7 +192,17 @@ def saleperson_page(request):
 
 
 def enq_create(request):
-    form = CK_AccountForm()
+    data = dict()
+    if request.method == "POST":
+        form = CK_AccountForm()
+        if form.is_valid():
+            form.save()
+            data['form_is_valid']=True
+        else:
+            data['form_is_valid']=False
+    else:
+        form = CK_AccountForm()
     context = {'form':form}
-    html_form = render_to_string('html_files/add_enq.htm',context,request=request)
-    return JsonResponse({'html_form':html_form})
+    data['html_form'] = render_to_string('html_files/add_enq.htm',context,request=request)
+    return JsonResponse(data)
+    print(data)
