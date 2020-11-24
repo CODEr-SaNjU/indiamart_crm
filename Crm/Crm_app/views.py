@@ -185,11 +185,32 @@ def save_product_form(request, form, template_name):
     return JsonResponse(data)
 
 def enq_create(request):
-    if request.method == "POST":
+    data = dict()
+
+    if request.method == 'POST':
+        print("method post ")
         form = CK_AccountForm(request.POST)
+        if form.is_valid():
+            print("forme sae ")
+            form.save()
+            data['form_is_valid'] = True
+        else:
+            data['form_is_valid'] = False    
     else:
         form = CK_AccountForm()
-    return save_product_form(request,form,'html_files/add_enq.htm')
+    context = {'form': form}
+    data['html_form'] = render_to_string('html_files/add_enq.htm', context, request=request)
+    return JsonResponse(data)
+    print("sanju data ",data)
+
+
+
+
+    # if request.method == "POST":
+    #     form = CK_AccountForm(request.POST)
+    # else:
+    #     form = CK_AccountForm()
+    # return save_product_form(request,form,'html_files/add_enq.htm')
 
 
 
