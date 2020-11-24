@@ -47,45 +47,47 @@
 </div>
 
 <script>
-$("#Newaddenq").on("submit", ".js-create-enq", function () {
-  var form = $(this);
-  $.ajax({
-    url: form.attr("action"),
-    data: form.serialize(),
-    type: form.attr("method"),
-    dataType: 'json',
-    success: function (data) {
-      if (data.form_is_valid) {
-        alert("Book created!");  // <-- This is just a placeholder for now for testing
-      }
-      else {
-        $("#Newaddenq .modal-content").html(data.html_form);
+// $("#Newaddenq").on("submit", ".js-create-enq", function () {
+//   var form = $(this);
+//   $.ajax({
+//     url: form.attr("action"),
+//     data: form.serialize(),
+//     type: form.attr("method"),
+//     dataType: 'json',
+//     success: function (data) {
+//       console.log("before send ");
+//       if (data.form_is_valid) {
+//         alert("Book created!");  // <-- This is just a placeholder for now for testing
+//       }
+//       else {
+//         $("#Newaddenq .modal-content").html(data.html_form);
+//         }
+//       }
+//     });
+//     return false;
+//   });
+
+
+
+  $(function () {
+  
+    $(".js-create-enq").click(function () {
+      $.ajax({
+        url: '/enq_create/',
+        type: 'GET',
+        dataType: 'json',
+        beforeSend: function () {
+          console.log("before send ");
+          $("#Newaddenq").modal("show");
+        },
+        success: function (data) {
+          console.log("success");
+          alert("Book created!");
+          $("#Newaddenq .modal-content").html(data.html_form)
         }
-      }
+      });
     });
-    return false;
+  
   });
-
-
-
-  // $(function () {
-  
-  //   $(".js-create-enq").click(function () {
-  //     $.ajax({
-  //       url: '/enq_create/',
-  //       type: 'GET',
-  //       dataType: 'json',
-  //       beforeSend: function () {
-  //         console.log("before send ");
-  //         $("#Newaddenq").modal("show");
-  //       },
-  //       success: function (data) {
-  //         console.log("success");
-  //         $("#Newaddenq .modal-content").html(data.html_form)
-  //       }
-  //     });
-  //   });
-  
-  // });
   </script>
 {% endblock %}

@@ -150,29 +150,6 @@ def Enquiry_search(request):
     last_all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
     return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
 
-def save_product_form(request, form, template_name):
-    data = dict()
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            data['form_is_valid'] = True
-            products = Product.objects.all()
-            data['html_product_list'] = render_to_string('includes/partial_product_list.html', {
-                'products': products
-            })
-        else:
-            data['form_is_valid'] = False
-    context = {'form': form}
-    data['html_form'] = render_to_string(template_name, context, request=request)
-    return JsonResponse(data)
-
-def Enquiry_Update(request,pk_id):
-    obj_update = get_object_or_404(CK_Account,id=pk_id)
-    form = CK_AccountForm(request.POST or None , instance=obj_update)
-    if form.is_valid():
-        account = form.save()
-        return redirect('All_Enquiry')
-    return render(request,'html_files/enquiry_update.htm',{'form':form})
 
 
 
@@ -191,18 +168,37 @@ def saleperson_page(request):
 
 
 
-def enq_create(request):
+def save_product_form(request, form, template_name):
     data = dict()
-    if request.method == "POST":
-        form = CK_AccountForm()
+    if request.method == 'POST':
         if form.is_valid():
             form.save()
-            data['form_is_valid']=True
+            data['form_is_valid'] = True
+            products = Product.objects.all()
+            data['html_product_list'] = render_to_string('html_files/newenquiry.htm', {
+                'last_all_enq': last_all_enq
+            })
         else:
-            data['form_is_valid']=False
+            data['form_is_valid'] = False
+    context = {'form': form}
+    data['html_form'] = render_to_string(template_name, context, request=request)
+    return JsonResponse(data)
+
+def enq_create(request):
+    if request.method == "POST":
+        form = CK_AccountForm(request.POST)
     else:
         form = CK_AccountForm()
-    context = {'form':form}
-    data['html_form'] = render_to_string('html_files/add_enq.htm',context,request=request)
-    return JsonResponse(data)
-    print(data)
+    return save_product_form(request,form,'html_files/add_enq.htm')
+
+
+
+
+def Enquiry_Update(request,pk_id):
+    obj_update = get_object_or_404(CK_Account,id=pk_id)
+    if request.method=="POST":
+        form = CK_AccountForm(request.POST or None , instance=obj_update)
+    else:
+        form = CK_AccountForm(instance=obj_update)
+    return save_product_form(request,form,'html_files/enquiry_update.htm')
+
