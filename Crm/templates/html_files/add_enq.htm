@@ -1,5 +1,5 @@
-{% load crispy_forms_tags %}
-<form method="post" action="{% url 'enq_create' %}" class="js-create-enq-form">
+{% load widget_tweaks %}
+<form method="POST" action="{% url 'enq_create' %}" class="js-create-enq-form">
   {% csrf_token %}
   <div class="modal-header">
     <h4 class="modal-title">Create a new Enquiry</h4>

@@ -150,15 +150,12 @@ def Enquiry_search(request):
     last_all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
     return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
 
+   
 
 
 
-def Enquiry_Delete(request,pk_id):
-    obj_delete = get_object_or_404(CK_Account,id=pk_id)
-    if request.method == "POST":
-        obj_delete.delete()
-        return redirect('All_Enquiry')
-    return render(request,'html_files/Dashboard.htm' , {"obj_delete":obj_delete})
+
+
 
 
 @login_required(login_url='login')
@@ -206,13 +203,6 @@ def enq_create(request):
 
 
 
-    # if request.method == "POST":
-    #     form = CK_AccountForm(request.POST)
-    # else:
-    #     form = CK_AccountForm()
-    # return save_product_form(request,form,'html_files/add_enq.htm')
-
-
 
 
 def Enquiry_Update(request,pk_id):
@@ -222,4 +212,15 @@ def Enquiry_Update(request,pk_id):
     else:
         form = CK_AccountForm(instance=obj_update)
     return save_product_form(request,form,'html_files/enquiry_update.htm')
+    
 
+def Enquiry_Delete(request,pk_id):
+    obj_delete = get_object_or_404(CK_Account,id=pk_id)
+    data = dict()
+    if request.method == "POST":
+        obj_delete.delete()
+        data['form_is_valid'] = True
+    else:
+        context = {'obj_delete':obj_delete}
+        data['html_form'] = render_to_string('html_files/enquiry_delete.htm',context,request=request)
+    return JsonResponse(data)
