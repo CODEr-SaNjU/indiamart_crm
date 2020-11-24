@@ -1,7 +1,7 @@
 {% block content %}
 <div class="col-12">
     <a data-toggle="modal"  class="btn btn-primary  btn-sm btn-block js-create-enq" style="margin-top: -13px;" href="#" data-target="#Newaddenq">Add New Enquiry </a>
-    <table class="table table-hover table-sm" style="padding: 100px; font-size: small;">
+    <table class="table table-hover table-sm" id="table-enq" style="padding: 100px; font-size: small;">
       <thead>
         <tr>
           <th>Query_id</th>
@@ -28,7 +28,7 @@
           <td>{{i.ENQ_CITY}}</td>
           <td>{{i.ENQ_STATE}}</td>
           <td>{{i.DATE_TIME_RE}}</td>
-          <td><a data-toggle="modal" style="color: black;" href="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal">Edit</a> &nbsp; <a data-toggle="modal" style="color:red" href="{%url 'Enquiry_Delete' i.id %}" data-target="#deleteModal">Delete</a></td>
+          <td><a data-toggle="modal" class="js-update-enq" style="color: black;" data-url="{%url 'Enquiry_Update' i.id %}" data-target="#exampleModal">Edit</a> &nbsp; <a data-toggle="modal" style="color:red" data-url="{%url 'Enquiry_Delete' i.id %}" class="js-delete-enq" data-target="#deleteModal">Delete</a></td>
         </tr>
         {% empty %}
         <tr>
@@ -48,28 +48,69 @@
 
 <script>
 
+  // $(function () {
+  
+  //   $(".js-create-enq").click(function () {
+  //     $.ajax({
+  //       url: "{% url 'enq_create' %}",
+  //       type: 'GET',
+  //       dataType: 'json',
+  //       beforeSend: function () {
+  //         console.log("before send ");
+  //         $("#Newaddenq").modal("show");
+  //       },
+  //       success: function (data) {
+  //         console.log("success");
+  //         $("#Newaddenq .modal-content").html(data.html_form)
+  //       }
+  //     });
+  //   });
+  
+  // });
+
+
+  // $("#Newaddenq").on("submit", ".js-create-enq-form", function () {
+  // var form = $(this);
+  // $.ajax({
+  //   url: form.attr("action"),
+  //   data: form.serialize(),
+  //   type: form.attr("method"),
+  //   dataType: 'json',
+  //   success: function (data) {
+  //     if (data.form_is_valid) {
+  //       alert("enq created!");  // <-- This is just a placeholder for now for testing
+  //     }
+  //     else {
+  //       $("#Newaddenq .modal-content").html(data.html_form);
+  //       }
+  //     }
+  //   });
+  //   return false;
+  // });
+
+
+
   $(function () {
-  
-    $(".js-create-enq").click(function () {
-      $.ajax({
-        url: "{% url 'enq_create' %}",
-        type: 'get',
-        dataType: 'json',
-        beforeSend: function () {
-          console.log("before send ");
-          $("#Newaddenq").modal("show");
-        },
-        success: function (data) {
-          console.log("success");
-          $("#Newaddenq .modal-content").html(data.html_form)
-        }
-      });
-    });
-  
+
+/* Functions */
+
+var loadForm = function () {
+  var btn = $(this);
+  $.ajax({
+    url: btn.attr("data-url"),
+    type: 'get',
+    dataType: 'json',
+    beforeSend: function () {
+      $("#Newaddenq .modal-content").html("");
+      $("#Newaddenq").modal("show");
+    },
+    success: function (data) {
+      $("#Newaddenq .modal-content").html(data.html_form);
+    }
   });
+};
 
-
-  $("#Newaddenq").on("submit", ".js-create-enq-form", function () {
+var saveForm = function () {
   var form = $(this);
   $.ajax({
     url: form.attr("action"),
@@ -77,17 +118,42 @@
     type: form.attr("method"),
     dataType: 'json',
     success: function (data) {
-      console.log("before send ");
       if (data.form_is_valid) {
-        alert("Book created!");  // <-- This is just a placeholder for now for testing
+        $("#table-enq tbody").html(data.html_book_list);
+        $("#Newaddenq").modal("hide");
       }
       else {
         $("#Newaddenq .modal-content").html(data.html_form);
-        }
       }
-    });
-    return false;
+    }
   });
+  return false;
+};
+
+
+/* Binding */
+
+// Create book
+$(".js-create-book").click(loadForm);
+$("#Newaddenq").on("submit", ".js-book-create-form", saveForm);
+
+// Update book
+$("#table-enq").on("click", ".js-update-enq", loadForm);
+$("#Newaddenq").on("submit", ".js-enq-update-form", saveForm);
+
+// Delete book
+$("#table-enq").on("click", ".js-update-enq", loadForm);
+$("#modal-enq").on("submit", ".js-enq-delete-form", saveForm);
+
+});
+
+
+
+
+
+
+
+
 
   </script>
 {% endblock %}
