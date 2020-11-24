@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% load crispy_forms_tags %}
 
-<form method="POST" action="{% url 'enq_create' %}" class="js-create-enq-form">
+<form method="post" action="{% url 'enq_create' %}" class="js-create-enq-form">
   {% csrf_token %}
   <div class="modal-header">
     <h4 class="modal-title">Create a new Enquiry</h4>
@@ -11,15 +11,7 @@
     </button>
   </div>
   <div class="modal-body">
-    {% for field in form %}
-      <div class="form-group{% if field.errors %} has-error{% endif %}">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {% render_field field class="form-control" %}
-        {% for error in field.errors %}
-          <p class="help-block">{{ error }}</p>
-        {% endfor %}
-      </div>
-    {% endfor %}
+    {% include 'html_files/enq_form.htm' %}
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
