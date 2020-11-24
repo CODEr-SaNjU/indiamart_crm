@@ -222,5 +222,5 @@ def Enquiry_Delete(request,pk_id):
         data['form_is_valid'] = True
     else:
         context = {'obj_delete':obj_delete}
-        data['html_form'] = render_to_string('html_files/enquiry_delete.htm',context,request=request)
+        data['html_form'] = render_to_string('html_files/enquiry_delete.htm', context, request=request)
     return JsonResponse(data)
