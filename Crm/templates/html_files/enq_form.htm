@@ -1,5 +1,5 @@
 {% load widget_tweaks %}
-
+{% load crispy_forms_tags %}
 {% for field in form %}
 <div class="form-group{% if field.errors %} invalid{% endif %}">
   <label for="{{ field.id_for_label }}">{{ field.label }}</label>

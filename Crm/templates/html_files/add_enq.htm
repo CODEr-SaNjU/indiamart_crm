@@ -1,7 +1,4 @@
-{% block content %}
-{% load widget_tweaks %}
 {% load crispy_forms_tags %}
-
 <form method="post" action="{% url 'enq_create' %}" class="js-create-enq-form">
   {% csrf_token %}
   <div class="modal-header">
@@ -18,5 +15,3 @@
     <button type="submit" class="btn btn-primary">Create Enquiry</button>
   </div>
 </form>
-
-{% endblock %}

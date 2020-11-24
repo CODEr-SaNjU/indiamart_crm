@@ -10,8 +10,8 @@
   <td>{{i.ENQ_STATE}}</td>
   <td>{{i.DATE_TIME_RE}}</td>
   <td>
-    <button type="button"  class="btn btn-warning js-update-enq" data-url="{%url 'Enquiry_Update' i.id %}">Edit</button>
-    <button type="button"  class="btn btn-danger js-delete-enq"   data-url="{%url 'Enquiry_Delete' i.id %}">Delete</button>
+    <button type="button"  class="btn btn-warning js-update-enq" data-url="{% url 'Enquiry_Update' i.id %}">Edit</button>
+    <button type="button"  class="btn btn-danger js-delete-enq"   data-url="{% url 'Enquiry_Delete' i.id %}">Delete</button>
   </td>
 </tr>
 {% empty %}
