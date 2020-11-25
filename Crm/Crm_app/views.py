@@ -137,9 +137,9 @@ def search_enq_month(request):
     strt = datetime_object.strftime("%d-%m-%Y")
     endt = datetime_object2.strftime("%d-%m-%Y")
     print(strt)
-    last_all_enq = CK_Account.objects.filter(DATE_R__lte= "01-Nov-20",DATE_R__gte = "02-Nov-20")
-    print(last_all_enq)
-    return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
+    all_enq = CK_Account.objects.filter(DATE_R__lte= "01-Nov-20",DATE_R__gte = "02-Nov-20")
+    print(all_enq)
+    return render(request,'html_files/Main.htm',{"all_enq":all_enq})
 
 
 
@@ -147,8 +147,8 @@ def Enquiry_search(request):
     qur = request.GET.get('search')
     print(qur)
     print(type(qur))
-    last_all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
-    return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
+    all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
+    return render(request,'html_files/Main.htm',{"all_enq":all_enq})
 
    
 
@@ -167,8 +167,9 @@ def save_enq_form(request, form, template_name):
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            last_all_enq = CK_Account.objects.filter().order_by('-id')[:10]
-            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'last_all_enq':last_all_enq})
+            all_enq = CK_Account.objects.all()
+            all_enq = CK_Account.objects.filter().order_by('-id')[:10]
+            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'all_enq':all_enq})
         else:
             data['form_is_valid'] = False
     context = {'form': form}
