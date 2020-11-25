@@ -62,7 +62,7 @@ var saveForm = function () {
     dataType: 'json',
     success: function (data) {
       if (data.form_is_valid) {
-        $("#table-enq tbody").html(data.html_book_list);
+        $("#table-enq tbody").html(data.html_enq_list);
         $("#Newaddenq").modal("hide");
       }
       else {
@@ -73,14 +73,15 @@ var saveForm = function () {
   return false;
 };
 
-
 /* Binding */
 
 // Create book
+
 $(".js-create-enq").click(loadForm);
 $("#Newaddenq").on("submit", ".js-create-enq-form", saveForm);
 
 // Update book
+
 $("#table-enq").on("click", ".js-update-enq", loadForm);
 $("#Newaddenq").on("submit", ".js-enq-update-form", saveForm);
 
@@ -89,89 +90,6 @@ $("#table-enq").on("click", ".js-delete-enq", loadForm);
 $("#Newaddenq").on("submit", ".js-enq-delete-form", saveForm);
 
 });
-
-
-
-
-  // $(function () {
-  
-  //   $(".js-create-enq").click(function () {
-  //     $.ajax({
-  //       url: "{% url 'enq_create' %}",
-  //       type: 'GET',
-  //       dataType: 'json',
-  //       beforeSend: function () {
-  //         console.log("before send ");
-  //         $("#Newaddenq").modal("show");
-  //       },
-  //       success: function (data) {
-  //         console.log("success");
-  //         $("#Newaddenq .modal-content").html(data.html_form)
-  //       }
-  //     });
-  //   });
-  
-  // });
-
-
-  // $("#Newaddenq").on("submit", ".js-create-enq-form", function () {
-  // var form = $(this);
-  // $.ajax({  // $(function () {
-  
-  //   $(".js-create-enq").click(function () {
-  //     $.ajax({
-  //       url: "{% url 'enq_create' %}",
-  //       type: 'GET',
-  //       dataType: 'json',
-  //       beforeSend: function () {
-  //         console.log("before send ");
-  //         $("#Newaddenq").modal("show");
-  //       },
-  //       success: function (data) {
-  //         console.log("success");
-  //         $("#Newaddenq .modal-content").html(data.html_form)
-  //       }
-  //     });
-  //   });
-  
-  // });
-
-
-  // $("#Newaddenq").on("submit", ".js-create-enq-form", function () {
-  // var form = $(this);
-  // $.ajax({
-  //   url: form.attr("action"),
-  //   data: form.serialize(),
-  //   type: form.attr("method"),
-  //   dataType: 'json',
-  //   success: function (data) {
-  //     if (data.form_is_valid) {
-  //       alert("enq created!");  // <-- This is just a placeholder for now for testing
-  //     }
-  //     else {
-  //       $("#Newaddenq .modal-content").html(data.html_form);
-  //       }
-  //     }
-  //   });
-  //   return false;
-  // });
-
-  //   url: form.attr("action"),
-  //   data: form.serialize(),
-  //   type: form.attr("method"),
-  //   dataType: 'json',
-  //   success: function (data) {
-  //     if (data.form_is_valid) {
-  //       alert("enq created!");  // <-- This is just a placeholder for now for testing
-  //     }
-  //     else {
-  //       $("#Newaddenq .modal-content").html(data.html_form);
-  //       }
-  //     }
-  //   });
-  //   return false;
-  // });
-
 
 </script>
 {% endblock %}

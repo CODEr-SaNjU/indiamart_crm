@@ -153,11 +153,6 @@ def Enquiry_search(request):
    
 
 
-
-
-
-
-
 @login_required(login_url='login')
 def saleperson_page(request):
     last_all_enq = CK_Account.objects.filter(username=request.user)
@@ -165,16 +160,14 @@ def saleperson_page(request):
 
 
 
-def save_product_form(request, form, template_name):
+def save_enq_form(request, form, template_name):
     data = dict()
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            products = Product.objects.all()
-            data['html_product_list'] = render_to_string('html_files/newenquiry.htm', {
-                'last_all_enq': last_all_enq
-            })
+            last_all_enq = CK_Account.objects.filter().order_by('-id')[:10]
+            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'last_all_enq':last_all_enq})
         else:
             data['form_is_valid'] = False
     context = {'form': form}
@@ -182,25 +175,11 @@ def save_product_form(request, form, template_name):
     return JsonResponse(data)
 
 def enq_create(request):
-    data = dict()
-
     if request.method == 'POST':
-        print("method post ")
         form = CK_AccountForm(request.POST)
-        if form.is_valid():
-            print("forme sae ")
-            form.save()
-            data['form_is_valid'] = True
-        else:
-            data['form_is_valid'] = False    
     else:
         form = CK_AccountForm()
-    context = {'form': form}
-    data['html_form'] = render_to_string('html_files/add_enq.htm', context, request=request)
-    return JsonResponse(data)
-    print("sanju data ",data)
-
-
+    return save_enq_form(request,form,'html_files/add_enq.htm')
 
 
 
@@ -211,7 +190,7 @@ def Enquiry_Update(request,pk_id):
         form = CK_AccountForm(request.POST or None , instance=obj_update)
     else:
         form = CK_AccountForm(instance=obj_update)
-    return save_product_form(request,form,'html_files/enquiry_update.htm')
+    return save_enq_form(request,form,'html_files/enquiry_update.htm')
     
 
 def Enquiry_Delete(request,pk_id):
@@ -220,6 +199,8 @@ def Enquiry_Delete(request,pk_id):
     if request.method == "POST":
         obj_delete.delete()
         data['form_is_valid'] = True
+        last_all_enq = CK_Account.objects.filter().order_by('-id')[:10]
+        data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'last_all_enq':last_all_enq})
     else:
         data['html_form'] = render_to_string('html_files/enquiry_delete.htm', {'obj_delete':obj_delete}, request=request)
     return JsonResponse(data)
