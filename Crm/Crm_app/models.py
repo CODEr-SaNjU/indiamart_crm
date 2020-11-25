@@ -16,12 +16,7 @@ class UserRole(models.Model):
 def __str__(self):
     return self.role
 
-class UserReg(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phonenumber = models.CharField(max_length=10,verbose_name="phone number",blank=True,null=True)
-   
-    def __str__(self):
-        return self.phonenumber
+
 
 
 class CK_Account(models.Model):

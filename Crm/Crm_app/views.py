@@ -71,11 +71,8 @@ def Admin_panel(request):
     # superusers_count = User.objects.filter(is_superuser=True).count
     last_all_enq = CK_Account.objects.filter().order_by('-id')[:10]
     all_enq_in_ascending_order = reversed(last_all_enq)
-    context = {
-        'all_user':all_user,
-        'all_user_mob':all_user_mob
-    }
-    return render(request,'html_files/Main.htm',{'last_all_enq':last_all_enq,'total_enquiry_data':total_enquiry_data,'all_enq':all_enq,'userform': userform, 'useregform': useregform})
+
+    return render(request,'html_files/Main.htm',{'last_all_enq':last_all_enq,'total_enquiry_data':total_enquiry_data,'all_enq':all_enq,'userform': userform, 'useregform': useregform , 'all_user':all_user,'all_user_mob':all_user_mob})
 
 
 

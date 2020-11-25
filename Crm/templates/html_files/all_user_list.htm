@@ -1,0 +1,16 @@
+{%for all_user in all_user %}
+<tr> 
+  <td>{{all_user.first_name}}</td>
+  <td>{{all_user.username}}</td>
+  <td>{{all_user.email}}</td>
+  <td>{{all_user.phonenumber}}</td>
+  <td>{{all_user_mob.MOB}}</td>
+  <td>
+    <a data-toggle="modal" style="color: rgb(137, 170, 240);" href="" data-target="#userModal">Edit</a>
+    <a data-toggle="modal" style="color:red" href="" data-target="#userdeleteModal">Delete</a></td>
+</tr>
+{% empty %}
+<tr>
+  <td colspan="12" class="text-center bg-warning">No Users  Found</td>
+</tr>
+{% endfor %}
