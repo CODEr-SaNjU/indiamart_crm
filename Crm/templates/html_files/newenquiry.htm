@@ -76,12 +76,10 @@ var saveForm = function () {
 /* Binding */
 
 // Create book
-
 $(".js-create-enq").click(loadForm);
 $("#Newaddenq").on("submit", ".js-create-enq-form", saveForm);
 
 // Update book
-
 $("#table-enq").on("click", ".js-update-enq", loadForm);
 $("#Newaddenq").on("submit", ".js-enq-update-form", saveForm);
 

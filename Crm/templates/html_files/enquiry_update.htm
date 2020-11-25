@@ -1,7 +1,7 @@
 
 {% load widget_tweaks %}
 {% load crispy_forms_tags %}
-<form method="POST" action="{%url 'Enquiry_Update' form.instance.id %}" class="js-enq-update-form">
+<form method="POST" action="{%url 'Enquiry_Update' form.instance.pk %}" class="js-enq-update-form">
   {% csrf_token %}
     <div class="modal-header">
       <h4 class="modal-title">Update Enquiry</h4>
@@ -13,7 +13,7 @@
       {% include 'html_files/enq_form.htm' %}
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
       <button type="submit" class="submit-btn btn btn-primary">Update</button>
     </div>
 </form>

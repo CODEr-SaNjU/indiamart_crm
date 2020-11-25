@@ -162,6 +162,7 @@ def saleperson_page(request):
 
 def save_enq_form(request, form, template_name):
     data = dict()
+    print("sanju herer",data)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
@@ -187,7 +188,7 @@ def enq_create(request):
 def Enquiry_Update(request,pk_id):
     obj_update = get_object_or_404(CK_Account,id=pk_id)
     if request.method=="POST":
-        form = CK_AccountForm(request.POST or None , instance=obj_update)
+        form = CK_AccountForm(request.POST, instance=obj_update)
     else:
         form = CK_AccountForm(instance=obj_update)
     return save_enq_form(request,form,'html_files/enquiry_update.htm')

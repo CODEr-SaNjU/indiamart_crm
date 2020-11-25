@@ -28,7 +28,9 @@ class CK_AccountForm(BSModalModelForm):
           'QUERY_MODID' : forms.TextInput(attrs={'class':'form-control','id':'QUERY_MODIDid'}),
           'GLUSR_USR_COMPANYNAMEid' : forms.TextInput(attrs={'class':'form-control','id':'GLUSR_USR_COMPANYNAMEid'}),
         }
-
+        labels = {
+            'username': ('Assign to user')
+        }
 
 
 
