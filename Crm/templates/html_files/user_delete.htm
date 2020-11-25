@@ -1,6 +1,6 @@
 {% load widget_tweaks %}
 
-<form method="POST" action="{% url 'user_delete' user_delete.id %}">
+<form method="POST" action="{% url 'user_delete' user_delete.id %}" class="js-user-delete-form">
   {% csrf_token %}
 
   <div class="modal-header">
