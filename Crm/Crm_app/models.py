@@ -57,5 +57,5 @@ class CK_Account(models.Model):
 
 
     def __str__(self):
-        return self.SENDERNAME
+        return self.QUERY_ID
 

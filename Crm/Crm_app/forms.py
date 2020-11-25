@@ -1,5 +1,5 @@
 from django import forms
-from .models import CK_Account , UserReg
+from .models import CK_Account
 from django.contrib.auth.models import User
 
 from django.http import Http404, HttpResponse
@@ -52,11 +52,3 @@ class UserForm(UserCreationForm):
             'first_name': ('full Name')
         }
 
-class UserRegForm(forms.ModelForm):
-
-    class Meta:
-        model = UserReg
-        fields = ['phonenumber']
-        widgets = {
-          'phonenumber' : forms.TextInput(attrs={'class':'form-control','id':'phonenumber'}),
-        }
