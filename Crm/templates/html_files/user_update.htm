@@ -1,6 +1,6 @@
 {% load widget_tweaks %}
 
-<form method="POST" action="">
+<form method="POST" action="{% url 'user_update' user_delete.id %}" class="js-user-update-form">
   {% csrf_token %}
   <div class="modal-header">
     <h3 class="modal-title">Update User Details</h3>

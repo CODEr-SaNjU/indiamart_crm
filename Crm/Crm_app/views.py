@@ -200,9 +200,12 @@ def Enquiry_Delete(request,pk_id):
 
 
 def user_update(request,pk_id):
-    pass
-
-
+    user_update = get_object_or_404(User,id=pk_id)
+    if request.method=="POST":
+        form = UserForm(request.POST, instance=user_update)
+    else:
+        form = UserForm(instance=user_update)
+    return save_enq_form(request,form,'html_files/enquiry_update.htm')
 def user_delete(request,pk_id):
     user_delete = get_object_or_404(User,id=pk_id)
     data = dict()
