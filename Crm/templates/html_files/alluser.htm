@@ -1,13 +1,86 @@
+{% block content %}
 <div class="col-12">
     <a class="btn btn-primary  btn-sm btn-block" style="margin-top: -13px; " href="#">&nbsp;</a>
-    <table class="table table-sm" style="padding: 100px; font-size: small;">
-      <tr>
-        <th>Name</th>
-        <th>UserName</th>
-        <th>Gmail_id</th>
-        <th>Role</th>
-        <th>Action</th>
-      </tr>
-      {%  include 'html_files/all_user_list.htm' %}
+    <table class="table table-hover table-sm" id="table-user" style="padding: 100px; font-size: small;">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>UserName</th>
+          <th>Gmail_id</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%  include 'html_files/all_user_list.htm' %}
+      </tbody>
     </table>
 </div>
+
+<div class="modal fade" id="userreg" tabindex="-1" aria-labelledby="userregLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+  $(function () {
+
+/* Functions */
+
+var loadForm = function () {
+  var btn = $(this);
+  $.ajax({
+    url: btn.attr("data-url"),
+    type: 'get',
+    dataType: 'json',
+    beforeSend: function () {
+      $("#userreg .modal-content").html("");
+      $("#userreg").modal("show");
+    },
+    success: function (data) {
+      $("#userreg .modal-content").html(data.html_form);
+    }
+  });
+};
+
+var saveForm = function () {
+  var form = $(this);
+  $.ajax({
+    url: form.attr("action"),
+    data: form.serialize(),
+    type: form.attr("method"),
+    dataType: 'json',
+    success: function (data) {
+      if (data.form_is_valid) {
+        $("#table-user tbody").html(data.html_user_list);
+        $("#userreg").modal("hide");
+      }
+      else {
+        $("#userreg .modal-content").html(data.html_form);
+      }
+    }
+  });
+  return false;
+};
+
+/* Binding */
+
+
+// Update book
+$("#table-user").on("click", ".js-update-user", loadForm);
+$("#userreg").on("submit", ".js-user-update-form", saveForm);
+
+// Delete book
+$("#table-user").on("click", ".js-delete-user", loadForm);
+$("#userreg").on("submit", ".js-user-delete-form", saveForm);
+
+});
+
+</script>
+{% endblock %}

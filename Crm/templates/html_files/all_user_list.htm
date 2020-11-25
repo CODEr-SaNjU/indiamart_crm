@@ -5,8 +5,8 @@
   <td>{{all_user.email}}</td>
   <td>Salesperson</td>
   <td>
-    <button type="button"  class="btn btn-warning js-update-enq" data-url="">Edit</button>
-    <button type="button"  class="btn btn-danger js-delete-enq"   data-url="">Delete</button>
+    <button type="button"  class="btn btn-warning js-update-user" data-url="{% url 'user_update' all_user.id %}">Edit</button>
+    <button type="button"  class="btn btn-danger js-delete-user"   data-url="{% url 'user_delete' all_user.id %}">Delete</button>
   </td>
 
 </tr>

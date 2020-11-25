@@ -197,3 +197,21 @@ def Enquiry_Delete(request,pk_id):
     else:
         data['html_form'] = render_to_string('html_files/enquiry_delete.htm', {'obj_delete':obj_delete}, request=request)
     return JsonResponse(data)
+
+
+def user_update(request,pk_id):
+    pass
+
+
+def user_delete(request,pk_id):
+    user_delete = get_object_or_404(User,id=pk_id)
+    data = dict()
+    if request.method=="POST":
+        user_delete.delete()
+        data['form_is_valid'] = True
+        all_user = User.objects.all()
+        data['html_user_list'] = render_to_string('html_files/all_user_list.htm',{'all_user':all_user})
+    else:
+        data['html_form'] = render_to_string('html_files/user_delete.htm', {'user_delete':user_delete}, request=request)
+    return JsonResponse(data)
+
