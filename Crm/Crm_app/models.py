@@ -45,6 +45,9 @@ class Profession(models.Model):
 class Client_Visit(models.Model):
     Visit_status = models.CharField(max_length=100,blank=True,null=True)
 
+    def __str__(self):
+        return self.Visit_status
+
 
 class CK_Account(models.Model):
     username = models.ForeignKey(User, verbose_name='username', on_delete=models.CASCADE ,blank=True,null=True )
