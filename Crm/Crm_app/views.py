@@ -199,13 +199,31 @@ def Enquiry_Delete(request,pk_id):
     return JsonResponse(data)
 
 
+def save_user_form(request, form, template_name):
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            all_user = User.objects.all()
+            data['html_user_list'] = render_to_string('html_files/all_user_list.htm',{'all_user':all_user})
+        else:
+            data['form_is_valid'] = False
+    context = {'form': form}
+    data['html_form'] = render_to_string(template_name, context, request=request)
+    return JsonResponse(data) 
+
+
+
 def user_update(request,pk_id):
     user_update = get_object_or_404(User,id=pk_id)
     if request.method=="POST":
         form = UserForm(request.POST, instance=user_update)
     else:
         form = UserForm(instance=user_update)
-    return save_enq_form(request,form,'html_files/enquiry_update.htm')
+    return save_user_form(request,form,'html_files/enquiry_update.htm')
+
+
 def user_delete(request,pk_id):
     user_delete = get_object_or_404(User,id=pk_id)
     data = dict()
