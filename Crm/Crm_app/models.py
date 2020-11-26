@@ -10,13 +10,40 @@ Role = [
         ('STM', 'Store Manager'),
     ]
 
+STATUS = (
+    (0,"Yes"),
+    (1,"No")
+)
+
+
+
+
+
+
 class UserRole(models.Model):
   role = models.CharField(max_length=6, choices=Role, default='green')
+  
+  def __str__(self):
+      return self.role
 
-def __str__(self):
-    return self.role
+
+class Enquiry_Source(models.Model):
+    enq_source = models.CharField(max_length=100,blank=True,null=True)
+
+    def __str__(self):
+        return self.enq_source
 
 
+
+
+class Profession(models.Model):
+    profession = models.CharField(max_length=100,blank=True,null=True)
+
+    def __str__(self):
+        return self.profession
+
+class Client_Visit(models.Model):
+    Visit_status = models.CharField(max_length=100,blank=True,null=True)
 
 
 class CK_Account(models.Model):
@@ -54,6 +81,13 @@ class CK_Account(models.Model):
     PHONE_ALT = models.CharField(max_length=300,blank=True,null=True)
     IM_MEMBER_SINCE = models.CharField(max_length=300,blank=True,null=True)
     TOTAL_COUNT = models.CharField(max_length=300,blank=True,null=True)
+    enquiry_source = models.ForeignKey(Enquiry_Source,on_delete=models.CASCADE,null=True,blank=True )
+    expected_purchase_Date = models.DateField(verbose_name='Expected Purchase Date',auto_now_add=False,blank=True,null=True)
+    profession = models.ForeignKey(Profession,on_delete=models.CASCADE,null=True,blank=True )
+    visit_date = models.DateField(verbose_name='Visit Date',auto_now_add=False,blank=True,null=True)
+    visited_status = models.IntegerField(choices=STATUS, default=0)
+    Visit_status = models.ForeignKey(Client_Visit,on_delete=models.CASCADE,null=True,blank=True )
+    Booking_Date = models.DateField(verbose_name='Booking Date',auto_now_add=False,blank=True,null=True)
 
 
     def __str__(self):
