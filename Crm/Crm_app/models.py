@@ -91,6 +91,7 @@ class CK_Account(models.Model):
     visited_status = models.IntegerField(choices=STATUS, default=0)
     Visit_status = models.ForeignKey(Client_Visit,on_delete=models.CASCADE,null=True,blank=True )
     Booking_Date = models.DateField(verbose_name='Booking Date',auto_now_add=False,blank=True,null=True)
+    remarks  = models.TextField(blank=True,null=True)
 
 
     def __str__(self):
