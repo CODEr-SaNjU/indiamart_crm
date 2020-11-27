@@ -1,8 +1,8 @@
 <nav class="nav nav-tabs bg-dark card-header-tabs nav-fill" style="list-style-type: none;">
     <a data-toggle="tab" class="text-primary text-uppercase mb-1" href="#newenquiry">New Enquiry</a>
     <a data-toggle="tab" class="text-success text-uppercase mb-1" href="#allenquiry" ><span class="text-info">{{total_enquiry_data}}</span> ALl Enquiry</a>
-    <a data-toggle="tab" class="text-info text-uppercase mb-1" href="#assenquiry">assigned Enquiry</a>
-    <a data-toggle="tab" class="text-gray-100 text-uppercase mb-1" href="#notassenquiry">Not Assigned Enquiry</a>
+    <a data-toggle="tab" class="text-info text-uppercase mb-1" href="#assenquiry"><span class="text-warning">{{assign_enq_count }} </span>  assigned Enquiry</a>
+    <a data-toggle="tab" class="text-gray-100 text-uppercase mb-1" href="#notassenquiry"><span class="text-danger">{{notassign_enq_count }} </span>  Not Assigned Enquiry</a>
     <a data-toggle="tab" class="text-warning text-uppercase mb-1" href="#enquiryclosed">Enquiries Closed</a>
   </nav>
   <hr-2>
@@ -19,7 +19,7 @@
           {% include 'html_files/assign_enq.htm' %}
         </div>
         <div class="tab-pane" id="notassenquiry">
-          <h1>not assigned here</h1>
+          {% include 'html_files/notassign_enq.htm' %}
         </div>
         <div class="tab-pane" id="enquiryclosed">
           <h1>enquiryclosed here</h1>
