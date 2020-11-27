@@ -1,0 +1,21 @@
+{% for i in assign_enq %}
+<tr>
+  <td>{{i.QUERY_ID}}</td>
+  <td>{{i.username}}</td>
+  <td>{{i.MOB}}</td>
+  <td>{{i.SENDEREMAIL}}</td>
+  <td>{{i.SUBJECT}}</td>
+  <td>{{i.ENQ_MESSAGE|safe|truncatewords:"8"|linebreaks}}</td>
+  <td>{{i.ENQ_CITY}}</td>
+  <td>{{i.ENQ_STATE}}</td>
+  <td>{{i.DATE_TIME_RE}}</td>
+  <td>
+    <button type="button"  class="btn btn-warning js-update-enq" data-url="{% url 'Enquiry_Update' i.id %}"><i class="fa fa-plus" aria-hidden="true"></i></button>&nbsp;
+    <button type="button"  class="btn btn-danger js-delete-enq"   data-url="{% url 'Enquiry_Delete' i.id %}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+  </td>
+</tr>
+{% empty %}
+<tr>
+  <td colspan="12" class="text-center bg-warning">No Enquiry Found</td>
+</tr>
+{% endfor %}
