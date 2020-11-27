@@ -168,12 +168,21 @@ def save_enq_form(request, form, template_name):
     return JsonResponse(data)
 
 def enq_create(request):
+    data = dict()
     if request.method == 'POST':
         form = CK_AccountForm(request.POST)
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            all_enq = CK_Account.objects.all()
+            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'all_enq':all_enq})
+        else:
+            data['form_is_valid'] =False
     else:
         form = CK_AccountForm()
-    return save_enq_form(request,form,'html_files/add_enq.htm')
-
+    context={'form':form}
+    data['html_form']  = render_to_string('html_files/add_enq.htm',context,request=request)
+    return JsonResponse(data)
 
 
 
