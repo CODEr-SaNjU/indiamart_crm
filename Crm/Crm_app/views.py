@@ -158,9 +158,9 @@ def save_enq_form(request, form, template_name):
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            all_enq = CK_Account.objects.all()
-            all_enq = CK_Account.objects.filter().order_by('-id')[:10]
-            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'all_enq':all_enq})
+            last_all_enq = CK_Account.objects.all()
+            last_all_enq = CK_Account.objects.filter().order_by('-id')[:10]
+            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'last_all_enq':last_all_enq})
         else:
             data['form_is_valid'] = False
     context = {'form': form}
@@ -174,8 +174,8 @@ def enq_create(request):
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            all_enq = CK_Account.objects.all()
-            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'all_enq':all_enq})
+            last_all_enq = CK_Account.objects.all()
+            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'last_all_enq':last_all_enq})
         else:
             data['form_is_valid'] =False
     else:
@@ -230,7 +230,7 @@ def user_update(request,pk_id):
         form = UserForm(request.POST, instance=user_update)
     else:
         form = UserForm(instance=user_update)
-    return save_user_form(request,form,'html_files/enquiry_update.htm')
+    return save_user_form(request,form,'html_files/user_update.htm')
 
 
 def user_delete(request,pk_id):
