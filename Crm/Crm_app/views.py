@@ -75,7 +75,6 @@ def Admin_panel(request):
 
 def api_data(request):
     if request.method == "POST":
-        print("sanju")
         Url = requests.get("https://mapi.indiamart.com/wservce/enquiry/listing/GLUSR_MOBILE/8469789298/GLUSR_MOBILE_KEY/MTYwMjgzMTEyNS40NDg0IzExMjc0OTQ0/",data = request.POST)
     else:
         Url = requests.get("https://mapi.indiamart.com/wservce/enquiry/listing/GLUSR_MOBILE/8469789298/GLUSR_MOBILE_KEY/MTYwMjgzMTEyNS40NDg0IzExMjc0OTQ0/",data = request.POST)    
@@ -154,7 +153,6 @@ def saleperson_page(request):
 
 def save_enq_form(request, form, template_name):
     data = dict()
-    print("sanju herer",data)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
@@ -167,7 +165,7 @@ def save_enq_form(request, form, template_name):
     context = {'form': form}
     data['html_form'] = render_to_string(template_name, context, request=request)
     return JsonResponse(data)
-
+    print("sanju herer",data)
 def enq_create(request):
     data = dict()
     if request.method == 'POST':
