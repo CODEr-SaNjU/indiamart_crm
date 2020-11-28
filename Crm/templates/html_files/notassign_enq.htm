@@ -1,7 +1,7 @@
 {% block content %}
 <div class="col-12">
     <button type="button" class="btn btn-primary btn-sm btn-block js-create-enq" style="margin-top: -13px;" data-url="{% url 'enq_create' %}">Add New Enquiry</button>
-    <table class="table table-hover table-sm" id="table-enq" style="padding: 100px; font-size: small;">
+    <table class="table table-hover table-sm" id="table-notassign" style="padding: 100px; font-size: small;">
       <thead>
         <tr>
           <th>Query_id</th>
@@ -21,7 +21,7 @@
       </tbody>
     </table>
 </div>
-<div class="modal fade" id="Newaddenq" tabindex="-1" aria-labelledby="NewaddenqLabel" aria-hidden="true">
+<div class="modal fade" id="notassignenq" tabindex="-1" aria-labelledby="notassignenqLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -44,11 +44,11 @@ var loadForm = function () {
     type: 'get',
     dataType: 'json',
     beforeSend: function () {
-      $("#Newaddenq .modal-content").html("");
-      $("#Newaddenq").modal("show");
+      $("#notassignenq .modal-content").html("");
+      $("#notassignenq").modal("show");
     },
     success: function (data) {
-      $("#Newaddenq .modal-content").html(data.html_form);
+      $("#notassignenq .modal-content").html(data.html_form);
     }
   });
 };
@@ -62,11 +62,11 @@ var saveForm = function () {
     dataType: 'json',
     success: function (data) {
       if (data.form_is_valid) {
-        $("#table-enq tbody").html(data.html_enq_list);
-        $("#Newaddenq").modal("hide");
+        $("#table-notassign tbody").html(data.html_enq_list);
+        $("#notassignenq").modal("hide");
       }
       else {
-        $("#Newaddenq .modal-content").html(data.html_form);
+        $("#notassignenq .modal-content").html(data.html_form);
       }
     }
   });
@@ -77,15 +77,15 @@ var saveForm = function () {
 
 // Create book
 $(".js-create-enq").click(loadForm);
-$("#Newaddenq").on("submit", ".js-create-enq-form", saveForm);
+$("#notassignenq").on("submit", ".js-create-enq-form", saveForm);
 
 // Update book
-$("#table-enq").on("click", ".js-update-enq", loadForm);
-$("#Newaddenq").on("submit", ".js-enq-update-form", saveForm);
+$("#table-notassign").on("click", ".js-update-enq", loadForm);
+$("#notassignenq").on("submit", ".js-enq-update-form", saveForm);
 
 // Delete book
-$("#table-enq").on("click", ".js-delete-enq", loadForm);
-$("#Newaddenq").on("submit", ".js-enq-delete-form", saveForm);
+$("#table-notassign").on("click", ".js-delete-enq", loadForm);
+$("#notassignenq").on("submit", ".js-enq-delete-form", saveForm);
 
 });
 
