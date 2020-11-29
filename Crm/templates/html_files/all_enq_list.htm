@@ -1,13 +1,13 @@
 {% for i in all_enq %}
-<tr>
+<tr style="color: black; font-weight: bold;">
   <td>{{i.QUERY_ID}}</td>
   <td>{{i.SENDERNAME}}</td>
   <td>{{i.MOB}}</td>
   <td>{{i.SENDEREMAIL|safe|truncatechars:"7"|linebreaks}}</td>
-  <td>{{i.SUBJECT|safe|truncatewords:"5"|linebreaks}}</td>
+  <td>{{i.SUBJECT|safe|truncatewords:"4"|linebreaks}}</td>
   <td>{{i.ENQ_MESSAGE|safe|truncatewords:"5"|linebreaks}}</td>
   <td>{{i.ENQ_CITY}}</td>
-  <td>{{i.ENQ_STATE|truncatewords:"3"|linebreaks}}</td>
+  <td>{{i.ENQ_STATE|truncatechars:"4"|linebreaks}}</td>
   <td>{{i.DATE_R}}</td>
   <td>
     <button type="button"  class="btn btn-warning btn-sm js-update-enq" data-url="{% url 'Enquiry_Update' i.id %}"><i class="fa fa-plus" aria-hidden="true"></i></button>
