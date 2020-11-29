@@ -88,7 +88,7 @@ class CK_Account(models.Model):
     expected_purchase_Date = models.DateField(verbose_name='Expected Purchase Date',auto_now_add=False,blank=True,null=True)
     profession = models.ForeignKey(Profession,on_delete=models.CASCADE,null=True,blank=True )
     visit_date = models.DateField(verbose_name='Visit Date',auto_now_add=False,blank=True,null=True)
-    visited_status = models.IntegerField(choices=STATUS, default=0)
+    visited_status = models.IntegerField(choices=STATUS, default=1)
     Visit_status = models.ForeignKey(Client_Visit,on_delete=models.CASCADE,null=True,blank=True )
     Booking_Date = models.DateField(verbose_name='Booking Date',auto_now_add=False,blank=True,null=True)
     remarks  = models.TextField(blank=True,null=True)

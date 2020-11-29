@@ -64,7 +64,7 @@ def Admin_panel(request):
     assign_enq_count = CK_Account.objects.filter(username__isnull=False).count()
     notassign_enq = CK_Account.objects.filter(username__isnull=True)
     notassign_enq_count = CK_Account.objects.filter(username__isnull=True).count()
-    last_all_enq = CK_Account.objects.filter().order_by('-id')[:10]
+    last_all_enq = CK_Account.objects.filter().order_by('-id')[:14]
     all_enq_in_ascending_order = reversed(last_all_enq)
 
     return render(request,'html_files/Main.htm',{'last_all_enq':last_all_enq,'total_enquiry_data':total_enquiry_data,'all_enq':all_enq,'userform': userform, 'all_user':all_user,'assign_enq':assign_enq,'notassign_enq':notassign_enq,'assign_enq_count':assign_enq_count,'notassign_enq_count':notassign_enq_count})
