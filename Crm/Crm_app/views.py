@@ -128,18 +128,17 @@ def search_enq_month(request):
     strt = datetime_object.strftime("%d-%m-%Y")
     endt = datetime_object2.strftime("%d-%m-%Y")
     print(strt)
-    all_enq = CK_Account.objects.filter(DATE_R__lte= "01-Nov-20",DATE_R__gte = "02-Nov-20")
-    print(all_enq)
-    return render(request,'html_files/Main.htm',{"all_enq":all_enq})
+    print(endt)
+    last_all_enq = CK_Account.objects.filter(DATE_RE__lte= strt,DATE_RE__gte = endt)
+    # print(last_all_enq)
+    return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
 
 
 
 def Enquiry_search(request):
     qur = request.GET.get('search')
-    print(qur)
-    print(type(qur))
-    all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
-    return render(request,'html_files/Main.htm',{"all_enq":all_enq})
+    last_all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
+    return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
 
    
 

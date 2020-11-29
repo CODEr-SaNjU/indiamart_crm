@@ -1,17 +1,17 @@
 {% for i in last_all_enq %}
 <tr>
   <td>{{i.QUERY_ID}}</td>
-  <td>{{i.username}}</td>
+  <td>{{i.SENDERNAME}}</td>
   <td>{{i.MOB}}</td>
-  <td>{{i.SENDEREMAIL}}</td>
-  <td>{{i.SUBJECT}}</td>
-  <td>{{i.ENQ_MESSAGE|safe|truncatewords:"8"|linebreaks}}</td>
+  <td>{{i.SENDEREMAIL|safe|truncatechars:"7"|linebreaks}}</td>
+  <td>{{i.SUBJECT|safe|truncatewords:"5"|linebreaks}}</td>
+  <td>{{i.ENQ_MESSAGE|safe|truncatewords:"5"|linebreaks}}</td>
   <td>{{i.ENQ_CITY}}</td>
-  <td>{{i.ENQ_STATE}}</td>
+  <td>{{i.ENQ_STATE|truncatewords:"3"|linebreaks}}</td>
   <td>{{i.DATE_TIME_RE}}</td>
   <td>
-    <button type="button"  class="btn btn-warning js-update-enq" data-url="{% url 'Enquiry_Update' i.id %}"><i class="fa fa-plus" aria-hidden="true"></i></button>&nbsp;
-    <button type="button"  class="btn btn-danger js-delete-enq"   data-url="{% url 'Enquiry_Delete' i.id %}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    <button type="button"  class="btn btn-warning btn-sm  js-update-enq" data-url="{% url 'Enquiry_Update' i.id %}"><i class="fa fa-plus" aria-hidden="true"></i></button>&nbsp;
+    <button type="button"  class="btn btn-danger btn-sm  js-delete-enq"   data-url="{% url 'Enquiry_Delete' i.id %}"><i class="fa fa-trash" aria-hidden="true"></i></button>
   </td>
 </tr>
 {% empty %}
