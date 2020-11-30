@@ -145,8 +145,13 @@ def Enquiry_search(request):
 
 @login_required(login_url='login')
 def saleperson_page(request):
-    Hot_en = CK_Account.objects.filter(username=request.user,Visit_status__isnull=True)
-    return render(request,'Salesperson_Dashboard/salesperson.htm',{'Hot_en':Hot_en})
+    Hot_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
+    cold_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
+    pending_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
+    delivered_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
+    # follow_up_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
+    lost_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
+    return render(request,'Salesperson_Dashboard/salesperson.htm',{'Hot_enq':Hot_enq,'cold_enq':cold_enq,'pending_enq':pending_enq,'delivered_enq':delivered_enq,'lost_enq':lost_enq})
 
 
 
