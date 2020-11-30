@@ -145,13 +145,18 @@ def Enquiry_search(request):
 
 @login_required(login_url='login')
 def saleperson_page(request):
-    Hot_enq = CK_Account.objects.filter(Visit_status__isnull=False,username=request.user)
-    cold_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
-    pending_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
-    delivered_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
+    Hot_enq = CK_Account.objects.filter(Visit_status=8,username=request.user)
+    Hot_enq_count = CK_Account.objects.filter(Visit_status=8,username=request.user).count()
+    cold_enq = CK_Account.objects.filter(username=request.user,Visit_status=9)
+    cold_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=9).count()
+    pending_enq = CK_Account.objects.filter(username=request.user,Visit_status=7)
+    pending_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=7).count()
+    delivered_enq = CK_Account.objects.filter(username=request.user,Visit_status=4)
+    delivered_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=4).count()
     follow_up_enq = CK_Account.objects.filter(username=request.user)
-    lost_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
-    return render(request,'Salesperson_Dashboard/salesperson.htm',{'Hot_enq':Hot_enq,'cold_enq':cold_enq,'pending_enq':pending_enq,'delivered_enq':delivered_enq,'lost_enq':lost_enq,'follow_up_enq':follow_up_enq})
+    lost_enq = CK_Account.objects.filter(username=request.user,Visit_status=5)
+    lost_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=5).count()
+    return render(request,'Salesperson_Dashboard/salesperson.htm',{'Hot_enq':Hot_enq,'Hot_enq_count':Hot_enq_count,'cold_enq':cold_enq,'cold_enq_count':cold_enq_count,'pending_enq':pending_enq,'pending_enq_count':pending_enq_count,'delivered_enq_count':delivered_enq_count,'delivered_enq':delivered_enq,'lost_enq_count':lost_enq_count,'lost_enq':lost_enq,'follow_up_enq':follow_up_enq})
 
 
 
