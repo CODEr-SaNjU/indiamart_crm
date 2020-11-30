@@ -1,11 +1,11 @@
 
 <nav class="nav nav-tabs bg-dark card-header-tabs nav-fill" style="list-style-type: none;">
-    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#newenquiry"> Hot</a>
-    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#allenquiry" ><span class="text-white" style="font-weight:bold;">{{total_enquiry_data}}</span>Cold</a>
-    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#assenquiry"><span class="text-white" style="font-weight:bold;"> </span>Pending</a>
-    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#notassenquiry"><span class="text-white" style="font-weight:bold;">54</span> Delivered</a>
-    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#enquiryclosed">Follow up</a>
-    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#enquiryclosed"> Lost</a>
+    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#hot"> Hot</a>
+    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#cold" ><span class="text-white" style="font-weight:bold;">{{total_enquiry_data}}</span>Cold</a>
+    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#pending"><span class="text-white" style="font-weight:bold;"> </span>Pending</a>
+    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#delivered"><span class="text-white" style="font-weight:bold;">54</span> Delivered</a>
+    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#follow_up">Follow up</a>
+    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#lost"> Lost</a>
       
    
   </nav>
@@ -13,20 +13,23 @@
   <div class="col-lg-10" style="padding-top: -40px;">
     <div class="card" style="width:120%;">
       <div class="card-body tab-content w-120 p-10" style="padding:.5rem;">
-        <div class="tab-pane active" id="newenquiry">
-          {%  include 'html_files/newenquiry.htm' %}
+        <div class="tab-pane active" id="hot">
+          {%  include 'Salesperson_Dashboard/Hot.htm' %}
         </div>
-        <div class="tab-pane" id="allenquiry">
-          {%  include 'html_files/allenquiry.htm' %}
+        <div class="tab-pane" id="cold">
+          {%  include 'Salesperson_Dashboard/cold.htm' %}
         </div>        
-        <div class="tab-pane" id="assenquiry">
-          {% include 'html_files/assign_enq.htm' %}
+        <div class="tab-pane" id="pending">
+          {% include 'Salesperson_Dashboard/pending.htm' %}
         </div>
-        <div class="tab-pane" id="notassenquiry">
-          {% include 'html_files/notassign_enq.htm' %}
+        <div class="tab-pane" id="delivered">
+          {% include 'Salesperson_Dashboard/delivered.htm' %}
         </div>
-        <div class="tab-pane" id="enquiryclosed">
-          <h1>enquiryclosed here</h1>
+        <div class="tab-pane" id="follow_up">
+          {% include 'Salesperson_Dashboard/follow_up.htm' %}
+        </div>
+        <div class="tab-pane" id="lost">
+          {% include 'Salesperson_Dashboard/lost.htm' %}
         </div>
       </div>
     </div>
