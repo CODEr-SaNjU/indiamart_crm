@@ -1,7 +1,7 @@
 {% block content %}
 <div class="col-12">
     <button type="button" class="btn btn-primary btn-sm btn-block js-create-ass-enq" style="margin-top: -13px;" data-url="{% url 'enq_create' %}">Add New Enquiry</button>
-    <table class="table table-hover table-sm" id="table-assenq" style="padding: 100px; font-size: small;">
+    <table class="table table-hover table-sm" id="table-coldenq" style="padding: 100px; font-size: small;">
       <thead>
         <tr>
           <th>Query_id</th>
@@ -21,7 +21,7 @@
       </tbody>
     </table>
 </div>
-<div class="modal fade" id="assignnew" tabindex="-1" aria-labelledby="assignnewLabel" aria-hidden="true">
+<div class="modal fade" id="coldenq" tabindex="-1" aria-labelledby="coldenqLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -44,11 +44,11 @@ var loadForm = function () {
     type: 'get',
     dataType: 'json',
     beforeSend: function () {
-      $("#assignnew .modal-content").html("");
-      $("#assignnew").modal("show");
+      $("#coldenq .modal-content").html("");
+      $("#coldenq").modal("show");
     },
     success: function (data) {
-      $("#assignnew .modal-content").html(data.html_form);
+      $("#coldenq .modal-content").html(data.html_form);
     }
   });
 };
@@ -62,11 +62,11 @@ var saveForm = function () {
     dataType: 'json',
     success: function (data) {
       if (data.form_is_valid) {
-        $("#table-assenq tbody").html(data.html_enq_list);
-        $("#assignnew").modal("hide");
+        $("#table-coldenq tbody").html(data.html_enq_list);
+        $("#coldenq").modal("hide");
       }
       else {
-        $("#assignnew .modal-content").html(data.html_form);
+        $("#coldenq .modal-content").html(data.html_form);
       }
     }
   });
@@ -77,15 +77,15 @@ var saveForm = function () {
 
 // Create book
 $(".js-create-ass-enq").click(loadForm);
-$("#assignnew").on("submit", ".js-create-ass-enq-form", saveForm);
+$("#coldenq").on("submit", ".js-create-ass-enq-form", saveForm);
 
 // Update book
-$("#table-assenq").on("click", ".js-update-enq", loadForm);
-$("#assignnew").on("submit", ".js-enq-update-form", saveForm);
+$("#table-coldenq").on("click", ".js-update-enq", loadForm);
+$("#coldenq").on("submit", ".js-enq-update-form", saveForm);
 
 // Delete book
-$("#table-assenq").on("click", ".js-delete-enq", loadForm);
-$("#assignnew").on("submit", ".js-enq-delete-form", saveForm);
+$("#table-coldenq").on("click", ".js-delete-enq", loadForm);
+$("#coldenq").on("submit", ".js-enq-delete-form", saveForm);
 
 });
 
