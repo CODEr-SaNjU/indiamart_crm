@@ -1,0 +1,32 @@
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/Header.css' %}">
+<link rel="stylesheet" type="text/css" href="/static/css/Header.css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+<script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+
+<div class="row">
+  <div class="col-lg-2 col-md-3 d-md-block">
+    <div class="card bg-common card-left">
+      <div class="card-body">
+        <nav class="nav d-block card-header-tabs nav-fill">
+          <a data-toggle="tab" class="nav-link text-dark text-center" aria-current="page" href="#enquiry">Enquiry</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-10" style="padding-right: 1px;padding-left: 0px;">
+    <div class="card">
+      <div class="card-body tab-content border-0">
+        <div class="tab-pane active" id="enquiry">
+          {% include 'Salesperson_Dashboard/salesperson_enq_tab.htm' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -146,7 +146,7 @@ def Enquiry_search(request):
 @login_required(login_url='login')
 def saleperson_page(request):
     last_all_enq = CK_Account.objects.filter(username=request.user)
-    return render(request,'html_files/salesperson.htm',{'last_all_enq':last_all_enq})
+    return render(request,'Salesperson_Dashboard/salesperson.htm',{'last_all_enq':last_all_enq})
 
 
 
