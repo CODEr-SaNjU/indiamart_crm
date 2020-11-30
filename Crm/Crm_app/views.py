@@ -145,13 +145,13 @@ def Enquiry_search(request):
 
 @login_required(login_url='login')
 def saleperson_page(request):
-    Hot_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
+    Hot_enq = CK_Account.objects.filter(Visit_status__isnull=False,username=request.user)
     cold_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
     pending_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
     delivered_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
-    # follow_up_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
+    follow_up_enq = CK_Account.objects.filter(username=request.user)
     lost_enq = CK_Account.objects.filter(username=request.user,Visit_status__isnull=False)
-    return render(request,'Salesperson_Dashboard/salesperson.htm',{'Hot_enq':Hot_enq,'cold_enq':cold_enq,'pending_enq':pending_enq,'delivered_enq':delivered_enq,'lost_enq':lost_enq})
+    return render(request,'Salesperson_Dashboard/salesperson.htm',{'Hot_enq':Hot_enq,'cold_enq':cold_enq,'pending_enq':pending_enq,'delivered_enq':delivered_enq,'lost_enq':lost_enq,'follow_up_enq':follow_up_enq})
 
 
 
