@@ -153,54 +153,6 @@ def Enquiry_search(request):
     last_all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
     return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
 
-   
-
-
-@login_required(login_url='login')
-def saleperson_page(request):
-    Hot_enq = CK_Account.objects.filter(Visit_status=8,username=request.user)
-    paginator = Paginator(Hot_enq,14)
-    page_number = request.GET.get('page')
-    page_obj= paginator.get_page(page_number)
-    Hot_enq_count = Hot_enq.count()
-
-    cold_enq = CK_Account.objects.filter(username=request.user,Visit_status=9)
-    paginator = Paginator(cold_enq,14)
-    page_number = request.GET.get('page')
-    page_obj_cold_enq= paginator.get_page(page_number)
-    cold_enq_count = cold_enq.count()
-
-    pending_enq = CK_Account.objects.filter(username=request.user,Visit_status=7)
-    paginator = Paginator(pending_enq,14)
-    page_number = request.GET.get('page')
-    page_obj_pending_enq= paginator.get_page(page_number)
-    pending_enq_count = pending_enq.count()
-
-    delivered_enq = CK_Account.objects.filter(username=request.user,Visit_status=4)
-    paginator = Paginator(delivered_enq,14)
-    page_number = request.GET.get('page')
-    page_obj_delivered_enq= paginator.get_page(page_number)
-    delivered_enq_count = delivered_enq.count()
-
-    follow_up_enq = CK_Account.objects.filter(username=request.user,Visit_status=19)
-    paginator = Paginator(follow_up_enq,14)
-    page_number = request.GET.get('page')
-    page_obj_follow_up_enq= paginator.get_page(page_number)
-    follow_up_enq_count = follow_up_enq.count()
-
-    lost_enq = CK_Account.objects.filter(username=request.user,Visit_status=5)
-    paginator = Paginator(lost_enq,14)
-    page_number = request.GET.get('page')
-    page_obj_lost_enq= paginator.get_page(page_number)
-    lost_enq_count = lost_enq.count()
-    return render(request,'Salesperson_Dashboard/salesperson.htm',{'page_obj':page_obj,'Hot_enq_count':Hot_enq_count,'page_obj_cold_enq':page_obj_cold_enq,'cold_enq_count':cold_enq_count,'page_obj_pending_enq':page_obj_pending_enq,'pending_enq_count':pending_enq_count,'delivered_enq_count':delivered_enq_count,'page_obj_delivered_enq':page_obj_delivered_enq,'lost_enq_count':lost_enq_count,'page_obj_lost_enq':page_obj_lost_enq,'page_obj_follow_up_enq':page_obj_follow_up_enq,'follow_up_enq_count':follow_up_enq_count})
-
-
-
-def salesperson_enquiry_search(request):
-    qur = request.GET.get('search')
-    Hot_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
-    return render(request,'Salesperson_Dashboard/salesperson.htm',{"Hot_enq":Hot_enq})
 
 
 def save_enq_form(request, form, template_name):
@@ -218,6 +170,8 @@ def save_enq_form(request, form, template_name):
     data['html_form'] = render_to_string(template_name, context, request=request)
     return JsonResponse(data)
     print("sanju herer",data)
+
+
 def enq_create(request):
     data = dict()
     if request.method == 'POST':
@@ -296,3 +250,117 @@ def user_delete(request,pk_id):
         data['html_form'] = render_to_string('html_files/user_delete.htm', {'user_delete':user_delete}, request=request)
     return JsonResponse(data)
 
+
+
+
+
+
+@login_required(login_url='login')
+def saleperson_page(request):
+    Hot_enq = CK_Account.objects.filter(Visit_status=8,username=request.user)
+    paginator = Paginator(Hot_enq,14)
+    page_number = request.GET.get('page')
+    page_obj= paginator.get_page(page_number)
+    Hot_enq_count = Hot_enq.count()
+
+    cold_enq = CK_Account.objects.filter(username=request.user,Visit_status=9)
+    paginator = Paginator(cold_enq,14)
+    page_number = request.GET.get('page')
+    page_obj_cold_enq= paginator.get_page(page_number)
+    cold_enq_count = cold_enq.count()
+
+    pending_enq = CK_Account.objects.filter(username=request.user,Visit_status=7)
+    paginator = Paginator(pending_enq,14)
+    page_number = request.GET.get('page')
+    page_obj_pending_enq= paginator.get_page(page_number)
+    pending_enq_count = pending_enq.count()
+
+    delivered_enq = CK_Account.objects.filter(username=request.user,Visit_status=4)
+    paginator = Paginator(delivered_enq,14)
+    page_number = request.GET.get('page')
+    page_obj_delivered_enq= paginator.get_page(page_number)
+    delivered_enq_count = delivered_enq.count()
+
+    follow_up_enq = CK_Account.objects.filter(username=request.user,Visit_status=19)
+    paginator = Paginator(follow_up_enq,14)
+    page_number = request.GET.get('page')
+    page_obj_follow_up_enq= paginator.get_page(page_number)
+    follow_up_enq_count = follow_up_enq.count()
+
+    lost_enq = CK_Account.objects.filter(username=request.user,Visit_status=5)
+    paginator = Paginator(lost_enq,14)
+    page_number = request.GET.get('page')
+    page_obj_lost_enq= paginator.get_page(page_number)
+    lost_enq_count = lost_enq.count()
+    return render(request,'Salesperson_Dashboard/salesperson.htm',{'page_obj':page_obj,'Hot_enq_count':Hot_enq_count,'page_obj_cold_enq':page_obj_cold_enq,'cold_enq_count':cold_enq_count,'page_obj_pending_enq':page_obj_pending_enq,'pending_enq_count':pending_enq_count,'delivered_enq_count':delivered_enq_count,'page_obj_delivered_enq':page_obj_delivered_enq,'lost_enq_count':lost_enq_count,'page_obj_lost_enq':page_obj_lost_enq,'page_obj_follow_up_enq':page_obj_follow_up_enq,'follow_up_enq_count':follow_up_enq_count})
+
+
+
+def salesperson_enquiry_search(request):
+    qur = request.GET.get('search')
+    Hot_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
+    return render(request,'Salesperson_Dashboard/salesperson.htm',{"Hot_enq":Hot_enq})
+
+
+
+
+def salesperson_save_enq_form(request, form, template_name):
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            last_all_enq = CK_Account.objects.all()
+            last_all_enq = CK_Account.objects.filter().order_by('-id')[:10]
+            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'last_all_enq':last_all_enq})
+        else:
+            data['form_is_valid'] = False
+    context = {'form': form}
+    data['html_form'] = render_to_string(template_name, context, request=request)
+    return JsonResponse(data)
+    print("sanju herer",data)
+
+
+def salesperson_enq_create(request):
+    data = dict()
+    if request.method == 'POST':
+        form = CK_AccountForm(request.POST)
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            last_all_enq = CK_Account.objects.all()
+            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'last_all_enq':last_all_enq})
+        else:
+            data['form_is_valid'] =False
+    else:
+        form = CK_AccountForm()
+    context={'form':form}
+    data['html_form']  = render_to_string('html_files/add_enq.htm',context,request=request)
+    return JsonResponse(data)
+
+
+
+def salesperson_Enquiry_Update(request,pk_id):
+    obj_update = get_object_or_404(CK_Account,id=pk_id)
+    if request.method=="POST":
+        form = CK_AccountForm(request.POST, instance=obj_update)
+    else:
+        form = CK_AccountForm(instance=obj_update)
+    return save_enq_form(request,form,'html_files/enquiry_update.htm')
+    
+
+def salesperson_Enquiry_Delete(request,pk_id):
+    obj_delete = get_object_or_404(CK_Account,id=pk_id)
+    data = dict()
+    if request.method == "POST":
+        obj_delete.delete()
+        data['form_is_valid'] = True
+        page_obj_cold_enq = CK_Account.objects.filter(username=request.user,Visit_status=9)
+        page_obj = CK_Account.objects.filter(Visit_status=8,username=request.user)
+        page_obj_pending_enq = CK_Account.objects.filter(username=request.user,Visit_status=7)
+        page_obj_delivered_enq = CK_Account.objects.filter(username=request.user,Visit_status=4)
+        page_obj_lost_enq = CK_Account.objects.filter(username=request.user,Visit_status=5)
+        data['html_enq_list'] = render_to_string('Salesperson_Dashboard/cold_list.htm',{'page_obj_cold_enq':page_obj_cold_enq,'page_obj':page_obj,'page_obj_pending_enq':page_obj_pending_enq,'page_obj_delivered_enq':page_obj_delivered_enq,'page_obj_lost_enq':page_obj_lost_enq})
+    else:
+        data['html_form'] = render_to_string('Salesperson_Dashboard/salesenq_delete.htm', {'obj_delete':obj_delete}, request=request)
+    return JsonResponse(data)

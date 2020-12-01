@@ -15,6 +15,7 @@ urlpatterns = [
     path("user_update/<str:pk_id>/",views.user_update,name="user_update"),
     path("salesperson/",views.saleperson_page,name="saleperson"),
     path("enq_create/",views.enq_create,name="enq_create"),
+    path("salesperson_Enquiry_Delete/<str:pk_id>/",views.salesperson_Enquiry_Delete,name="salesperson_Enquiry_Delete")
 
 
 ]
