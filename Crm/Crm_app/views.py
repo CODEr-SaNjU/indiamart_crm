@@ -150,8 +150,12 @@ def search_enq_month(request):
 
 def Enquiry_search(request):
     qur = request.GET.get('search')
-    last_all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
-    return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
+    if 'is_superuser'==True:
+        last_all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
+        return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
+    else:
+        page_obj = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur),username=request.user)
+        return render(request,'Salesperson_Dashboard/salesperson.htm',{"page_obj":page_obj})
 
 
 
@@ -296,10 +300,7 @@ def saleperson_page(request):
 
 
 
-def salesperson_enquiry_search(request):
-    qur = request.GET.get('search')
-    Hot_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
-    return render(request,'Salesperson_Dashboard/salesperson.htm',{"Hot_enq":Hot_enq})
+
 
 
 
@@ -310,15 +311,18 @@ def salesperson_save_enq_form(request, form, template_name):
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            last_all_enq = CK_Account.objects.all()
-            last_all_enq = CK_Account.objects.filter().order_by('-id')[:10]
-            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'last_all_enq':last_all_enq})
+            page_obj_cold_enq = CK_Account.objects.filter(username=request.user,Visit_status=9)
+            page_obj = CK_Account.objects.filter(Visit_status=8,username=request.user)
+            page_obj_pending_enq = CK_Account.objects.filter(username=request.user,Visit_status=7)
+            page_obj_delivered_enq = CK_Account.objects.filter(username=request.user,Visit_status=4)
+            page_obj_lost_enq = CK_Account.objects.filter(username=request.user,Visit_status=5)
+            data['html_enq_list'] = render_to_string('Salesperson_Dashboard/cold_list.htm',{'page_obj_cold_enq':page_obj_cold_enq,'page_obj':page_obj,'page_obj_pending_enq':page_obj_pending_enq,'page_obj_delivered_enq':page_obj_delivered_enq,'page_obj_lost_enq':page_obj_lost_enq})
         else:
             data['form_is_valid'] = False
     context = {'form': form}
     data['html_form'] = render_to_string(template_name, context, request=request)
     return JsonResponse(data)
-    print("sanju herer",data)
+
 
 
 def salesperson_enq_create(request):
@@ -350,7 +354,7 @@ def salesperson_Enquiry_Update(request,pk_id):
         form = CK_AccountForm(request.POST, instance=obj_update)
     else:
         form = CK_AccountForm(instance=obj_update)
-    return save_enq_form(request,form,'Salesperson_Dashboard/salesenq_update.htm')
+    return salesperson_save_enq_form(request,form,'Salesperson_Dashboard/salesenq_update.htm')
     
 
 def salesperson_Enquiry_Delete(request,pk_id):
@@ -368,3 +372,5 @@ def salesperson_Enquiry_Delete(request,pk_id):
     else:
         data['html_form'] = render_to_string('Salesperson_Dashboard/salesenq_delete.htm', {'obj_delete':obj_delete}, request=request)
     return JsonResponse(data)
+
+

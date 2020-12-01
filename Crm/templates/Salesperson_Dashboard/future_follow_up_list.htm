@@ -10,8 +10,8 @@
   <td>{{i.ENQ_STATE|truncatechars:"8"|linebreaks}}</td>
   <td>{{i.DATE_R}}</td>
   <td>
-    <button type="button"  class="btn btn-warning btn-sm  js-update-enq" data-url="{% url 'Enquiry_Update' i.id %}"><i class="fa fa-plus" aria-hidden="true"></i></button>
-    <button type="button"  class="btn btn-danger btn-sm  js-delete-enq"   data-url="{% url 'Enquiry_Delete' i.id %}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    <button type="button"  class="btn btn-warning btn-sm  js-update-enq" data-url="{% url 'salesperson_Enquiry_Update' i.id %}"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    <button type="button"  class="btn btn-danger btn-sm  js-delete-enq"   data-url="{% url 'salesperson_Enquiry_Delete' i.id %}"><i class="fa fa-trash" aria-hidden="true"></i></button>
   </td>
 </tr>
 {% empty %}
