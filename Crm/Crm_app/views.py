@@ -22,6 +22,7 @@ import json
 from django.urls import reverse_lazy
 from .models import CK_Account
 import datetime
+from django.core.paginator import PageNotAnInteger,EmptyPage,Paginator
 from django.template.loader import render_to_string
 from django.contrib import auth 
 from bootstrap_modal_forms.generic import BSModalCreateView
@@ -146,7 +147,12 @@ def Enquiry_search(request):
 @login_required(login_url='login')
 def saleperson_page(request):
     Hot_enq = CK_Account.objects.filter(Visit_status=8,username=request.user)
+    paginator = Paginator(Hot_enq,14)
+    page_number = request.GET.get('page')
+    page_obj= paginator.get_page(page_number)
     Hot_enq_count = CK_Account.objects.filter(Visit_status=8,username=request.user).count()
+
+    
     cold_enq = CK_Account.objects.filter(username=request.user,Visit_status=9)
     cold_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=9).count()
     pending_enq = CK_Account.objects.filter(username=request.user,Visit_status=7)
@@ -156,8 +162,14 @@ def saleperson_page(request):
     follow_up_enq = CK_Account.objects.filter(username=request.user)
     lost_enq = CK_Account.objects.filter(username=request.user,Visit_status=5)
     lost_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=5).count()
-    return render(request,'Salesperson_Dashboard/salesperson.htm',{'Hot_enq':Hot_enq,'Hot_enq_count':Hot_enq_count,'cold_enq':cold_enq,'cold_enq_count':cold_enq_count,'pending_enq':pending_enq,'pending_enq_count':pending_enq_count,'delivered_enq_count':delivered_enq_count,'delivered_enq':delivered_enq,'lost_enq_count':lost_enq_count,'lost_enq':lost_enq,'follow_up_enq':follow_up_enq})
+    return render(request,'Salesperson_Dashboard/salesperson.htm',{'page_obj':page_obj,'Hot_enq_count':Hot_enq_count,'cold_enq':cold_enq,'cold_enq_count':cold_enq_count,'pending_enq':pending_enq,'pending_enq_count':pending_enq_count,'delivered_enq_count':delivered_enq_count,'delivered_enq':delivered_enq,'lost_enq_count':lost_enq_count,'lost_enq':lost_enq,'follow_up_enq':follow_up_enq})
 
+
+
+def salesperson_enquiry_search(request):
+    qur = request.GET.get('search')
+    Hot_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
+    return render(request,'Salesperson_Dashboard/salesperson.htm',{"Hot_enq":Hot_enq})
 
 
 def save_enq_form(request, form, template_name):
