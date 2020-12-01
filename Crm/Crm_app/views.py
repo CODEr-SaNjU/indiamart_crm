@@ -152,17 +152,35 @@ def saleperson_page(request):
     page_obj= paginator.get_page(page_number)
     Hot_enq_count = CK_Account.objects.filter(Visit_status=8,username=request.user).count()
 
-    
     cold_enq = CK_Account.objects.filter(username=request.user,Visit_status=9)
+    paginator = Paginator(cold_enq,14)
+    page_number = request.GET.get('page')
+    page_obj_cold_enq= paginator.get_page(page_number)
     cold_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=9).count()
+
     pending_enq = CK_Account.objects.filter(username=request.user,Visit_status=7)
+    paginator = Paginator(pending_enq,14)
+    page_number = request.GET.get('page')
+    page_obj_pending_enq= paginator.get_page(page_number)
     pending_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=7).count()
+
     delivered_enq = CK_Account.objects.filter(username=request.user,Visit_status=4)
+    paginator = Paginator(delivered_enq,14)
+    page_number = request.GET.get('page')
+    page_obj_delivered_enq= paginator.get_page(page_number)
     delivered_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=4).count()
+
     follow_up_enq = CK_Account.objects.filter(username=request.user)
+    # paginator = Paginator(delivered_enq,14)
+    # page_number = request.GET.get('page')
+    # page_obj_delivered_enq= paginator.get_page(page_number)
+
     lost_enq = CK_Account.objects.filter(username=request.user,Visit_status=5)
+    paginator = Paginator(lost_enq,14)
+    page_number = request.GET.get('page')
+    page_obj_lost_enq= paginator.get_page(page_number)
     lost_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=5).count()
-    return render(request,'Salesperson_Dashboard/salesperson.htm',{'page_obj':page_obj,'Hot_enq_count':Hot_enq_count,'cold_enq':cold_enq,'cold_enq_count':cold_enq_count,'pending_enq':pending_enq,'pending_enq_count':pending_enq_count,'delivered_enq_count':delivered_enq_count,'delivered_enq':delivered_enq,'lost_enq_count':lost_enq_count,'lost_enq':lost_enq,'follow_up_enq':follow_up_enq})
+    return render(request,'Salesperson_Dashboard/salesperson.htm',{'page_obj':page_obj,'Hot_enq_count':Hot_enq_count,'page_obj_cold_enq':page_obj_cold_enq,'cold_enq_count':cold_enq_count,'page_obj_pending_enq':page_obj_pending_enq,'pending_enq_count':pending_enq_count,'delivered_enq_count':delivered_enq_count,'page_obj_delivered_enq':page_obj_delivered_enq,'lost_enq_count':lost_enq_count,'page_obj_lost_enq':page_obj_lost_enq,'follow_up_enq':follow_up_enq})
 
 
 

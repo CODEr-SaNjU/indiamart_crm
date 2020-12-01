@@ -1,4 +1,4 @@
-{% for i in delivered_enq %}
+{% for i in page_obj_delivered_enq %}
 <tr style="color: black; font-weight: bold;">
   <td>{{i.QUERY_ID}}</td>
   <td>{{i.SENDERNAME}}</td>
@@ -20,3 +20,20 @@
   <td colspan="12" class="text-center bg-warning">No Enquiry Found</td>
 </tr>
 {% endfor %}
+<div class="pagination">
+  <span class="step-links" style="color: black;">
+      {% if page_obj_delivered_enq.has_previous %}
+          <a href="?page=1" style="color: black; font-weight: bold;">&laquo; first</a>
+          <a href="?page={{ page_obj_delivered_enq.previous_page_number }}" style="color: black; font-weight: bold;">previous</a>
+      {% endif %}
+
+      <span class="current">
+          Page {{ page_obj_delivered_enq.number }} of {{ page_obj_delivered_enq.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj_delivered_enq.has_next %}
+          <a href="?page={{ page_obj_delivered_enq.next_page_number }}" style="color: black; font-weight: bold;">next</a>
+          <a href="?page={{ page_obj_delivered_enq.paginator.num_pages }}" style="color: black; font-weight: bold;">last &raquo;</a>
+      {% endif %}
+  </span>
+</div>
