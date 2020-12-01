@@ -1,0 +1,15 @@
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% for field in form %}
+  <div class="form-group{% if field.errors %} has-error{% endif %}">
+    <label class="font-weight-bold" for="{{ field.id_for_label }}">{{ field.label }}</label>
+    {% render_field field class="form-control font-weight-bold " %}
+    {% for error in field.errors %}
+      <p class="help-block">{{ error }}</p>
+    {% endfor %}
+  </div>
+
+
+
+
+{% endfor %}

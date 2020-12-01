@@ -328,14 +328,18 @@ def salesperson_enq_create(request):
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            last_all_enq = CK_Account.objects.all()
-            data['html_enq_list'] = render_to_string('html_files/enq_list.htm',{'last_all_enq':last_all_enq})
+            page_obj_cold_enq = CK_Account.objects.filter(username=request.user,Visit_status=9)
+            page_obj = CK_Account.objects.filter(Visit_status=8,username=request.user)
+            page_obj_pending_enq = CK_Account.objects.filter(username=request.user,Visit_status=7)
+            page_obj_delivered_enq = CK_Account.objects.filter(username=request.user,Visit_status=4)
+            page_obj_lost_enq = CK_Account.objects.filter(username=request.user,Visit_status=5)
+            data['html_enq_list'] = render_to_string('Salesperson_Dashboard/cold_list.htm',{'page_obj_cold_enq':page_obj_cold_enq,'page_obj':page_obj,'page_obj_pending_enq':page_obj_pending_enq,'page_obj_delivered_enq':page_obj_delivered_enq,'page_obj_lost_enq':page_obj_lost_enq})
         else:
             data['form_is_valid'] =False
     else:
         form = CK_AccountForm()
     context={'form':form}
-    data['html_form']  = render_to_string('html_files/add_enq.htm',context,request=request)
+    data['html_form']  = render_to_string('Salesperson_Dashboard/add_enq.htm',context,request=request)
     return JsonResponse(data)
 
 
@@ -346,7 +350,7 @@ def salesperson_Enquiry_Update(request,pk_id):
         form = CK_AccountForm(request.POST, instance=obj_update)
     else:
         form = CK_AccountForm(instance=obj_update)
-    return save_enq_form(request,form,'html_files/enquiry_update.htm')
+    return save_enq_form(request,form,'Salesperson_Dashboard/salesenq_update.htm')
     
 
 def salesperson_Enquiry_Delete(request,pk_id):
