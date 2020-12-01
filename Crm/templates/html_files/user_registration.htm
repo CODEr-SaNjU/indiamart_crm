@@ -1,10 +1,19 @@
+{% load widget_tweaks %}
 {% load crispy_forms_tags %}
 <form action="" method="POST">
     {% csrf_token %}
     <div class="form-group">
         <div class="row">
             <div class="col-sm-5" style="margin-left: 30%;">
-                {{userform|crispy}}
+                {% for field in userform %}
+                <div class="form-group{% if field.errors %} has-error{% endif %}">
+                    <label class="font-weight-bold" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {% render_field field class="form-control font-weight-bold " %}
+                    {% for error in field.errors %}
+                    <p class="help-block">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
                 <button type="submit" class="btn btn-info">Submit</button>
                 &nbsp;
                 <button type="reset" class="btn btn-danger">cancel</button>
@@ -12,3 +21,5 @@
         </div>
     </div>
 </form>
+
+
