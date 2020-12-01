@@ -182,17 +182,18 @@ def saleperson_page(request):
     page_obj_delivered_enq= paginator.get_page(page_number)
     delivered_enq_count = delivered_enq.count()
 
-    follow_up_enq = CK_Account.objects.filter(username=request.user)
-    # paginator = Paginator(delivered_enq,14)
-    # page_number = request.GET.get('page')
-    # page_obj_delivered_enq= paginator.get_page(page_number)
+    follow_up_enq = CK_Account.objects.filter(username=request.user,Visit_status=19)
+    paginator = Paginator(follow_up_enq,14)
+    page_number = request.GET.get('page')
+    page_obj_follow_up_enq= paginator.get_page(page_number)
+    follow_up_enq_count = follow_up_enq.count()
 
     lost_enq = CK_Account.objects.filter(username=request.user,Visit_status=5)
     paginator = Paginator(lost_enq,14)
     page_number = request.GET.get('page')
     page_obj_lost_enq= paginator.get_page(page_number)
     lost_enq_count = lost_enq.count()
-    return render(request,'Salesperson_Dashboard/salesperson.htm',{'page_obj':page_obj,'Hot_enq_count':Hot_enq_count,'page_obj_cold_enq':page_obj_cold_enq,'cold_enq_count':cold_enq_count,'page_obj_pending_enq':page_obj_pending_enq,'pending_enq_count':pending_enq_count,'delivered_enq_count':delivered_enq_count,'page_obj_delivered_enq':page_obj_delivered_enq,'lost_enq_count':lost_enq_count,'page_obj_lost_enq':page_obj_lost_enq,'follow_up_enq':follow_up_enq})
+    return render(request,'Salesperson_Dashboard/salesperson.htm',{'page_obj':page_obj,'Hot_enq_count':Hot_enq_count,'page_obj_cold_enq':page_obj_cold_enq,'cold_enq_count':cold_enq_count,'page_obj_pending_enq':page_obj_pending_enq,'pending_enq_count':pending_enq_count,'delivered_enq_count':delivered_enq_count,'page_obj_delivered_enq':page_obj_delivered_enq,'lost_enq_count':lost_enq_count,'page_obj_lost_enq':page_obj_lost_enq,'page_obj_follow_up_enq':page_obj_follow_up_enq,'follow_up_enq_count':follow_up_enq_count})
 
 
 
