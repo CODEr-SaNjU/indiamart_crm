@@ -4,7 +4,8 @@
     <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#cold" ><span class="text-white" style="font-weight:bold;">{{cold_enq_count}} &nbsp; </span>Cold</a>
     <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#pending"><span class="text-white" style="font-weight:bold;">{{pending_enq_count}} &nbsp; </span>Pending</a>
     <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#delivered"><span class="text-white" style="font-weight:bold;">{{delivered_enq_count}} &nbsp; </span> Delivered</a>
-    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#follow_up"><span class="text-white" style="font-weight:bold;"> </span>Follow up</a>
+    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#follow_up"><span class="text-white" style="font-weight:bold;"> </span>Today Follow up</a>
+    <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#future_follow_up"><span class="text-white" style="font-weight:bold;"> </span>Future Follow up</a>
     <a data-toggle="tab" style="font-style: bold;" class="text-* text-uppercase mb-1" href="#lost"><span class="text-white" style="font-weight:bold;">{{lost_enq_count}} &nbsp; </span>Lost</a>
       
    
@@ -26,7 +27,10 @@
           {% include 'Salesperson_Dashboard/delivered.htm' %}
         </div>
         <div class="tab-pane" id="follow_up">
-          {% include 'Salesperson_Dashboard/follow_up.htm' %}
+          {% include 'Salesperson_Dashboard/today_followup.htm' %}
+        </div>
+        <div class="tab-pane" id="future_follow_up">
+          {% include 'Salesperson_Dashboard/future_follow_up.htm' %}
         </div>
         <div class="tab-pane" id="lost">
           {% include 'Salesperson_Dashboard/lost.htm' %}
