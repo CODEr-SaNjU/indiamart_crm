@@ -58,17 +58,29 @@ def Admin_panel(request):
             messages.success(request, f'Registration complete! You may log in!')
     else:
         userform = UserForm(request.POST)
-    all_enq = CK_Account.objects.all()
     all_user = User.objects.all()
+
+    all_enq = CK_Account.objects.all()
+    paginator = Paginator(all_enq,10)
+    page_number = request.GET.get('page')
+    page_obj_all_enq= paginator.get_page(page_number)
     total_enquiry_data = all_enq.count()
+
     assign_enq = CK_Account.objects.filter(username__isnull=False)
-    assign_enq_count = CK_Account.objects.filter(username__isnull=False).count()
+    paginator = Paginator(assign_enq,10)
+    page_number = request.GET.get('page')
+    page_obj_assign_enq= paginator.get_page(page_number)
+    assign_enq_count = assign_enq.count()
+
     notassign_enq = CK_Account.objects.filter(username__isnull=True)
-    notassign_enq_count = CK_Account.objects.filter(username__isnull=True).count()
+    paginator = Paginator(notassign_enq,10)
+    page_number = request.GET.get('page')
+    page_obj_notassign_enq= paginator.get_page(page_number)
+    notassign_enq_count = notassign_enq.count()
     last_all_enq = CK_Account.objects.filter().order_by('-id')[:14]
     all_enq_in_ascending_order = reversed(last_all_enq)
 
-    return render(request,'html_files/Main.htm',{'last_all_enq':last_all_enq,'total_enquiry_data':total_enquiry_data,'all_enq':all_enq,'userform': userform, 'all_user':all_user,'assign_enq':assign_enq,'notassign_enq':notassign_enq,'assign_enq_count':assign_enq_count,'notassign_enq_count':notassign_enq_count})
+    return render(request,'html_files/Main.htm',{'last_all_enq':last_all_enq,'total_enquiry_data':total_enquiry_data,'page_obj_all_enq':page_obj_all_enq,'userform': userform, 'all_user':all_user,'page_obj_assign_enq':page_obj_assign_enq,'page_obj_notassign_enq':page_obj_notassign_enq,'assign_enq_count':assign_enq_count,'notassign_enq_count':notassign_enq_count})
 
 
 
@@ -150,25 +162,25 @@ def saleperson_page(request):
     paginator = Paginator(Hot_enq,14)
     page_number = request.GET.get('page')
     page_obj= paginator.get_page(page_number)
-    Hot_enq_count = CK_Account.objects.filter(Visit_status=8,username=request.user).count()
+    Hot_enq_count = Hot_enq.count()
 
     cold_enq = CK_Account.objects.filter(username=request.user,Visit_status=9)
     paginator = Paginator(cold_enq,14)
     page_number = request.GET.get('page')
     page_obj_cold_enq= paginator.get_page(page_number)
-    cold_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=9).count()
+    cold_enq_count = cold_enq.count()
 
     pending_enq = CK_Account.objects.filter(username=request.user,Visit_status=7)
     paginator = Paginator(pending_enq,14)
     page_number = request.GET.get('page')
     page_obj_pending_enq= paginator.get_page(page_number)
-    pending_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=7).count()
+    pending_enq_count = pending_enq.count()
 
     delivered_enq = CK_Account.objects.filter(username=request.user,Visit_status=4)
     paginator = Paginator(delivered_enq,14)
     page_number = request.GET.get('page')
     page_obj_delivered_enq= paginator.get_page(page_number)
-    delivered_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=4).count()
+    delivered_enq_count = delivered_enq.count()
 
     follow_up_enq = CK_Account.objects.filter(username=request.user)
     # paginator = Paginator(delivered_enq,14)
@@ -179,7 +191,7 @@ def saleperson_page(request):
     paginator = Paginator(lost_enq,14)
     page_number = request.GET.get('page')
     page_obj_lost_enq= paginator.get_page(page_number)
-    lost_enq_count = CK_Account.objects.filter(username=request.user,Visit_status=5).count()
+    lost_enq_count = lost_enq.count()
     return render(request,'Salesperson_Dashboard/salesperson.htm',{'page_obj':page_obj,'Hot_enq_count':Hot_enq_count,'page_obj_cold_enq':page_obj_cold_enq,'cold_enq_count':cold_enq_count,'page_obj_pending_enq':page_obj_pending_enq,'pending_enq_count':pending_enq_count,'delivered_enq_count':delivered_enq_count,'page_obj_delivered_enq':page_obj_delivered_enq,'lost_enq_count':lost_enq_count,'page_obj_lost_enq':page_obj_lost_enq,'follow_up_enq':follow_up_enq})
 
 
