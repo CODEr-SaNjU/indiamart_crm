@@ -147,15 +147,12 @@ def search_enq_month(request):
     return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
 
 
-
+@admin_only
 def Enquiry_search(request):
     qur = request.GET.get('search')
-    if 'is_superuser'==True:
-        last_all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
-        return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
-    else:
-        page_obj = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur),username=request.user)
-        return render(request,'Salesperson_Dashboard/salesperson.htm',{"page_obj":page_obj})
+    last_all_enq = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur) )
+    return render(request,'html_files/Main.htm',{"last_all_enq":last_all_enq})
+  
 
 
 
@@ -372,5 +369,14 @@ def salesperson_Enquiry_Delete(request,pk_id):
     else:
         data['html_form'] = render_to_string('Salesperson_Dashboard/salesenq_delete.htm', {'obj_delete':obj_delete}, request=request)
     return JsonResponse(data)
+
+
+
+
+
+def salesenquiry_search(request):
+    qur = request.GET.get('search')
+    page_obj = CK_Account.objects.filter(Q(SENDERNAME__icontains=qur) | Q(QUERY_ID__icontains=qur) | Q(ENQ_STATE__icontains=qur),username=request.user)
+    return render(request,'Salesperson_Dashboard/salesperson.htm',{"page_obj":page_obj})
 
 

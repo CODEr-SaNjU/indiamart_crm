@@ -8,6 +8,7 @@ urlpatterns = [
     path("Admin_panel/",views.Admin_panel,name="Admin_panel"),
     path("Enquiry_search/",views.Enquiry_search,name="Enquiry_search"),
     path("search_enq_month/",views.search_enq_month,name="search_enq_month"),
+    path("salesperson/salesenquiry_search/",views.salesenquiry_search,name="salesenquiry_search"),
     path("enq_create/",views.enq_create,name="enq_create"),
     path("Enquiry_Update/<str:pk_id>/",views.Enquiry_Update,name="Enquiry_Update"),
     path("Enquiry_Delete/<str:pk_id>/",views.Enquiry_Delete,name="Enquiry_Delete"),

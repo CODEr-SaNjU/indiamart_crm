@@ -1,0 +1,53 @@
+{% load static %}
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-md-12 ">
+            <div class="row">
+                <div class="col">
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="">CRM Name</a>
+                                </li>
+                            </ul>
+                            <span class="navbar-text">
+                                <form method="GET" action="/salesenquiry_search/" class="form-inline my-2 my-lg-10">
+                                    <div class="form-group row" style="margin-left: 20px;">
+                                        <label for="form-date-input" style="color:white;" class="col-1 col-form-label">From</label>
+                                        <div class="col-5">
+                                        <input class="form-control" type="date" name="search1" id="form-date-input" required>
+                                        </div>
+                                        <label for="form-date-input-2" style="color:white;" class="col-1 col-form-label">To</label>
+                                        <div class="col-5">
+                                        <input class="form-control"  name="search" type="date"  id="form-date-input-2" required>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </form>
+                            </span>
+                            <span class="navbar-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span class="navbar-text" >
+                                <form method="GET" action="/salesperson/salesenquiry_search/" class="form-inline my-2 my-lg-10">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search Enquiry" aria-label="Search" id="search" name="search" style="margin-right: 2px;">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </form>
+                            </span>
+                            <span class="navbar-text">
+                                <!-- <a href="#" class="ml-2"><button class="btn  my-2 my-sm-0" type="button">{{request.user}}</a></button> -->
+                            </span>
+                            <span class="navbar-text">
+                                <a href="{% url 'logout' %}" class="ml-2"><button class="btn  my-2 my-sm-0" type="button">Logout</a></button>
+                            </span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  
+  
