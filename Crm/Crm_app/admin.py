@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import CK_Account  ,UserRole ,Profession,Client_Visit,Enquiry_Source
 
+
 # Register your models here.
 
 

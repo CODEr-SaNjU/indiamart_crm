@@ -37,6 +37,7 @@ django-phone-field = "*"
 django-crispy-forms = "*"
 django-bootstrap-modal-forms = "*"
 django-widget-tweaks = "*"
+django-allauth = "*"
 
 [dev-packages]
 
