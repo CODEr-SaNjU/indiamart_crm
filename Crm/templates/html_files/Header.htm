@@ -12,29 +12,22 @@
                                 </li>
                             </ul>
                             <span class="navbar-text">
-                                <form method="GET" action="/search_enq_month/" class="form-inline my-2 my-lg-10">
-                                    <div class="form-group row" style="margin-left: 20px;">
-                                        <label for="form-date-input" style="color:white;" class="col-1 col-form-label">From</label>
-                                        <div class="col-5">
-                                        <input class="form-control" type="date" name="search1" id="form-date-input" required>
-                                        </div>
-                                        <label for="form-date-input-2" style="color:white;" class="col-1 col-form-label">To</label>
-                                        <div class="col-5">
-                                        <input class="form-control"  name="search" type="date"  id="form-date-input-2" required>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary" type="submit">Search</button>
+                                <form class="form-inline" method="GET" action="/search_enq_month/" style="font-weight: bolder;">
+                                    <label for="date" style="color: white;" class="mr-sm-2 ">From :</label>
+                                    <input type="date" class="form-control  mb-2 mr-sm-2" placeholder="Enter date"  required name="search"id="date">
+                                    <label for="to" style="color: white;" class="mr-sm-2">To:</label>
+                                    <input type="date" class="form-control   mb-2 mr-sm-2" placeholder="Enter date" required name="search" id="to">
+                                    <button type="submit" class="btn btn-primary mb-1">Submit</button>
                                 </form>
                             </span>
-                            <span class="navbar-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            <span class="navbar-text" >
-                                <form method="GET" action="/Enquiry_search/" class="form-inline my-2 my-lg-10">
-                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search" name="search" style="margin-right: 2px;">
-                                    <button class="btn btn-primary" type="submit">Search</button>
+                            <span class="navbar-text" style="margin-left:10px ;">
+                                <form class="form-inline" method="GET" action="/Enquiry_search/" style="font-weight: bolder;">
+                                    <input type="text" class="form-control id="search" name="search"   mb-2 mr-sm-2" placeholder="Search Enquiry " id="date">
+                                    <button type="submit" class="btn btn-primary mb-1" style="margin-left:5px ;">Submit</button>
                                 </form>
                             </span>
                             <span class="navbar-text">
-                                <!-- <a href="#" class="ml-2"><button class="btn  my-2 my-sm-0" type="button">{{request.user}}</a></button> -->
+                                <a href="#" class="ml-2"><button class="btn  my-2 my-sm-0" type="button">{{request.user}}</a></button>
                             </span>
                             <span class="navbar-text">
                                 <a href="{% url 'logout' %}" class="ml-2"><button class="btn  my-2 my-sm-0" type="button">Logout</a></button>

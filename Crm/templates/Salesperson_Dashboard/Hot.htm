@@ -1,25 +1,25 @@
 {% block content %}
-<div class="col-12">
-    <button type="button" class="btn btn-primary btn-sm btn-block js-create-hot-enq" style="margin-top: -13px;" data-url="{% url 'salesperson_enq_create' %}">Add New Enquiry</button>
-    <table class="table table-hover table-sm" id="table-hotenq" style="padding: 100px; font-size: small;">
-      <thead>
-        <tr>
-          <th>Query_id</th>
-          <th>Name</th>
-          <th>MOB</th>
-          <th>Email</th>
-          <th>Subject</th>
-          <th>MESSAGE</th>
-          <th>CITY</th>
-          <th>STATE</th>
-          <th>Date</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% include 'Salesperson_Dashboard/hot_list.htm' %}
-      </tbody>
-    </table>
+<div class="col-14">
+  <button type="button" class="btn btn-primary btn-sm btn-block js-create-hot-enq" style="margin-top: -13px;" data-url="{% url 'salesperson_enq_create' %}">Add New Enquiry</button>
+  <table class="table table-hover table-sm" id="table-hotenq" style="padding: 100px; font-size: small;">
+    <thead>
+      <tr>
+        <th>Query_id</th>
+        <th>Name</th>
+        <th>MOB</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>MESSAGE</th>
+        <th>CITY</th>
+        <th>STATE</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include 'Salesperson_Dashboard/hot_list.htm' %}
+    </tbody>
+  </table>
 </div>
 <div class="modal fade" id="hotenq" tabindex="-1" aria-labelledby="hotenqLabel" aria-hidden="true">
   <div class="modal-dialog">
